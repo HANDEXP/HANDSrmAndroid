@@ -1,4 +1,4 @@
-package com.hand.srm.activitys;
+package com.hand.srm.activities;
 
 import com.hand.srm.model.LoadingModel;
 import com.littlemvc.model.LMModel;

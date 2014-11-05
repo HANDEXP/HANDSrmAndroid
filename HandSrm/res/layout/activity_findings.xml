@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/newproduct" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/newProduct" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/push" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/push" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/announcement" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/announcement" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+</LinearLayout>

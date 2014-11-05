@@ -1,10 +1,5 @@
-package com.hand.srm.activitys;
+package com.hand.srm.activities;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.core.io.support.ResourcePatternResolver;
 import org.xml.sax.helpers.XMLFilterImpl;
 
 import com.hand.srm.R;
@@ -18,8 +13,8 @@ import android.widget.LinearLayout;
 
 public class HomeActivity extends Activity implements OnClickListener{
 	
-	    ////µ×²¿ËÄ¸ö°´Å¥
-		//¶©µ¥
+	    ////ï¿½×²ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½Å¥
+		//ï¿½ï¿½ï¿½ï¿½
 		private LinearLayout orderListll;
 		
 
@@ -45,7 +40,7 @@ public class HomeActivity extends Activity implements OnClickListener{
 		////////////////private
 		private void buildAllViews()
 		{
-			///////////°ó¶¨µ×²¿ËÄ¸ö°´Å¥
+			///////////ï¿½ó¶¨µ×²ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½Å¥
 			orderListll = (LinearLayout) findViewById(R.id.orderListll);
 			orderListll.setOnClickListener(this);
 

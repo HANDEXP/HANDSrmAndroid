@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/Search4NoText"
+            android:text="@string/purchaseBillNo" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/purchaseNoView"
+			style="@style/Search4NoView"
+			>
+            
+        </EditText>
+    </RelativeLayout>
+	<View style="@style/Divider"/>
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+        <TextView
+            style="@style/Search4NoText"
+            android:text="@string/purchaseDateFrom">
+        </TextView>
+        <EditText
+            android:id="@+id/purchaseDateFrom"
+			style="@style/Search4NoView"
+			>
+		</EditText>
+
+	</RelativeLayout>
+	<View style="@style/Divider"/>
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+        <TextView
+            style="@style/Search4NoText"
+            android:text="@string/purchaseDateTo">
+        </TextView>
+        <EditText
+            android:id="@+id/purchaseDateTo"
+			style="@style/Search4NoView"
+			>
+		</EditText>
+
+	</RelativeLayout>
+	<View style="@style/Divider"/>
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+        <TextView
+            style="@style/Search4NoText"
+            android:text="@string/onlyUrgent">
+        </TextView>       
+	</RelativeLayout>
+	<Button
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginTop="35dp"
+	    android:text="@string/search4delivert"
+	    android:textColor="#ffffff"
+	    android:background="#f79646"/>
+
+</LinearLayout>

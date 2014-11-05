@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/SettingActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/user_information" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/userInfomation" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/SettingActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/changeChara"
+            android:src="@drawable/muti_chara" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/changeChara" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/SettingActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/changePassword"
+            android:src="@drawable/change_pswd" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/changePassword" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/BigDivider" />
+
+    <LinearLayout
+        style="@style/SettingActivityLL"
+        android:layout_marginTop="20dp" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/QandA"
+            android:src="@drawable/help" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/QandA" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/SettingActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/comment"
+            android:src="@drawable/comment" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/comment" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/SettingActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/checkVersion"
+            android:src="@drawable/update" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/checkVersion" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/BigDivider" />
+
+    <Button
+        android:id="@+id/quitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#f79646"
+        android:text="@string/exit" />
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.205"/>
+</LinearLayout>

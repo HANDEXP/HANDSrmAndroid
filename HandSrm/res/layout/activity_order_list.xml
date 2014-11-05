@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff">
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/issuedorders" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/issuedOrders" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/delivery" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/deliveryBill" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+    <View style="@style/Divider" />
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.hand.srm.activitys;
+package com.hand.srm.activities;
 
 import android.os.Bundle;
 

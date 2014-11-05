@@ -3,5 +3,49 @@
 
     <string name="app_name">HandSrm</string>
     <string name="hello_world">Hello world!</string>
-
+	<string name="detail">detail</string>
+	<!-- 登录页面 -->
+	<string name="handcloud">Hand Cloud</string>
+	<string name="username">账号:</string>
+	<string name="password">密码:</string>
+	<string name="login">登录</string>
+	<string name="remember">记住登录</string>
+    <!-- /////  设置页面     -->
+    <string name="userInfomation">用户信息</string>
+    <string name="changeChara">更换角色</string>
+    <string name="changePassword">更换密码</string>
+    <string name="QandA">常见问题</string>
+    <string name="comment">欢迎吐糟</string>
+    <string name="checkVersion">版本升级</string>
+    <string name="exit">退出系统</string>
+    <drawable name="white">#ffffff</drawable>
+    <drawable name="grey">#999999</drawable>
+    <!-- /////  查询送货单号 -->
+    <string name="deliveryBillNo">送货单号:</string>
+    <string name="deliveryDateFrom">发货日期从:</string>
+    <string name="deliveryDateTo">发货日期到:</string>
+    <string name="search4delivert">查询</string>
+    <!-- /////  查询采购单号 -->
+    <string name="purchaseBillNo">采购订单号</string>
+    <string name="purchaseDateFrom">发布日期从</string>
+    <string name="purchaseDateTo">发布日期至</string>
+    <string name="onlyUrgent">仅显示加急订单</string>
+    <!-- //// 订单列表    -->
+    <string name="issuedOrders">我发出的订单</string>
+    <string name="deliveryBill">送货单查询</string>
+    <!-- //// 消息列表    -->
+    <string name="notice">业务通知单</string>
+    <string name="mail">站内信</string>
+    <!-- //// 财务 -->
+    <string name="myStatement">我的对账单</string>
+    <string name="myInvoice">我的采购发票</string>
+    <string name="myPayment">我的付款</string>
+    <!-- //// 发现 -->
+    <string name="newProduct">发现新产品</string>
+    <string name="push">云推送</string>
+    <string name="announcement">平台公告</string>
+    <!-- //// 待发货 -->
+    <string name="urgent">整单加急</string>
+    <string name="cancelUrgent">取消加急</string>
+    
 </resources>

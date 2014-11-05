@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/statement" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/myStatement" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/invoice" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/myInvoice" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+    <LinearLayout style="@style/OrderListActivityLL" >
+
+        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/userInfomation"
+            android:src="@drawable/payment" />
+
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/myPayment" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+    <View style="@style/Divider" />
+
+</LinearLayout>
