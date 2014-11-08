@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2f2f2"
+        android:paddingBottom="15dp" >
+
+        <TextView
+            android:id="@+id/consignerTitle"
+            style="@style/OrderListDetail"
+            android:text="@string/consigner" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/consignerTextView"
+            style="@style/OrderListDetail"
+            android:layout_toRightOf="@+id/consignerTitle" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/consignerOrganizationTitle"
+            style="@style/OrderListDetail"
+            android:layout_below="@+id/consignerTitle"
+            android:text="@string/consignerOrganization" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/consignerOrganizationTextView"
+            style="@style/OrderListDetail"
+            android:layout_below="@+id/consignerTextView"
+            android:layout_toRightOf="@+id/consignerOrganizationTitle" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/orderType"
+            style="@style/OrderListDetail"
+            android:layout_below="@+id/consignerOrganizationTitle"
+            android:text="@string/orderType" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/orderTypeTextView"
+            style="@style/OrderListDetail"
+            android:layout_below="@+id/consignerOrganizationTextView"
+            android:layout_toRightOf="@+id/orderType" >
+        </TextView>
+    </RelativeLayout>
+	<ListView
+	    android:id="@+id/listDetail"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content">
+	</ListView>
+</LinearLayout>

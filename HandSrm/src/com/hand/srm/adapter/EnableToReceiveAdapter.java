@@ -11,15 +11,16 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.hand.srm.R;
+import com.hand.srm.model.EnableToReceiveModel;
 import com.hand.srm.model.ShopPoListModel;
 
-public class ShopPoListAdapter extends BaseExpandableListAdapter {
+public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 	private List<List<String>> group;
-	private List<List<ShopPoListModel>> child;
+	private List<List<EnableToReceiveModel>> child;
 	private Context context;
 
-	public ShopPoListAdapter(List<List<String>> group,
-			List<List<ShopPoListModel>> child, Context context) {
+	public EnableToReceiveAdapter(List<List<String>> group,
+			List<List<EnableToReceiveModel>> child, Context context) {
 		this.group = group;
 		this.child = child;
 		this.context = context;
@@ -96,27 +97,27 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.activity_shio_po_list_child, null);
 		}
-		ShopPoListModel childInfo = child.get(groupPosition).get(
+		EnableToReceiveModel childInfo = child.get(groupPosition).get(
 				childPosition);
-		String PoNumString = childInfo.getNum();
-		String ReleaseTimeString = childInfo.getReleaseTime();
+		String AsnNumString = childInfo.getAsnNum();
+		String AsnTypeName = childInfo.getAsnTypeName();
 		String VendorNameString = childInfo.getVendorName();
-		String SrmStatusString = childInfo.getSrmStatusName();
-		String TotalAmountString = childInfo.getTotalAmount();
-		TextView poNum = (TextView) convertView.findViewById(R.id.po_num);
-		TextView releaseTime = (TextView) convertView
+		String StatusString = childInfo.getStatusName();
+		String ExpectedDateString = childInfo.getExpectedDate();
+		TextView asnNum = (TextView) convertView.findViewById(R.id.po_num);
+		TextView asnTypeName = (TextView) convertView
 				.findViewById(R.id.release_time);
-		TextView vendorName = (TextView) convertView
+		TextView asnVendorName = (TextView) convertView
 				.findViewById(R.id.vendor_name);
-		TextView srmStatus = (TextView) convertView
+		TextView statusName = (TextView) convertView
 				.findViewById(R.id.srm_status);
-		TextView totalAmount = (TextView) convertView
+		TextView expectedDate = (TextView) convertView
 				.findViewById(R.id.total_amount);
-		poNum.setText(PoNumString);
-		releaseTime.setText(ReleaseTimeString);
-		vendorName.setText(VendorNameString);
-		srmStatus.setText(SrmStatusString);
-		totalAmount.setText(TotalAmountString);
+		asnNum.setText(AsnNumString);
+		asnTypeName.setText(AsnTypeName);
+		asnVendorName.setText(VendorNameString);
+		statusName.setText(StatusString);
+		expectedDate.setText(ExpectedDateString);
 		return convertView;
 	}
 

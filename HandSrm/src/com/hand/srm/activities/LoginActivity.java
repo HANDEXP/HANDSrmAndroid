@@ -98,7 +98,8 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,L
 			String code = ((JSONObject) jsonobj.get("head")).get("code").toString();
 			if(code.equals("ok")){
 				saveUserData();
-				Intent intent = new Intent(getApplicationContext(),ShopPoListActivity.class);
+//				Intent intent = new Intent(getApplicationContext(),ShopPoListActivity.class);
+				Intent intent = new Intent(getApplicationContext(),EnableToReceiveActivity.class);
 				startActivity(intent);
 				finish();
 			}else if(code.equals("failure")){

@@ -32,8 +32,14 @@
         </activity>
         <activity
             android:name="com.hand.srm.activities.ShopPoListActivity"
-            android:label="待发货">
+            android:label="待发货列表">
         </activity>
+        <activity 
+            android:name="com.hand.srm.activities.ShopPoListDetailActivity"
+            android:label="待发货列表详情"></activity>
+        <activity
+            android:name="com.hand.srm.activities.EnableToReceiveActivity"
+            android:label="带接收列表"></activity>
     </application>
 
 </manifest>

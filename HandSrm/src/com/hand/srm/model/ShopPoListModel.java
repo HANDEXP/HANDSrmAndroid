@@ -1,6 +1,6 @@
 package com.hand.srm.model;
 
-public class ShopPoListHeaderModel {
+public class ShopPoListModel {
 	private String pur_header_id;
 	private String num;
 	private String vendor_id;
@@ -11,7 +11,7 @@ public class ShopPoListHeaderModel {
 	private String release_time;
 	private String release_day;
 	
-	public ShopPoListHeaderModel(String pur_header_id,String num,String vendor_id,String vendor_name,
+	public ShopPoListModel(String pur_header_id,String num,String vendor_id,String vendor_name,
 										String srm_status_name,String total_amount,String release_date,
 										String release_time, String release_day) {
 		this.pur_header_id = pur_header_id;

@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -13,35 +12,34 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.Toast;
+import android.widget.ExpandableListView.OnChildClickListener;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.hand.srm.R;
-import com.hand.srm.adapter.ShopPoListAdapter;
-import com.hand.srm.model.ShopPoListModel;
-import com.hand.srm.model.ShopPoListSvcModel;
+import com.hand.srm.adapter.EnableToReceiveAdapter;
+import com.hand.srm.model.EnableToReceiveModel;
+import com.hand.srm.model.EnableToReceiveSvcModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
 
-public class ShopPoListActivity extends SherlockActivity implements
+public class EnableToReceiveActivity extends SherlockActivity implements
 		OnClickListener, LMModelDelegate {
 	private List<List<String>> group;
-	private List<List<ShopPoListModel>> child;
-	private ShopPoListAdapter adapter;
+	private List<List<EnableToReceiveModel>> child;
+	private EnableToReceiveAdapter adapter;
 	private ExpandableListView shopPoListView;
-	private ShopPoListSvcModel model;
+	private EnableToReceiveSvcModel model;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ship_po_list);
-		model = new ShopPoListSvcModel(this);
+		model = new EnableToReceiveSvcModel(this);
 
 	}
 
@@ -59,14 +57,16 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private void bindAllViews() {
 		shopPoListView = (ExpandableListView) findViewById(R.id.shopPoListView);
 		shopPoListView.setOnChildClickListener(new OnChildClickListener() {
-			
+
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				// TODO 自动生成的方法存根
-				
-				String headerId = child.get(groupPosition).get(childPosition).getPurHeaderId();
-				Intent intent = new Intent(getApplicationContext(),ShopPoListDetailActivity.class);
+
+				String headerId = child.get(groupPosition).get(childPosition)
+						.getAsnHeaderId();
+				Intent intent = new Intent(getApplicationContext(),
+						EnableToReceiveDetailActivity.class);
 				intent.putExtra("purHeaderId", headerId);
 				startActivity(intent);
 				return false;
@@ -86,42 +86,44 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private void initializeData(JSONArray jsonArr) throws JSONException,
 			ParseException {
 		group = new ArrayList<List<String>>();
-		child = new ArrayList<List<ShopPoListModel>>();
+		child = new ArrayList<List<EnableToReceiveModel>>();
 		String[] groupInfo = new String[2];
-		List<ShopPoListModel> childInfo = new ArrayList<ShopPoListModel>();
+		List<EnableToReceiveModel> childInfo = new ArrayList<EnableToReceiveModel>();
 		String topDate = null;
 		Boolean flag = false;
 		int length = jsonArr.length();
 		for (int i = 0; i < length; i += 1) {
-//			if(i == 50){
-//				break;
-//			}
+			// if(i == 50){
+			// break;
+			// }
 			JSONObject data = new JSONObject();
 			data = (JSONObject) jsonArr.get(i);
 			try {
 				if (topDate == null) {
-					topDate = data.getString("release_date");
+					topDate = data.getString("ship_date");
 					groupInfo = new String[] { topDate,
-							data.getString("release_day") };
+							data.getString("ship_day") };
 				}
-				flag = dateCompare(data.getString("release_date"), topDate);
+				flag = dateCompare(data.getString("ship_date"), topDate);
 				if (flag) {
 					addInfo(groupInfo, childInfo);
 					childInfo.clear();
-					topDate = data.getString("release_date");
+					topDate = data.getString("ship_date");
 					groupInfo = new String[] { topDate,
-							data.getString("release_day") };
+							data.getString("ship_day") };
+
 				}
 
-				ShopPoListModel item = new ShopPoListModel(data
-						.getString("pur_header_id"), data.getString("po_num"),
-						data.getString("vendor_id"), data
-								.getString("vendor_name"), data
-								.getString("srm_status"), data
-								.getString("total_amount"), data
-								.getString("release_date"), data
-								.getString("release_time"), data
-								.getString("release_day"));
+				EnableToReceiveModel item = new EnableToReceiveModel(
+						data.getString("asn_header_id"),
+						data.getString("asn_num"),
+						data.getString("asn_type_name"),
+						data.getString("vendor_id"),
+						data.getString("vendor_name"),
+						data.getString("status_name"),
+						data.getString("expected_date"),
+						data.getString("ship_date"),
+						data.getString("ship_time"), data.getString("ship_day"));
 				childInfo.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -136,9 +138,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 		}
 	}
 
-	private void addInfo(String[] g, List<ShopPoListModel> c) {
+	private void addInfo(String[] g, List<EnableToReceiveModel> c) {
 		List<String> groupitem = new ArrayList<String>();
-		List<ShopPoListModel> childitem = new ArrayList<ShopPoListModel>();
+		List<EnableToReceiveModel> childitem = new ArrayList<EnableToReceiveModel>();
 		for (int i = 0; i < g.length; i += 1) {
 			groupitem.add(g[i]);
 		}
@@ -169,14 +171,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 					e.printStackTrace();
 
 				}
-				adapter = new ShopPoListAdapter(group, child,
+				adapter = new EnableToReceiveAdapter(group, child,
 						getApplicationContext());
 				shopPoListView.setAdapter(adapter);
 				int groupCount = shopPoListView.getCount();
-				for(int i =0; i<groupCount;i++){
+				for (int i = 0; i < groupCount; i++) {
 					shopPoListView.expandGroup(i);
-					
-				}				
+
+				}
 				// 打开每一个Group
 			} else if (code.equals("failure")) {
 				Toast.makeText(getApplicationContext(), "服务器错误",
