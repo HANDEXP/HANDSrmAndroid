@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_relativelayout_header"
+    android:layout_width="fill_parent"
+    android:layout_height="50dip"
+    android:background="#1C86EE" >
+   
+
+
+    <TextView
+        android:id="@+id/main_head_title"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="沈波采购员" />
+
+</RelativeLayout>

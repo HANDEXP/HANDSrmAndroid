@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical" >
+    
+    <LinearLayout style="@style/OrderListActivityLL"
+        	android:layout_marginTop="10dp"
+        		>
+		        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/QandA"
+            android:src="@drawable/help" />
+	
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/order_list_name" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+    
+    
+        <LinearLayout style="@style/OrderListActivityLL"
+        	android:layout_marginTop="10dp"
+        		>
+		        <ImageView
+            style="@style/SettingActivityIcon"
+            android:contentDescription="@string/QandA"
+            android:src="@drawable/help" />
+	
+        <TextView
+            style="@style/SettingActivity"
+            android:text="@string/deliver_name" />
+
+        <ImageView
+            style="@style/SettingActivityDetail"
+            android:contentDescription="@string/detail"
+            android:src="@drawable/nextbutton" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -10,6 +10,10 @@
 	<string name="password">密码:</string>
 	<string name="login">登录</string>
 	<string name="remember">记住登录</string>
+	<!-- 订单页面 -->
+	<string name="order_list_name">我发出的订单</string>
+	<string name="deliver_name">送货单查询</string>
+	
     <!-- /////  设置页面     -->
     <string name="userInfomation">用户信息</string>
     <string name="changeChara">更换角色</string>

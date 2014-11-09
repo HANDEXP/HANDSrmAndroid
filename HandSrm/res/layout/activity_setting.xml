@@ -70,7 +70,7 @@
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/QandA"
             android:src="@drawable/help" />
-
+	
         <TextView
             style="@style/SettingActivity"
             android:text="@string/QandA" />

@@ -5,491 +5,146 @@
     android:background="#fff"
     android:orientation="vertical" >
 
- <!--头部-->     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-        android:background="#F4AB50"
-         >
-   	<!-- 1 -->
-   	<LinearLayout 
-   	    android:layout_width="0dp"
-   	    android:layout_weight="1"
-   	    android:layout_height="fill_parent"
-		android:orientation="vertical"
-   	    >
-   	    
-   	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:layout_marginTop="10dp"
-   	        android:text="待发货"
-   	        android:textColor="@color/white"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        />
-   	    
-   	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-
-   	        android:text="2"
-   	        android:textColor="@color/red"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        
-   	        
-   	        />
-   	    
-   	    
-   	</LinearLayout>
-   	<View 
-   	    android:layout_width="1dp"
-   	    android:layout_height="match_parent"
-   	    android:layout_marginTop="10dp"
-   	    android:layout_marginBottom="10dp"
-   	    android:background="@color/white"
-   	    />
-         
-    <!-- 2 --> 
-       	<LinearLayout 
-   	    android:layout_width="0dp"
-   	    android:layout_weight="1"
-   	    android:layout_height="fill_parent"
-		android:orientation="vertical"
-   	    >
-   	       	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:layout_marginTop="10dp"
-   	        android:text="待接收"
-   	        android:textColor="@color/white"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        />
-   	    
-   	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:text="11"
-   	        android:textColor="@color/red"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        
-   	        
-   	        />
-   	    
-   	    
-   	</LinearLayout>
-           	<View 
-   	    android:layout_width="1dp"
-   	    android:layout_height="match_parent"
-   	    android:layout_marginTop="10dp"
-   	    android:layout_marginBottom="10dp"
-   	    android:background="@color/white"
-   	    />
-    <!-- 3 -->     
-       	<LinearLayout 
-   	    android:layout_width="0dp"
-   	    android:layout_weight="1"
-   	    android:layout_height="fill_parent"
-		android:orientation="vertical"
-   	    >
-   	    
-       	       	       	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:layout_marginTop="10dp"
-   	        android:text="待开票"
-   	        android:textColor="@color/white"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        />
-   	    
-   	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:text="3"
-   	        android:textColor="@color/red"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        
-   	        
-   	        />
-   	    
-   	    
-   	</LinearLayout>
-       
-          	<View 
-   	    android:layout_width="1dp"
-   	    android:layout_height="match_parent"
-   	    android:layout_marginTop="10dp"
-   	    android:layout_marginBottom="10dp"
-   	    android:background="@color/white"
-   	    />
-    <!-- 4 -->     
-       	<LinearLayout 
-   	    android:layout_width="0dp"
-   	    android:layout_weight="1"
-   	    android:layout_height="fill_parent"
-		android:orientation="vertical"
-   	    >
-   	    
-       	           	       	       	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:layout_marginTop="10dp"
-   	        android:text="待付款"
-   	        android:textColor="@color/white"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        />
-   	    
-   	    <TextView 
-   	        android:layout_width="wrap_content"
-   	        android:layout_height="wrap_content"
-   	        android:text="0"
-   	        android:textColor="@color/red"
-   	        android:layout_gravity="center"
-   	        android:textSize="20dp"
-   	        
-   	        
-   	        />
-   	    
-   	    
-   	</LinearLayout>
-   	
-       	
-       	
-    
-    
-    </LinearLayout>
-
- <!-- 中间-->     
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:orientation="vertical"
-        android:background="#fff" >
-       	
-   <!-- 第一排-->       
-   <LinearLayout 
-       android:layout_weight="1"
-       android:layout_height="0dp"
-       android:layout_width="match_parent"
-       android:orientation="horizontal"
-       >
-    <!-- 0-0 -->   
+ <LinearLayout 
+     android:layout_width="match_parent"
+     android:layout_height="0dp"
+     android:layout_weight="2"
+     android:background="#666666"
+     android:orientation="horizontal"
+     
+     >
     <LinearLayout 
-        android:layout_weight="1"
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
-        <ImageView 
+        android:layout_margin="5dp"
+        > 
+        <TextView 
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:src="@drawable/one"
-            /> 
-        
-        <TextView  
-            android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="预制采购单"
-			android:layout_marginTop="10dp"
-			android:layout_gravity="center"
-			android:textColor="@color/black"
-			android:layout_marginBottom="10dp"
-           
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="0"
+            android:textSize="23dp"
             />
+        <TextView
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content"  
+        	 android:textColor="@color/white"
+        	 android:gravity="center"
+        	 android:layout_gravity="center_horizontal"
+        	 android:text="待发货"
+        />
+     </LinearLayout>
         
-        
-        
-    </LinearLayout>
-    
-       
-     <!-- 0-1 -->    
-       
-           <LinearLayout 
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:orientation="vertical"
+    <View  style="@style/HomeDivider"/>
 
-        android:layout_height="match_parent"
-        >
-        
-                       <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:src="@drawable/two"
-            /> 
-        
-        <TextView  
-            android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="供应商名录"
-			android:layout_marginTop="10dp"
-			android:layout_gravity="center"
-			android:textColor="@color/black"
-				android:layout_marginBottom="10dp"
-            />
-        
-        
-    </LinearLayout>
-     <!-- 0-2 -->  
-         <LinearLayout 
-        android:layout_weight="1"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        
-                                    <ImageView 
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:src="@drawable/three"
-            /> 
-        
-        <TextView  
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="23dp" />
+
+        <TextView
             android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="报表仪表盘"
-			android:layout_marginTop="10dp"
-			android:layout_gravity="center"
-			android:textColor="@color/black"
-				android:layout_marginBottom="10dp"
-            />
-        
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="待接收"
+            android:textColor="@color/white"
+        />
     </LinearLayout>
      
-        
-   </LinearLayout>     
-        
-        
-   <!-- 第二排-->     
-       <LinearLayout 
-                  android:layout_weight="1"
-       android:layout_height="0dp"
-       android:layout_width="match_parent"
-       android:orientation="horizontal">
-            <!-- 1-0 -->   
-    <LinearLayout 
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-        <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:src="@drawable/four"
-            /> 
-        
-        <TextView  
-            android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="销售寄用记录"
-			android:layout_marginTop="10dp"
-			android:layout_gravity="center"
-			android:textColor="@color/black"
-				android:layout_marginBottom="10dp"     
-            />
+          <View  style="@style/HomeDivider"/>  
         
         
-        
-    </LinearLayout>
-    
-       
-     <!-- 2-1 -->    
-       
-           <LinearLayout 
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        >
-        
-                       <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_marginTop="10dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:layout_gravity="center"
-            android:src="@drawable/five"
-            /> 
-        
-        <TextView  
-            android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="寄售库存查询"
-			android:layout_marginTop="10dp"
-			android:layout_gravity="center"
-			android:textColor="@color/black"
-	android:layout_marginBottom="10dp"   
-            />
-        
-        
-    </LinearLayout>
-     <!-- 0-2 -->  
          <LinearLayout 
-        android:layout_weight="1"
         android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
-        
-        
-    </LinearLayout>
+        android:layout_margin="5dp"
+        > 
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="0"
+            android:textSize="23dp"
+            
+            />
+        <TextView
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content"  
+        	 android:textColor="@color/white"
+        	 android:gravity="center"
+        	 android:layout_gravity="center_horizontal"
+        	 
+        	 android:text="待开票"
+        />
+     </LinearLayout>
+     
+       <View  style="@style/HomeDivider"/>     
+         
+         <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        > 
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="0"
+            android:textSize="23dp"
            
-       
-       
-       
-   </LinearLayout>  
-    
-    
-    </LinearLayout>
+            />
+        <TextView
+         	android:layout_width="wrap_content" 
+         	android:layout_height="wrap_content"  
+        	 android:textColor="@color/white"
+        	 android:gravity="center"
+        	 android:layout_gravity="center_horizontal"
+        	
+        	 android:text="待付款"
+        />
+     </LinearLayout>
+ </LinearLayout>
 
-<!--  底部-->    
-    
-    
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="#3C719F"
-        android:orientation="horizontal" >
-
-<!--  订单按钮-->          
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1" 
-            android:id="@+id/orderListll"
-            
-            >
-           
-           <ImageView
-                android:layout_width="wrap_content"
-   				android:layout_height="0dp"
-   				android:layout_weight="3"
-                android:scaleType="center"
-                android:layout_gravity="center"
-                android:src="@drawable/newexp"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-  				android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="订单" />
-            
-            
-        </LinearLayout>
- 
-<!--  财务按钮--> 
-       <LinearLayout
-               android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-                        android:layout_weight="1"  >
-                       <ImageView
-                android:layout_width="wrap_content"
-   				android:layout_height="0dp"
-   				android:layout_weight="3"
-                android:scaleType="center"
-                android:layout_gravity="center"
-                android:src="@drawable/chart"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-  				android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="财务" />
-        </LinearLayout>
-        
-     <!--  发现按钮--> 
-       <LinearLayout
-               android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-                        android:layout_weight="1"  >
-                       <ImageView
-                android:layout_width="wrap_content"
-   				android:layout_height="0dp"
-   				android:layout_weight="3"
-                android:scaleType="center"
-                android:layout_gravity="center"
-                android:src="@drawable/chart"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-  				android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="发现" />
-        </LinearLayout>  
-
-           <!--  设置按钮-->  
-              <LinearLayout
-               android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-                        android:layout_weight="1"  >
-                       <ImageView
-                android:layout_width="wrap_content"
-   				android:layout_height="0dp"
-   				android:layout_weight="3"
-                android:scaleType="center"
-                android:layout_gravity="center"
-                android:src="@drawable/chart"
-                 />
-
-            <TextView
-                android:layout_width="wrap_content"
-  				android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:text="设置" />
-        </LinearLayout>  
-        
-    </LinearLayout>
-
-
-
+ 	<GridView 
+ 	    android:id="@+id/mGridView"
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="0dp"
+ 	    android:layout_weight="8"
+ 	    android:numColumns="3"
+		android:gravity="center"
+ 	    >
+ 	    
+ 	    
+ 	    
+ 	    
+ 	    
+ 	</GridView>
+ 	
 
 
 </LinearLayout>

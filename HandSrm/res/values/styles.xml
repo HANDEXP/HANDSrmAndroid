@@ -1,6 +1,16 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Application theme. -->
+    <!-- 主页分隔线 -->
+    <style name="HomeDivider">
+       	<item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+         <item name="android:background">#fff</item>
+          <item name="android:layout_marginTop">10dp</item>
+          <item name="android:layout_marginBottom">10dp</item>
+    </style>
+    
+    
    <!-- 分割线   -->
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
@@ -35,6 +45,19 @@
         <item name="android:background">@drawable/setting_view_selector</item>
         <item name="android:clickable">true</item>
     </style>
+    <!--  订单界面 -->
+    <string name="OrderTabLL">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">0.2</item>
+    	<item name="android:orientation">horizontal</item>
+    	<item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    	<item name="android:background">@drawable/setting_view_selector</item>
+        <item name="android:clickable">true</item>
+    </string>
+    
+    
     <!-- 设置界面文字 -->
 	<style name="SettingActivity">
         <item name="android:layout_width">0dp</item>
