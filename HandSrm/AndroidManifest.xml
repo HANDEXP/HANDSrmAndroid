@@ -39,7 +39,11 @@
             android:label="待发货列表详情"></activity>
         <activity
             android:name="com.hand.srm.activities.EnableToReceiveActivity"
-            android:label="带接收列表"></activity>
+            android:label="待接收列表"></activity>
+        <activity
+            android:name="com.hand.srm.activities.EnableToReceiveDetailActivity"
+            android:label="待接收列表详情">
+        </activity>
     </application>
 
 </manifest>

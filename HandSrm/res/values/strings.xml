@@ -57,5 +57,5 @@
     <string name="shipQuantity">发运数量</string>
     <string name="receiveQuantity">已接受</string>
     <string name="onTheWayQuantity">在途</string>
-    <string name="locationName">收货地点</string>
+    <string name="locationName">收货地点：</string>
 </resources>

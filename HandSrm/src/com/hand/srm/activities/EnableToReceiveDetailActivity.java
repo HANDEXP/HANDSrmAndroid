@@ -39,7 +39,7 @@ public class EnableToReceiveDetailActivity extends SherlockActivity implements O
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_shop_po_detail);
+		setContentView(R.layout.activity_receive_detail);
 		model = new EnableToReceiveDetailSvcModel(this);
 		parm = new HashMap<String, String>();
 	}
@@ -49,8 +49,8 @@ public class EnableToReceiveDetailActivity extends SherlockActivity implements O
 		super.onResume();
 		bindAllViews();
 		Intent intent = getIntent();
-		String purHeaderId = intent.getStringExtra("purHeaderId");
-		parm.put("pur_header_id", purHeaderId);
+		String asnHeaderId = intent.getStringExtra("purHeaderId");
+		parm.put("asn_header_id", asnHeaderId);
 //		Toast.makeText(getApplicationContext(), purHeaderId, Toast.LENGTH_SHORT).show();
 		model.load(parm);
 		

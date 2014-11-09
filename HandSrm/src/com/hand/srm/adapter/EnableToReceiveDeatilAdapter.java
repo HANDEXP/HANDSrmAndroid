@@ -56,7 +56,7 @@ public class EnableToReceiveDeatilAdapter extends BaseAdapter{
 		String uomNameString = dataInfo.getUomName();
 		String onTheWayQuantityString = dataInfo.getOnTheWayQuantity();
 		if(convertView == null){
-			convertView = LayoutInflater.from(context).inflate(R.layout.fragment_ship_list_detail, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.fragment_receive_list_detail, null);
 		}
 		TextView itemCode = (TextView) convertView.findViewById(R.id.itemCodeTextView);
 		TextView itemDesc = (TextView) convertView.findViewById(R.id.itemDescTextView);
