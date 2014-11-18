@@ -13,8 +13,10 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
@@ -26,6 +28,7 @@ import com.hand.srm.model.EnableToReceiveSvcModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
+import com.mas.customview.ProgressDialog;
 
 public class EnableToReceiveActivity extends SherlockActivity implements
 		OnClickListener, LMModelDelegate {
@@ -34,13 +37,17 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private EnableToReceiveAdapter adapter;
 	private ExpandableListView shopPoListView;
 	private EnableToReceiveSvcModel model;
+	private TextView backTextView;
+	private ProgressDialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ship_po_list);
 		model = new EnableToReceiveSvcModel(this);
-
+		dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
+		dialog.show();
 	}
 
 	@Override
@@ -69,7 +76,18 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 						EnableToReceiveDetailActivity.class);
 				intent.putExtra("purHeaderId", headerId);
 				startActivity(intent);
+				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);			
 				return false;
+			}
+		});
+		shopPoListView.setGroupIndicator(null);
+		backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				finish();
 			}
 		});
 	}
@@ -154,8 +172,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
+//				Toast.LENGTH_SHORT).show();
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
 		String json = new String(reponseModel.mresponseBody);
 		try {
@@ -190,7 +208,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} finally {
-
+			dialog.dismiss();
 		}
 		;
 	}

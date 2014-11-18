@@ -75,7 +75,7 @@ public class MenuActivity  extends TabActivity{
 		TabItem item5 = new TabItem(
 				"设置",
 				R.drawable.tab_change_setting,
-				new Intent(this, OrderTabActivity.class));
+				new Intent(this, SettingActivity.class));
 		
 		
 		mItems = new ArrayList<TabItem>();

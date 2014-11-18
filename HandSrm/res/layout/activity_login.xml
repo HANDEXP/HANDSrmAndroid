@@ -26,7 +26,7 @@
         style="@style/LoginActivityEditView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        
+        android:maxLines="1"
         android:hint="@string/username" />
 
     <EditText
@@ -62,8 +62,9 @@
         android:layout_marginRight="10dp"
         android:paddingLeft="35dp"
         android:paddingRight="35dp"
-        android:background="@drawable/login_button_corners"
-        android:layout_alignParentRight="true" />
+        android:background="@drawable/login_button_selector"
+        android:layout_alignParentRight="true" 
+        android:textColor="#ffffff"/>
 	
 	</RelativeLayout>
 

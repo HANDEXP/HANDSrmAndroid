@@ -19,7 +19,7 @@
         <activity
             android:name="com.hand.srm.activities.LoginActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:label="登录" >
+            android:label="Srm云" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

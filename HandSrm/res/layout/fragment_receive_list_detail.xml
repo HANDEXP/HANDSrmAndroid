@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:paddingBottom="5dp"
-    android:paddingTop="20dp" >
+    android:paddingTop="20dp"
+    android:paddingLeft="5dp" >
 
     <TextView
         android:id="@+id/itemCodeTextView"

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.hand.srm.model.ShopPoListSvcModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
+import com.mas.customview.ProgressDialog;
 
 public class ShopPoListDetailActivity extends SherlockActivity implements OnClickListener, LMModelDelegate{
 	
@@ -37,14 +39,28 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 	private ShopPoListDetailSvcModel model;
 	private HashMap<String, String> parm;
 	private List<ShopPoListDetailModel> data;
+	private TextView backTextView;
+	private ProgressDialog dialog;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_shop_po_detail);
 		model = new ShopPoListDetailSvcModel(this);
 		parm = new HashMap<String, String>();
+		dialog = new ProgressDialog(this, "数据加载中，请稍后");
+		dialog.show();
 	}
+	
+	@Override  
+    public void onBackPressed() {  
+        // do something what you want  
+//        super.onBackPressed();  
+		finish();
+		overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }  
 	
 	@Override
 	protected void onResume(){
@@ -63,7 +79,8 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		consignerOrganizationTextView = (TextView) findViewById(R.id.consignerOrganizationTextView);
 		orderTypeTextView = (TextView) findViewById(R.id.orderTypeTextView);
 		listDetail = (ListView) findViewById(R.id.listDetail);
-		
+		backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView.setOnClickListener(this);
 	}
 	
 	/**
@@ -100,8 +117,8 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		// TODO 自动生成的方法存根
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
 		String json = new String(reponseModel.mresponseBody);
-		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
+//				Toast.LENGTH_SHORT).show();
 		try {
 			JSONObject jsonObj = new JSONObject(json);
 			String code = ((JSONObject)jsonObj.get("head")).get("code").toString();
@@ -115,6 +132,8 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		} finally {
+			dialog.dismiss();
 		}
 	}
 
@@ -134,6 +153,14 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
-		
+		switch (v.getId()) {
+		case R.id.backTextView:
+			finish();
+			overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+			break;
+
+		default:
+			break;
+		}
 	}
 }

@@ -14,10 +14,13 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,18 +31,25 @@ import com.hand.srm.model.ShopPoListSvcModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
+import com.mas.customview.ProgressDialog;
 
 public class ShopPoListActivity extends SherlockActivity implements
 		OnClickListener, LMModelDelegate {
+	private View header;  //顶部布局文件
 	private List<List<String>> group;
 	private List<List<ShopPoListModel>> child;
 	private ShopPoListAdapter adapter;
 	private ExpandableListView shopPoListView;
+//	private 
 	private ShopPoListSvcModel model;
+	private TextView backTextView;
+	private ProgressDialog dialog;
+	private Boolean reloadFlag = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ship_po_list);
 		model = new ShopPoListSvcModel(this);
 
@@ -49,14 +59,29 @@ public class ShopPoListActivity extends SherlockActivity implements
 	protected void onResume() {
 		super.onResume();
 		bindAllViews();
-		model.load();
+		if(reloadFlag == true){
+			dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
+			dialog.show();
+			model.load();
+		}
+		
+		
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		reloadFlag = false;
+	}
 	/**
 	 * 绑定View
 	 * 
 	 */
 	private void bindAllViews() {
+		//上拉刷新
+
+		
+		
 		shopPoListView = (ExpandableListView) findViewById(R.id.shopPoListView);
 		shopPoListView.setOnChildClickListener(new OnChildClickListener() {
 			
@@ -69,7 +94,18 @@ public class ShopPoListActivity extends SherlockActivity implements
 				Intent intent = new Intent(getApplicationContext(),ShopPoListDetailActivity.class);
 				intent.putExtra("purHeaderId", headerId);
 				startActivity(intent);
+				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);
 				return false;
+			}
+		});
+		shopPoListView.setGroupIndicator(null);
+		backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				finish();
 			}
 		});
 	}
@@ -152,8 +188,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
+//				Toast.LENGTH_SHORT).show();
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
 		String json = new String(reponseModel.mresponseBody);
 		try {
@@ -188,7 +224,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} finally {
-
+			dialog.dismiss();
 		}
 		;
 	}
