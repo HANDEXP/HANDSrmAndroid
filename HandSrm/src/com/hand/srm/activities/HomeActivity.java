@@ -9,6 +9,7 @@ import com.hand.srm.item.FunctionItem;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +29,6 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
@@ -39,7 +39,6 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
@@ -49,7 +48,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		FunctionItem item2 = new FunctionItem("供应商名录", R.drawable.ic_category_1, null);
 
-		FunctionItem item3 = new FunctionItem("报表仪表盘", R.drawable.ic_category_2, null);
+		FunctionItem item3 = new FunctionItem("报表仪表盘", R.drawable.ic_category_2, new Intent(this,ChartListActivity.class));
 
 		FunctionItem item4 = new FunctionItem("寄售领用记录", R.drawable.ic_category_3, null);
 
@@ -74,6 +73,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				System.out.println(functionList.get(position).title);
+				Intent intent = functionList.get(position).intent;
+				if(intent != null){
+					
+					startActivity(intent);
+					
+				}
 				
 				
 			}
