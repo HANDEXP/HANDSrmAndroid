@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -12,9 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -28,6 +26,9 @@ import com.hand.srm.R;
 import com.hand.srm.adapter.ShopPoListAdapter;
 import com.hand.srm.model.ShopPoListModel;
 import com.hand.srm.model.ShopPoListSvcModel;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
@@ -35,14 +36,16 @@ import com.mas.customview.ProgressDialog;
 
 public class ShopPoListActivity extends SherlockActivity implements
 		OnClickListener, LMModelDelegate {
+	private int pageNum = 1;
 	private View header;  //顶部布局文件
 	private List<List<String>> group;
 	private List<List<ShopPoListModel>> child;
 	private ShopPoListAdapter adapter;
 	private ExpandableListView shopPoListView;
-//	private 
+	private PullToRefreshExpandableListView mPullRefreshListView;
 	private ShopPoListSvcModel model;
 	private TextView backTextView;
+	private TextView searchTextView;
 	private ProgressDialog dialog;
 	private Boolean reloadFlag = true;
 
@@ -73,6 +76,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 		super.onPause();
 		reloadFlag = false;
 	}
+
+	
+	
 	/**
 	 * 绑定View
 	 * 
@@ -82,7 +88,28 @@ public class ShopPoListActivity extends SherlockActivity implements
 
 		
 		
-		shopPoListView = (ExpandableListView) findViewById(R.id.shopPoListView);
+		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
+		mPullRefreshListView.setMode(com.handmark.pulltorefresh.library.PullToRefreshBase.Mode.BOTH);
+		shopPoListView = mPullRefreshListView.getRefreshableView();
+		
+		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ExpandableListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ExpandableListView> refreshView) {
+				// TODO 自动生成的方法存根
+				new GetDataTask().execute();
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ExpandableListView> refreshView) {
+				// TODO 自动生成的方法存根
+				new GetDataTask().execute();
+			}
+
+		});
+		
 		shopPoListView.setOnChildClickListener(new OnChildClickListener() {
 			
 			@Override
@@ -106,6 +133,16 @@ public class ShopPoListActivity extends SherlockActivity implements
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				finish();
+			}
+		});
+		searchTextView = (TextView) findViewById(R.id.searchTextView);
+		searchTextView.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				Intent searchIntent = new Intent(getApplicationContext(),SearchForDeliveryActivity.class);
+				startActivity(searchIntent);
+				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);				
 			}
 		});
 	}
@@ -270,4 +307,26 @@ public class ShopPoListActivity extends SherlockActivity implements
 		}
 		return flag;
 	}
+
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshListView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
+	}	
 }

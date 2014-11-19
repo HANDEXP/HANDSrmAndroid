@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +26,10 @@ import com.hand.srm.R;
 import com.hand.srm.adapter.EnableToReceiveAdapter;
 import com.hand.srm.model.EnableToReceiveModel;
 import com.hand.srm.model.EnableToReceiveSvcModel;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
@@ -36,6 +41,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private List<List<EnableToReceiveModel>> child;
 	private EnableToReceiveAdapter adapter;
 	private ExpandableListView shopPoListView;
+	private PullToRefreshExpandableListView mPullRefreshListView;
 	private EnableToReceiveSvcModel model;
 	private TextView backTextView;
 	private ProgressDialog dialog;
@@ -62,7 +68,26 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	 * 
 	 */
 	private void bindAllViews() {
-		shopPoListView = (ExpandableListView) findViewById(R.id.shopPoListView);
+		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
+		mPullRefreshListView.setMode(Mode.BOTH);
+		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ExpandableListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ExpandableListView> refreshView) {
+				// TODO 自动生成的方法存根
+				new GetDataTask().execute();
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ExpandableListView> refreshView) {
+				// TODO 自动生成的方法存根
+				new GetDataTask().execute();
+			}
+
+		});
+		shopPoListView = mPullRefreshListView.getRefreshableView();
 		shopPoListView.setOnChildClickListener(new OnChildClickListener() {
 
 			@Override
@@ -253,5 +278,26 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			flag = false;
 		}
 		return flag;
+	}
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshListView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
 	}
 }

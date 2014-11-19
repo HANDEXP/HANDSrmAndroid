@@ -29,6 +29,8 @@
     <string name="deliveryDateFrom">发货日期从:</string>
     <string name="deliveryDateTo">发货日期到:</string>
     <string name="search4delivert">查询</string>
+    <string name="excludeConfirmFlag">排除已确认订单</string>
+    <string name="urgentStatus">仅显示加急订单</string>
     <!-- /////  查询采购单号 -->
     <string name="purchaseBillNo">采购订单号</string>
     <string name="purchaseDateFrom">发布日期从</string>
@@ -63,4 +65,5 @@
     <string name="onTheWayQuantity">在途</string>
     <string name="locationName">收货地点：</string>
     <string name="back">返回</string>
+    <string name="search">搜索</string>
 </resources>

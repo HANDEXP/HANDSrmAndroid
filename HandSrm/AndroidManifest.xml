@@ -63,6 +63,10 @@
             android:name="com.hand.srm.activities.OrderTabActivity"
             android:label="订单">
         </activity>
+        <activity
+            android:name="com.hand.srm.activities.SearchForDeliveryActivity"
+            android:label="查询送货单">
+        </activity>
     </application>
 
 </manifest>

@@ -6,8 +6,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+			style="@style/SearchLayout">
 
         <TextView
             style="@style/Search4NoText"
@@ -17,14 +16,14 @@
         <EditText
             android:id="@+id/deliveryNoView"
 			style="@style/Search4NoView"
+			android:textColor="#CCCCCC"
 			>
             
         </EditText>
     </RelativeLayout>
 	<View style="@style/Divider"/>
 	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
+	    style="@style/SearchLayout">
         <TextView
             style="@style/Search4NoText"
             android:text="@string/deliveryDateFrom">
@@ -38,8 +37,7 @@
 	</RelativeLayout>
 	<View style="@style/Divider"/>
 	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
+	    style="@style/SearchLayout">
         <TextView
             style="@style/Search4NoText"
             android:text="@string/deliveryDateTo">
@@ -52,7 +50,36 @@
 
 	</RelativeLayout>
 	<View style="@style/Divider"/>
+	<LinearLayout
+	    style="@style/SearchLayout"
+	    android:orientation="horizontal">
+    <CheckBox
+        android:id="@+id/excludeConfirmFlag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        
+        
+        android:checked="true"
+        android:text="@string/excludeConfirmFlag" />
+   	</LinearLayout>
+   	<View style="@style/Divider"/>
+   	<LinearLayout
+   	    style="@style/SearchLayout"
+   	    android:orientation="horizontal">
+    <CheckBox
+        android:id="@+id/urgentStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        
+        
+        android:checked="true"
+        android:text="@string/urgentStatus" />    
+   	</LinearLayout>
+   	<View style="@style/Divider"/>
 	<Button
+	    android:id="@+id/search4DeliveryButton"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="10dp"
@@ -60,6 +87,6 @@
 	    android:layout_marginTop="35dp"
 	    android:text="@string/search4delivert"
 	    android:textColor="#ffffff"
-	    android:background="#f79646"/>
+	    android:background="@drawable/btn_press_selector"/>
 
 </LinearLayout>

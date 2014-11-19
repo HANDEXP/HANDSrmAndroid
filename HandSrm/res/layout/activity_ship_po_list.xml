@@ -26,14 +26,31 @@
             android:layout_margin="20dp"
             android:text="订单列表">
         </TextView>
+        <TextView
+            android:id="@+id/searchTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:text="@string/search">
+        </TextView>
     </RelativeLayout>
-    <ExpandableListView
+<!--     <ExpandableListView
         android:id="@+id/shopPoListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shipPoTitle"
-       >
-    </ExpandableListView>
-
+        >
+    </ExpandableListView> -->
+    <com.handmark.pulltorefresh.library.PullToRefreshExpandableListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/shopPoListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ptr:ptrHeaderBackground="@android:color/darker_gray"
+        ptr:ptrHeaderTextColor="@android:color/white"
+        ptr:ptrMode="pullUpFromBottom" 
+        android:layout_below="@+id/shipPoTitle"/>
 
 </RelativeLayout>
