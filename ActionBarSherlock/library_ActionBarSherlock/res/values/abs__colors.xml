@@ -24,4 +24,5 @@
     <color name="abs__bright_foreground_inverse_holo_dark">@color/abs__bright_foreground_holo_light</color>
     <color name="abs__bright_foreground_inverse_holo_light">@color/abs__bright_foreground_holo_dark</color>
     <color name="abs__holo_blue_light">#ff33b5e5</color>
+
 </resources>

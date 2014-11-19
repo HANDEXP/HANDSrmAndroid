@@ -48,6 +48,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private TextView searchTextView;
 	private ProgressDialog dialog;
 	private Boolean reloadFlag = true;
+	public int RETURN_PARAMETER = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -141,7 +142,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				Intent searchIntent = new Intent(getApplicationContext(),SearchForDeliveryActivity.class);
-				startActivity(searchIntent);
+				startActivityForResult(searchIntent, RETURN_PARAMETER);
 				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);				
 			}
 		});

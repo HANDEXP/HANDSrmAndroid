@@ -8,6 +8,7 @@ import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SearchForDeliveryActivity extends Activity implements
 		LMModelDelegate, OnClickListener {
@@ -33,6 +35,7 @@ public class SearchForDeliveryActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_search_for_deliverying);
+		loginParm = new HashMap<String, String>();
 		model = new SearchForDeliverySvcModel(this);
 		bindAllViews();
 	}
@@ -68,19 +71,19 @@ public class SearchForDeliveryActivity extends Activity implements
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-
+		Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void modelDidStartLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-
+		Toast.makeText(getApplicationContext(), "Start", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	public void modelDidFaildLoadWithError(LMModel model) {
 		// TODO 自动生成的方法存根
-
+		Toast.makeText(getApplicationContext(), "FaildLoad", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -90,6 +93,7 @@ public class SearchForDeliveryActivity extends Activity implements
 		case R.id.search4DeliveryButton:
 			generateParm();
 			model.load(loginParm);
+			Intent int
 			break;
 
 		default:
