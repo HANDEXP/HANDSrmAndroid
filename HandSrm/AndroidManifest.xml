@@ -61,7 +61,10 @@
             android:name="com.hand.srm.activities.SearchForDeliveryActivity"
             android:label="查询送货单" >
         </activity>
-        
+        <activity
+            android:name="com.hand.srm.activities.SearchForPurchasingActivity"
+            android:label="查询收货单">
+        </activity>
         <activity android:name="com.hand.srm.activities.ChartListActivity" >
         </activity>
         <activity android:name="com.hand.srm.activities.BarChartActivity" >

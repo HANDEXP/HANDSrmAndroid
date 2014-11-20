@@ -16,7 +16,7 @@
         <EditText
             android:id="@+id/deliveryNoView"
 			style="@style/Search4NoView"
-			android:textColor="#CCCCCC"
+			
 			>
             
         </EditText>
@@ -57,10 +57,8 @@
         android:id="@+id/excludeConfirmFlag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        
-        
-        android:checked="true"
+        android:textColor="#000000"                
+        android:checked="false"
         android:text="@string/excludeConfirmFlag" />
    	</LinearLayout>
    	<View style="@style/Divider"/>
@@ -71,10 +69,8 @@
         android:id="@+id/urgentStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000000"
-        
-        
-        android:checked="true"
+        android:textColor="#000000"       
+        android:checked="false"
         android:text="@string/urgentStatus" />    
    	</LinearLayout>
    	<View style="@style/Divider"/>

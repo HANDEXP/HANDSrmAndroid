@@ -119,7 +119,7 @@
         <item name="android:inputType">text</item>
         <item name="android:ems">10</item>
         <item name="android:background">@drawable/editview_corners</item>
-        
+        <item name="android:textColor">#CCCCCC</item>
     </style>
     <!-- 订单页面设置界面LinearLayout -->
     <style name="OrderListActivityLL">

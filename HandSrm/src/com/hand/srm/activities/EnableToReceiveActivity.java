@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -26,6 +27,7 @@ import com.hand.srm.R;
 import com.hand.srm.adapter.EnableToReceiveAdapter;
 import com.hand.srm.model.EnableToReceiveModel;
 import com.hand.srm.model.EnableToReceiveSvcModel;
+import com.hand.srm.model.SearchForDeliverySvcModel;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -44,25 +46,52 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private PullToRefreshExpandableListView mPullRefreshListView;
 	private EnableToReceiveSvcModel model;
 	private TextView backTextView;
+	private TextView searchTextView;
 	private ProgressDialog dialog;
-
+	private Boolean reloadFlag = true;
+	public static int RETURN_PARAMETER = 1;
+	private HashMap<String, String> searchParm;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ship_po_list);
 		model = new EnableToReceiveSvcModel(this);
-		dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
-		dialog.show();
+
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		bindAllViews();
-		model.load();
+		if(reloadFlag == true){
+			model.load();
+		}
+		
+		
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		reloadFlag = false;
+	}
+
+	@Override  
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		switch (resultCode) {
+		case 1:
+			SearchForDeliverySvcModel searchModel = new SearchForDeliverySvcModel(this);
+			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
+			searchModel.load(searchParm);
+//			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
+			break;
+
+		default:
+			break;
+		}
+	}	
 	/**
 	 * 绑定View
 	 * 
@@ -113,6 +142,16 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
 				finish();
+			}
+		});
+		searchTextView = (TextView) findViewById(R.id.searchTextView);
+		searchTextView.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				Intent searchIntent = new Intent(getApplicationContext(),SearchForPurchasingActivity.class);
+				startActivityForResult(searchIntent, RETURN_PARAMETER);
+				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);				
 			}
 		});
 	}
@@ -241,7 +280,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	@Override
 	public void modelDidStartLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-
+		dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
+		dialog.show();
 	}
 
 	@Override
@@ -249,6 +289,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		// TODO 自动生成的方法存根
 		Toast.makeText(getApplicationContext(), "modelDidFaildLoadWithError",
 				Toast.LENGTH_SHORT).show();
+		dialog.dismiss();
 	}
 
 	@Override

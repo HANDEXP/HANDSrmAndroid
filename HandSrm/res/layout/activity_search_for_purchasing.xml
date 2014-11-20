@@ -6,8 +6,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        style="@style/SearchLayout" >
 
         <TextView
             style="@style/Search4NoText"
@@ -23,8 +22,7 @@
     </RelativeLayout>
 	<View style="@style/Divider"/>
 	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
+	    style="@style/SearchLayout">
         <TextView
             style="@style/Search4NoText"
             android:text="@string/purchaseDateFrom">
@@ -38,8 +36,7 @@
 	</RelativeLayout>
 	<View style="@style/Divider"/>
 	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
+	    style="@style/SearchLayout">
         <TextView
             style="@style/Search4NoText"
             android:text="@string/purchaseDateTo">
@@ -52,15 +49,8 @@
 
 	</RelativeLayout>
 	<View style="@style/Divider"/>
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content">
-        <TextView
-            style="@style/Search4NoText"
-            android:text="@string/onlyUrgent">
-        </TextView>       
-	</RelativeLayout>
 	<Button
+	    android:id="@+id/search4PurchasingButton"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="10dp"
@@ -68,6 +58,6 @@
 	    android:layout_marginTop="35dp"
 	    android:text="@string/search4delivert"
 	    android:textColor="#ffffff"
-	    android:background="#f79646"/>
+	    android:background="@drawable/btn_press_selector"/>
 
 </LinearLayout>

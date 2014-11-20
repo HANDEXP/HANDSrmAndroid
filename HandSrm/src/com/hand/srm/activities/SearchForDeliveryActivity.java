@@ -19,24 +19,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SearchForDeliveryActivity extends Activity implements
-		LMModelDelegate, OnClickListener {
+		OnClickListener {
 
 	private EditText deliveryNoEditView;
 	private EditText deliveryDateFromEditView;
 	private EditText deliveryDateToEditView;
 	private CheckBox excludeConfirmFlagCheckBox;
 	private CheckBox urgentStatusCheckBox;
-	private SearchForDeliverySvcModel model;
 	private Button searchButton;
-	HashMap<String, String> loginParm;
+	HashMap<String, String> searchParm;
+	public static int RETURN_PARAMETER = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_search_for_deliverying);
-		loginParm = new HashMap<String, String>();
-		model = new SearchForDeliverySvcModel(this);
+		searchParm = new HashMap<String, String>();
+		
 		bindAllViews();
 	}
 
@@ -61,30 +61,13 @@ public class SearchForDeliveryActivity extends Activity implements
 	 */
 	private void generateParm() {
 
-		loginParm.put("po_num", deliveryNoEditView.getText().toString());
-		loginParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
-		loginParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
-		loginParm.put("release_date_from", deliveryDateFromEditView.getText().toString());
-		loginParm.put("release_date_to", deliveryDateToEditView.getText().toString());
+		searchParm.put("po_num", deliveryNoEditView.getText().toString());
+		searchParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
+		searchParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
+		searchParm.put("release_date_from", deliveryDateFromEditView.getText().toString());
+		searchParm.put("release_date_to", deliveryDateToEditView.getText().toString());
 	}
 
-	@Override
-	public void modelDidFinshLoad(LMModel model) {
-		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "Finish", Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void modelDidStartLoad(LMModel model) {
-		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "Start", Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void modelDidFaildLoadWithError(LMModel model) {
-		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "FaildLoad", Toast.LENGTH_SHORT).show();
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -92,8 +75,11 @@ public class SearchForDeliveryActivity extends Activity implements
 		switch (v.getId()) {
 		case R.id.search4DeliveryButton:
 			generateParm();
-			model.load(loginParm);
-			Intent int
+//			model.load(searchParm);
+			Intent data = new Intent();
+			data.putExtra("searchParm", searchParm);
+			setResult(RETURN_PARAMETER, data);
+			finish();
 			break;
 
 		default:

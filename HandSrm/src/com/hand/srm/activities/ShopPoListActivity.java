@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.hand.srm.R;
 import com.hand.srm.adapter.ShopPoListAdapter;
+import com.hand.srm.model.SearchForDeliverySvcModel;
 import com.hand.srm.model.ShopPoListModel;
 import com.hand.srm.model.ShopPoListSvcModel;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -48,7 +50,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private TextView searchTextView;
 	private ProgressDialog dialog;
 	private Boolean reloadFlag = true;
-	public int RETURN_PARAMETER = 1;
+	public static int RETURN_PARAMETER = 1;
+	private HashMap<String, String> searchParm;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +67,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 		super.onResume();
 		bindAllViews();
 		if(reloadFlag == true){
-			dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
-			dialog.show();
 			model.load();
 		}
 		
@@ -78,7 +79,20 @@ public class ShopPoListActivity extends SherlockActivity implements
 		reloadFlag = false;
 	}
 
-	
+	@Override  
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		switch (resultCode) {
+		case 1:
+			SearchForDeliverySvcModel searchModel = new SearchForDeliverySvcModel(this);
+			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
+			searchModel.load(searchParm);
+			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
+			break;
+
+		default:
+			break;
+		}
+	}	
 	
 	/**
 	 * 绑定View
@@ -270,7 +284,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 	@Override
 	public void modelDidStartLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-
+		dialog = new ProgressDialog(this, "数据正在加载中，请稍后");
+		dialog.show();
 	}
 
 	@Override
@@ -278,6 +293,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 		// TODO 自动生成的方法存根
 		Toast.makeText(getApplicationContext(), "modelDidFaildLoadWithError",
 				Toast.LENGTH_SHORT).show();
+		dialog.dismiss();
 	}
 
 	@Override
