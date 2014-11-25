@@ -80,6 +80,7 @@ public class SearchForDeliveryActivity extends Activity implements
 			data.putExtra("searchParm", searchParm);
 			setResult(RETURN_PARAMETER, data);
 			finish();
+
 			break;
 
 		default:

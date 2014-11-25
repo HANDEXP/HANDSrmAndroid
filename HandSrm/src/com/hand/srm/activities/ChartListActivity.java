@@ -58,7 +58,7 @@ public class ChartListActivity extends Activity{
 		
 		itemList = new ArrayList<chartItem>();
 		itemList.add(new chartItem(new Intent(this,BarChartActivity.class),"供应商交易额榜单",R.drawable.char1));
-		itemList.add(new chartItem(null, "供应商交易额榜单报表", R.drawable.char2));
+		itemList.add(new chartItem(new Intent(this,LineChartActivity.class), "供应商交易额榜单报表", R.drawable.char2));
 		itemList.add(new chartItem(new Intent(this,PieChartActivity.class), "采购品供应商占比分析报表", R.drawable.char3));
 		
 		listview.setAdapter(new ChartListAdapter(itemList,this));

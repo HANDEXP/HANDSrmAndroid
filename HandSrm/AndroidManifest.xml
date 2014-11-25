@@ -71,6 +71,8 @@
         </activity>
         <activity android:name="com.hand.srm.activities.PieChartActivity" >
         </activity>
+        
+        <activity android:name="com.hand.srm.activities.LineChartActivity"></activity>
     </application>
 
 </manifest>

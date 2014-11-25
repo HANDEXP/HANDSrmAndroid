@@ -1,7 +1,10 @@
 package com.hand.srm.adapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import android.R.integer;
 import android.content.Context;
 import android.hardware.Camera.Size;
 import android.view.LayoutInflater;
@@ -18,12 +21,16 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 	private List<List<String>> group;
 	private List<List<EnableToReceiveModel>> child;
 	private Context context;
+	
+	//////////////选中列表
+	private List<HashMap<String, Integer>> selectList;
 
 	public EnableToReceiveAdapter(List<List<String>> group,
 			List<List<EnableToReceiveModel>> child, Context context) {
 		this.group = group;
 		this.child = child;
 		this.context = context;
+		this.selectList = new ArrayList<HashMap<String, Integer>>();
 	}
 
 	@Override
@@ -90,7 +97,7 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
-	public View getChildView(int groupPosition, int childPosition,
+	public View getChildView(final int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		// TODO 自动生成的方法存根
 		if (convertView == null) {
@@ -118,6 +125,25 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		asnVendorName.setText(VendorNameString);
 		statusName.setText(StatusString);
 		expectedDate.setText(ExpectedDateString);
+		
+		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+			{
+				put("groupPosition", new Integer(groupPosition));
+				put("childPosition", new Integer(childPosition));
+			}
+			
+		};
+		
+		if(selectList.contains(record))
+		{
+			convertView.setBackgroundResource(R.drawable.grey);
+			
+		}else {
+			
+			convertView.setBackgroundResource(R.drawable.white);
+		}
+		
+		
 		return convertView;
 	}
 
@@ -126,4 +152,50 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		// TODO 自动生成的方法存根
 		return true;
 	}
+	
+/*
+ * 选择记录
+ */
+	public  void selectRecord(final int groupPosition,final int childPosition)
+	{
+		
+		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+			{
+				put("groupPosition", new Integer(groupPosition));
+				put("childPosition", new Integer(childPosition));
+			}
+			
+		};
+		
+		if(selectList.contains(record)){
+			
+			selectList.remove(record);
+			
+		}else{
+		
+			selectList.add(record);
+		
+		}
+		 notifyDataSetChanged();
+		
+	}
+/**
+ * 获得选中的个数	
+ */
+	public int getRecordsCount()
+	{
+		
+		return selectList.size();
+	}
+	
+/**
+ * 取所所有选择	
+ */
+	public void removeAllRecords()
+	{
+		selectList.clear();
+		 notifyDataSetChanged();
+		
+	}
+	
 }

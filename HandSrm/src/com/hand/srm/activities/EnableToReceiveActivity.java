@@ -15,14 +15,21 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.ActionMode;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.hand.srm.R;
 import com.hand.srm.adapter.EnableToReceiveAdapter;
 import com.hand.srm.model.EnableToReceiveModel;
@@ -37,45 +44,58 @@ import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
 import com.mas.customview.ProgressDialog;
 
-public class EnableToReceiveActivity extends SherlockActivity implements
-		OnClickListener, LMModelDelegate {
+public class EnableToReceiveActivity extends SherlockActivity implements LMModelDelegate {
 	private List<List<String>> group;
+	
 	private List<List<EnableToReceiveModel>> child;
+	
 	private EnableToReceiveAdapter adapter;
+	
 	private ExpandableListView shopPoListView;
+	
 	private PullToRefreshExpandableListView mPullRefreshListView;
 	private EnableToReceiveSvcModel model;
 	private TextView backTextView;
 	private TextView searchTextView;
 	private ProgressDialog dialog;
-	private Boolean reloadFlag = true;
+
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
+		
+	///////action bar
+	private ActionMode mActionMode;
+	private ActionMode.Callback actionModeCallback = new ActionModeOfApproveCallback();
+	private Boolean actionModeFlag = false;
+	
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ship_po_list);
+
+		getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		getSupportActionBar().setCustomView(R.layout.navigation_header);
+		
+		bindAllViews();
+		
 		model = new EnableToReceiveSvcModel(this);
-
+		model.load();
 	}
+	
 
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		bindAllViews();
-		if(reloadFlag == true){
-			model.load();
-		}
-		
 		
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		reloadFlag = false;
+		
+	
 	}
 
 	@Override  
@@ -91,12 +111,17 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		default:
 			break;
 		}
-	}	
+	}
+
+//////////////////////////////private////////////////////	
 	/**
 	 * 绑定View
 	 * 
 	 */
 	private void bindAllViews() {
+		
+		
+		
 		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
 		mPullRefreshListView.setMode(Mode.BOTH);
 		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ExpandableListView>() {
@@ -123,17 +148,47 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				// TODO 自动生成的方法存根
+				
+				if(actionModeFlag){
+					
+					adapter.selectRecord(groupPosition,childPosition);
+					if(adapter.getRecordsCount() != 0){
+						mActionMode.setSubtitle(String.valueOf(adapter.getRecordsCount()));
+					}else {
+						
+						mActionMode.finish();
+						
+					}
+					return  true;
+				}else {
+				
+					String headerId = child.get(groupPosition).get(childPosition)
+							.getAsnHeaderId();
+					Intent intent = new Intent(getApplicationContext(),
+							EnableToReceiveDetailActivity.class);
+					intent.putExtra("purHeaderId", headerId);
+					startActivity(intent);
+					overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);			
+					return false;
+				}
+			}
+		});
+		
+		shopPoListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-				String headerId = child.get(groupPosition).get(childPosition)
-						.getAsnHeaderId();
-				Intent intent = new Intent(getApplicationContext(),
-						EnableToReceiveDetailActivity.class);
-				intent.putExtra("purHeaderId", headerId);
-				startActivity(intent);
-				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);			
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+				mActionMode = getSherlock().startActionMode(actionModeCallback);
+				mActionMode.setTitle("关闭");
+
+				
+				
 				return false;
 			}
 		});
+		
 		shopPoListView.setGroupIndicator(null);
 		backTextView = (TextView) findViewById(R.id.backTextView);
 		backTextView.setOnClickListener(new OnClickListener() {
@@ -149,9 +204,9 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			@Override
 			public void onClick(View v) {
 				// TODO 自动生成的方法存根
-				Intent searchIntent = new Intent(getApplicationContext(),SearchForPurchasingActivity.class);
-				startActivityForResult(searchIntent, RETURN_PARAMETER);
-				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);				
+//				Intent searchIntent = new Intent(getApplicationContext(),SearchForPurchasingActivity.class);
+//				startActivityForResult(searchIntent, RETURN_PARAMETER);
+//				overridePendingTransition(R.anim.move_right_in_activity, R.anim.move_left_out_activity);				
 			}
 		});
 	}
@@ -213,7 +268,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 				continue;
 			}
 			// String foo = data.getString("vendor_name");
-			// Log.d("FOO",foo);
+ 			// Log.d("FOO",foo);
 		}
 		if (childInfo.size() != 0) {
 			addInfo(groupInfo, childInfo);
@@ -233,6 +288,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		child.add(childitem);
 	}
 
+	
+//////////////////////////////model delegate//////////////////////////	
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
@@ -292,11 +349,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		dialog.dismiss();
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO 自动生成的方法存根
 
-	}
 
 	/**
 	 * 比较日期,
@@ -320,6 +373,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		}
 		return flag;
 	}
+	
+///////////////////////////refresh  task//////////////////////////////	
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 
 		@Override
@@ -339,6 +394,40 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			mPullRefreshListView.onRefreshComplete();
 
 			super.onPostExecute(result);
+		}
+	}
+	
+	
+	
+//////////////////////////////////////actionmode//////////////////	
+	class ActionModeOfApproveCallback implements ActionMode.Callback {
+		private static final int MENU_ID_DENY = 1;
+
+		@Override
+		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+			menu.add(0, MENU_ID_DENY, 1, "拒绝")
+			        .setIcon(R.drawable.ic_approve_agree_dark).setTitle("拒绝")
+			        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+			
+			actionModeFlag = true;
+			return true;
+		}
+
+		@Override
+		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+			return false;
+		}
+
+		@Override
+		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+			return false;
+		}
+
+		@Override
+		public void onDestroyActionMode(ActionMode mode) {
+
+			actionModeFlag = false;
+			adapter.removeAllRecords();
 		}
 	}
 }

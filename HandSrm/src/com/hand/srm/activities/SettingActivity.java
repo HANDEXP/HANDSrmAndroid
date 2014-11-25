@@ -19,6 +19,7 @@ public class SettingActivity extends SherlockActivity implements OnClickListener
 		bindAllViews();
 	}
 
+	
 	private void bindAllViews(){
 		quitBtn = (Button) findViewById(R.id.quitBtn);
 		quitBtn.setOnClickListener(this);
