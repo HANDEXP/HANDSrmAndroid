@@ -51,7 +51,8 @@
         android:layout_marginLeft="20dp"
         android:layout_centerVertical="true"
         android:checked="true"
-        android:text="@string/remember" />
+        android:text="@string/remember"
+        style="@style/CustomCheckboxTheme" />
 
     <Button
         android:id="@+id/loginBtn"

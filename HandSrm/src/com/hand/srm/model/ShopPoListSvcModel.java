@@ -16,9 +16,19 @@ public class ShopPoListSvcModel extends AsHttpRequestModel {
 	
 	public void load(){
 		try {
-			String queryUrl = ConstantUtl.shipUrl;
+			String queryUrl = ConstantUtl.appPoInfoUrl;
 			AsNetWorkUtl.removeAllCookies();
 			this.post(queryUrl, null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public void search(HashMap parm){
+		try {
+			String queryUrl = ConstantUtl.shipParmUrl;
+			AsNetWorkUtl.removeAllCookies();
+			this.post(queryUrl, parm);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

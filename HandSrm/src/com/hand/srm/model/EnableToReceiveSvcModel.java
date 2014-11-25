@@ -1,5 +1,7 @@
 package com.hand.srm.model;
 
+import java.util.HashMap;
+
 import com.hand.srm.utl.ConstantUtl;
 import com.littlemvc.model.LMModelDelegate;
 import com.littlemvc.model.request.AsHttpRequestModel;
@@ -17,6 +19,16 @@ public class EnableToReceiveSvcModel extends AsHttpRequestModel {
 			String queryUrl = ConstantUtl.receiveUrl;
 			AsNetWorkUtl.removeAllCookies();
 			this.post(queryUrl, null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public void search(HashMap parm){
+		try {
+			String queryUrl = ConstantUtl.receiveParmUrl;
+			AsNetWorkUtl.removeAllCookies();
+			this.post(queryUrl, parm);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

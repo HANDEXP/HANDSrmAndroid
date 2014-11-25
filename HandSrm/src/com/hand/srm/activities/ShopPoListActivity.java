@@ -46,12 +46,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private ExpandableListView shopPoListView;
 	private PullToRefreshExpandableListView mPullRefreshListView;
 	private ShopPoListSvcModel model;
+//	private SearchForDeliverySvcModel model;
 	private TextView backTextView;
 	private TextView searchTextView;
 	private ProgressDialog dialog;
 	private Boolean reloadFlag = true;
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
+	private Boolean searchFlag = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 		bindAllViews();
 		if(reloadFlag == true){
 			model.load();
+			searchFlag = false;
 		}
 		
 		
@@ -83,9 +86,9 @@ public class ShopPoListActivity extends SherlockActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		switch (resultCode) {
 		case 1:
-			SearchForDeliverySvcModel searchModel = new SearchForDeliverySvcModel(this);
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
-			searchModel.load(searchParm);
+			model.search(searchParm);
+			searchFlag = true;
 			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
@@ -113,14 +116,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 			public void onPullDownToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTask().execute();
+				new GetDataTaskForLoad().execute();
 			}
 
 			@Override
 			public void onPullUpToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTask().execute();
+				new GetDataTaskForSearch().execute();
 			}
 
 		});
@@ -325,13 +328,18 @@ public class ShopPoListActivity extends SherlockActivity implements
 		return flag;
 	}
 
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+	private class GetDataTaskForLoad extends AsyncTask<Void, Void, String[]> {
 
 		@Override
 		protected String[] doInBackground(Void... params) {
 			// Simulates a background job.
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
+				if(searchFlag.equals(false)){
+					model.load();
+				}else{
+					model.search(searchParm);
+				}
 			} catch (InterruptedException e) {
 			}
 			return null;
@@ -346,4 +354,26 @@ public class ShopPoListActivity extends SherlockActivity implements
 			super.onPostExecute(result);
 		}
 	}	
+	private class GetDataTaskForSearch extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshListView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
+	}	
+	
 }
