@@ -7,7 +7,8 @@
     
     <LinearLayout style="@style/OrderListActivityLL"
         	android:layout_marginTop="10dp"
-        		android:id="@+id/orderListLL">
+        		android:id="@+id/orderListLL"
+        		>
 		        <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/QandA"

@@ -5,7 +5,8 @@
     android:orientation="vertical" 
     android:background="#ffffff">
 
-    <LinearLayout style="@style/OrderListActivityLL" >
+    <LinearLayout style="@style/OrderListActivityLL"
+         >
 
         <ImageView
             style="@style/SettingActivityIcon"
@@ -14,7 +15,9 @@
 
         <TextView
             style="@style/SettingActivity"
-            android:text="@string/issuedOrders" />
+            android:text="@string/issuedOrders"
+            
+             />
 
         <ImageView
             style="@style/SettingActivityDetail"

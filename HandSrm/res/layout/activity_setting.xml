@@ -6,7 +6,8 @@
     android:orientation="vertical" 
     android:paddingTop="10dp">
 
-    <LinearLayout style="@style/SettingActivityLL" >
+    <LinearLayout style="@style/SettingActivityLL"
+         >
 
         <ImageView
             style="@style/SettingActivityIcon"

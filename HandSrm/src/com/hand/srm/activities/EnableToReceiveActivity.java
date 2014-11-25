@@ -61,6 +61,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
+
 		
 	///////action bar
 	private ActionMode mActionMode;
@@ -88,6 +89,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 	@Override
 	protected void onResume() {
 		super.onResume();
+
 		
 	}
 
@@ -102,9 +104,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		switch (resultCode) {
 		case 1:
-			SearchForDeliverySvcModel searchModel = new SearchForDeliverySvcModel(this);
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
-			searchModel.load(searchParm);
+//			model.search(searchParm);
 //			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
@@ -130,14 +131,14 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 			public void onPullDownToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTask().execute();
+				new GetDataTaskForLoad().execute();
 			}
 
 			@Override
 			public void onPullUpToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTask().execute();
+				new GetDataTaskForSearch().execute();
 			}
 
 		});
@@ -373,9 +374,31 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 		}
 		return flag;
 	}
+
 	
 ///////////////////////////refresh  task//////////////////////////////	
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+	private class GetDataTaskForLoad extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			mPullRefreshListView.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
+	}
+	private class GetDataTaskForSearch extends AsyncTask<Void, Void, String[]> {
 
 		@Override
 		protected String[] doInBackground(Void... params) {

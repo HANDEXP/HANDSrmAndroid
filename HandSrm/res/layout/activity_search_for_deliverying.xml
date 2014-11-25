@@ -28,11 +28,11 @@
             style="@style/Search4NoText"
             android:text="@string/deliveryDateFrom">
         </TextView>
-        <EditText
+        <TextView
             android:id="@+id/deliveryDateFrom"
-			style="@style/Search4NoView"
-			>
-		</EditText>
+			style="@style/DateSearch4NoView"
+			android:text="2014-01-01">
+		</TextView>
 
 	</RelativeLayout>
 	<View style="@style/Divider"/>
@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:textColor="#000000"                
         android:checked="false"
-        android:text="@string/excludeConfirmFlag" />
+        android:text="@string/excludeConfirmFlag"
+        style="@style/CustomCheckboxTheme" />
    	</LinearLayout>
    	<View style="@style/Divider"/>
    	<LinearLayout
@@ -71,7 +72,8 @@
         android:layout_height="wrap_content"
         android:textColor="#000000"       
         android:checked="false"
-        android:text="@string/urgentStatus" />    
+        android:text="@string/urgentStatus"
+        style="@style/CustomCheckboxTheme" />    
    	</LinearLayout>
    	<View style="@style/Divider"/>
 	<Button
