@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -69,7 +70,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 		super.onResume();
 		bindAllViews();
 		if(reloadFlag == true){
-			model.load();
+			searchParm.put("page_num", String.valueOf(pageNum++));
+			model.search(searchParm);
 			searchFlag = false;
 		}
 		
@@ -87,6 +89,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 		switch (resultCode) {
 		case 1:
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
+//			int page_num = searchParm.get("")
+//			searchParm.put("page_num", page_num);
 			model.search(searchParm);
 			searchFlag = true;
 			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
@@ -105,7 +109,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 		//上拉刷新
 
 		
-		
+		searchParm = new HashMap<String, String>();
 		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
 		mPullRefreshListView.setMode(com.handmark.pulltorefresh.library.PullToRefreshBase.Mode.BOTH);
 		shopPoListView = mPullRefreshListView.getRefreshableView();
@@ -116,14 +120,22 @@ public class ShopPoListActivity extends SherlockActivity implements
 			public void onPullDownToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTaskForLoad().execute();
+				group = null;
+				child = null;
+				pageNum = 1;
+				searchParm.put("page_num", String.valueOf(pageNum++));	
+				model.search(searchParm);
+//				new GetDataTaskForLoad().execute();
 			}
 
 			@Override
 			public void onPullUpToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTaskForSearch().execute();
+				searchParm.put("page_num", String.valueOf(pageNum++));	
+				model.search(searchParm);
+				
+//				new GetDataTaskForSearch().execute();
 			}
 
 		});
@@ -176,8 +188,10 @@ public class ShopPoListActivity extends SherlockActivity implements
 	 */
 	private void initializeData(JSONArray jsonArr) throws JSONException,
 			ParseException {
-		group = new ArrayList<List<String>>();
-		child = new ArrayList<List<ShopPoListModel>>();
+		if(group == null || child == null){
+			group = new ArrayList<List<String>>();
+			child = new ArrayList<List<ShopPoListModel>>();			
+		}
 		String[] groupInfo = new String[2];
 		List<ShopPoListModel> childInfo = new ArrayList<ShopPoListModel>();
 		String topDate = null;
@@ -280,6 +294,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 			e.printStackTrace();
 		} finally {
 			dialog.dismiss();
+			if(mPullRefreshListView.isRefreshing()){
+				mPullRefreshListView.onRefreshComplete();
+			}
 		}
 		;
 	}
@@ -297,6 +314,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 		Toast.makeText(getApplicationContext(), "modelDidFaildLoadWithError",
 				Toast.LENGTH_SHORT).show();
 		dialog.dismiss();
+		if(mPullRefreshListView.isRefreshing()){
+			mPullRefreshListView.onRefreshComplete();
+		}
 	}
 
 	@Override
@@ -329,17 +349,18 @@ public class ShopPoListActivity extends SherlockActivity implements
 	}
 
 	private class GetDataTaskForLoad extends AsyncTask<Void, Void, String[]> {
-
+		
 		@Override
 		protected String[] doInBackground(Void... params) {
 			// Simulates a background job.
+			Looper.prepare();
 			try {
+				
 				Thread.sleep(1000);
-				if(searchFlag.equals(false)){
-					model.load();
-				}else{
-					model.search(searchParm);
-				}
+				searchParm.put("page_num", String.valueOf(pageNum++));	
+				model.search(searchParm);
+				
+				
 			} catch (InterruptedException e) {
 			}
 			return null;

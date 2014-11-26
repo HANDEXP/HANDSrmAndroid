@@ -35,6 +35,7 @@ import com.hand.srm.adapter.EnableToReceiveAdapter;
 import com.hand.srm.model.EnableToReceiveModel;
 import com.hand.srm.model.EnableToReceiveSvcModel;
 import com.hand.srm.model.SearchForDeliverySvcModel;
+import com.hand.srm.model.ShopPoListModel;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -45,6 +46,7 @@ import com.littlemvc.model.request.AsHttpRequestModel;
 import com.mas.customview.ProgressDialog;
 
 public class EnableToReceiveActivity extends SherlockActivity implements LMModelDelegate {
+	private int pageNum = 1;
 	private List<List<String>> group;
 	
 	private List<List<EnableToReceiveModel>> child;
@@ -81,7 +83,6 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 		bindAllViews();
 		
 		model = new EnableToReceiveSvcModel(this);
-		model.load();
 	}
 	
 
@@ -89,7 +90,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		searchParm.put("page_num", String.valueOf(pageNum++));
+		model.search(searchParm);
 		
 	}
 
@@ -105,7 +107,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 		switch (resultCode) {
 		case 1:
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
-//			model.search(searchParm);
+			model.search(searchParm);
 //			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
@@ -122,7 +124,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 	private void bindAllViews() {
 		
 		
-		
+		searchParm = new HashMap<String, String>();
 		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
 		mPullRefreshListView.setMode(Mode.BOTH);
 		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener2<ExpandableListView>() {
@@ -131,14 +133,21 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 			public void onPullDownToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTaskForLoad().execute();
+				group = null;
+				child = null;
+				pageNum = 1;
+				searchParm.put("page_num", String.valueOf(pageNum++));	
+				model.search(searchParm);
+//				new GetDataTaskForLoad().execute();
 			}
 
 			@Override
 			public void onPullUpToRefresh(
 					PullToRefreshBase<ExpandableListView> refreshView) {
 				// TODO 自动生成的方法存根
-				new GetDataTaskForSearch().execute();
+				searchParm.put("page_num", String.valueOf(pageNum++));	
+				model.search(searchParm);
+//				new GetDataTaskForSearch().execute();
 			}
 
 		});
@@ -223,8 +232,10 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 	 */
 	private void initializeData(JSONArray jsonArr) throws JSONException,
 			ParseException {
-		group = new ArrayList<List<String>>();
-		child = new ArrayList<List<EnableToReceiveModel>>();
+		if(group == null || child == null){
+			group = new ArrayList<List<String>>();
+			child = new ArrayList<List<EnableToReceiveModel>>();			
+		}
 		String[] groupInfo = new String[2];
 		List<EnableToReceiveModel> childInfo = new ArrayList<EnableToReceiveModel>();
 		String topDate = null;
@@ -331,6 +342,9 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 			e.printStackTrace();
 		} finally {
 			dialog.dismiss();
+			if(mPullRefreshListView.isRefreshing()){
+				mPullRefreshListView.onRefreshComplete();
+			}
 		}
 		;
 	}
@@ -348,6 +362,9 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 		Toast.makeText(getApplicationContext(), "modelDidFaildLoadWithError",
 				Toast.LENGTH_SHORT).show();
 		dialog.dismiss();
+		if(mPullRefreshListView.isRefreshing()){
+			mPullRefreshListView.onRefreshComplete();
+		}
 	}
 
 
