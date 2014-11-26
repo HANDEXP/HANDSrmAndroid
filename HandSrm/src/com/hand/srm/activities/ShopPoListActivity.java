@@ -88,12 +88,17 @@ public class ShopPoListActivity extends SherlockActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		switch (resultCode) {
 		case 1:
+			group = null;
+			child = null;
+			adapter = null;
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
+			pageNum = 1;
+			searchParm.put("page_num", String.valueOf(pageNum++));	
 //			int page_num = searchParm.get("")
 //			searchParm.put("page_num", page_num);
 			model.search(searchParm);
 			searchFlag = true;
-			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
 		default:
@@ -108,8 +113,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private void bindAllViews() {
 		//上拉刷新
 
-		
-		searchParm = new HashMap<String, String>();
+		if(searchParm == null){
+			searchParm = new HashMap<String, String>();
+		}
 		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
 		mPullRefreshListView.setMode(com.handmark.pulltorefresh.library.PullToRefreshBase.Mode.BOTH);
 		shopPoListView = mPullRefreshListView.getRefreshableView();
@@ -122,6 +128,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 				// TODO 自动生成的方法存根
 				group = null;
 				child = null;
+				adapter = null;
 				pageNum = 1;
 				searchParm.put("page_num", String.valueOf(pageNum++));	
 				model.search(searchParm);
@@ -274,24 +281,30 @@ public class ShopPoListActivity extends SherlockActivity implements
 					e.printStackTrace();
 
 				}
-				adapter = new ShopPoListAdapter(group, child,
-						getApplicationContext());
-				shopPoListView.setAdapter(adapter);
+				if(adapter == null){
+					adapter = new ShopPoListAdapter(group, child,
+							getApplicationContext());
+					shopPoListView.setAdapter(adapter);				
+				}else{
+					new AddDataTask().execute();
+				}
+				
+				// 打开每一个Group
 				int groupCount = shopPoListView.getCount();
 				for(int i =0; i<groupCount;i++){
 					shopPoListView.expandGroup(i);
 					
-				}				
-				// 打开每一个Group
+				}	
 			} else if (code.equals("failure")) {
 				Toast.makeText(getApplicationContext(), "服务器错误",
 						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			Toast.makeText(getApplicationContext(), "网络繁忙请稍后再试",
-					Toast.LENGTH_SHORT).show();
+//			Toast.makeText(getApplicationContext(), "网络繁忙请稍后再试",
+//					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
+			
 		} finally {
 			dialog.dismiss();
 			if(mPullRefreshListView.isRefreshing()){
@@ -357,8 +370,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 			try {
 				
 				Thread.sleep(1000);
-				searchParm.put("page_num", String.valueOf(pageNum++));	
-				model.search(searchParm);
+//				searchParm.put("page_num", String.valueOf(pageNum++));	
+//				model.search(searchParm);
 				
 				
 			} catch (InterruptedException e) {
@@ -396,5 +409,22 @@ public class ShopPoListActivity extends SherlockActivity implements
 			super.onPostExecute(result);
 		}
 	}	
-	
+	private class AddDataTask extends AsyncTask<Void, Integer, Boolean>{
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO 自动生成的方法存根
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			adapter.notifyDataSetChanged();
+
+			super.onPostExecute(result);
+		}
+		
+	}
 }

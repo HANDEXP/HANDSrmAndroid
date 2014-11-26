@@ -42,11 +42,12 @@
             style="@style/Search4NoText"
             android:text="@string/deliveryDateTo">
         </TextView>
-        <EditText
+        <TextView
             android:id="@+id/deliveryDateTo"
-			style="@style/Search4NoView"
+			style="@style/DateSearch4NoView"
+			android:text="2014-12-25"
 			>
-		</EditText>
+		</TextView>
 
 	</RelativeLayout>
 	<View style="@style/Divider"/>

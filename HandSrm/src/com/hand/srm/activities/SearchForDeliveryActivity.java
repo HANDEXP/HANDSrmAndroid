@@ -3,6 +3,7 @@ package com.hand.srm.activities;
 import java.util.HashMap;
 
 import com.hand.srm.R;
+import com.hand.srm.dialogs.DatePickerWrapDialog;
 import com.hand.srm.model.SearchForDeliverySvcModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
@@ -24,7 +25,8 @@ public class SearchForDeliveryActivity extends Activity implements
 
 	private EditText deliveryNoEditView;
 	private TextView deliveryDateFromTextView;
-	private EditText deliveryDateToEditView;
+	private TextView deliveryDateToTextView;
+	private DatePickerWrapDialog dateFromDateDialog;
 	private CheckBox excludeConfirmFlagCheckBox;
 	private CheckBox urgentStatusCheckBox;
 	private Button searchButton;
@@ -49,7 +51,9 @@ public class SearchForDeliveryActivity extends Activity implements
 	private void bindAllViews() {
 		deliveryNoEditView = (EditText) findViewById(R.id.deliveryNoView);
 		deliveryDateFromTextView = (TextView) findViewById(R.id.deliveryDateFrom);
-		deliveryDateToEditView = (EditText) findViewById(R.id.deliveryDateTo);
+		deliveryDateFromTextView.setOnClickListener(this);
+		dateFromDateDialog = new DatePickerWrapDialog(this, deliveryDateFromTextView);
+		deliveryDateToTextView = (TextView) findViewById(R.id.deliveryDateTo);
 		excludeConfirmFlagCheckBox = (CheckBox) findViewById(R.id.excludeConfirmFlag);
 		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
 		searchButton = (Button) findViewById(R.id.search4DeliveryButton);
@@ -66,7 +70,7 @@ public class SearchForDeliveryActivity extends Activity implements
 		searchParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
 		searchParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
 		searchParm.put("release_date_from", deliveryDateFromTextView.getText().toString());
-		searchParm.put("release_date_to", deliveryDateToEditView.getText().toString());
+		searchParm.put("release_date_to", deliveryDateToTextView.getText().toString());
 	}
 
 
@@ -83,7 +87,8 @@ public class SearchForDeliveryActivity extends Activity implements
 			finish();
 
 			break;
-
+		case R.id.deliveryDateFrom:
+			dateFromDateDialog.showDateDialog();
 		default:
 			break;
 		}
