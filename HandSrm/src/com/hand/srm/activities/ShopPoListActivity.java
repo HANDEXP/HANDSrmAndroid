@@ -94,11 +94,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
 			pageNum = 1;
 			searchParm.put("page_num", String.valueOf(pageNum++));	
-//			int page_num = searchParm.get("")
-//			searchParm.put("page_num", page_num);
 			model.search(searchParm);
-			searchFlag = true;
-//			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
 		default:
@@ -132,7 +128,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 				pageNum = 1;
 				searchParm.put("page_num", String.valueOf(pageNum++));	
 				model.search(searchParm);
-//				new GetDataTaskForLoad().execute();
 			}
 
 			@Override
@@ -141,8 +136,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 				// TODO 自动生成的方法存根
 				searchParm.put("page_num", String.valueOf(pageNum++));	
 				model.search(searchParm);
-				
-//				new GetDataTaskForSearch().execute();
 			}
 
 		});
@@ -205,9 +198,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 		Boolean flag = false;
 		int length = jsonArr.length();
 		for (int i = 0; i < length; i += 1) {
-//			if(i == 50){
-//				break;
-//			}
 			JSONObject data = new JSONObject();
 			data = (JSONObject) jsonArr.get(i);
 			try {
@@ -289,9 +279,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 					new AddDataTask().execute();
 				}
 				
-				// 打开每一个Group
+				// ExpandableListView下标越界
 				int groupCount = shopPoListView.getCount();
-				for(int i =0; i<groupCount;i++){
+				for(int i =0; i<groupCount-1;i++){
 					shopPoListView.expandGroup(i);
 					
 				}	
@@ -360,55 +350,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 		}
 		return flag;
 	}
-
-	private class GetDataTaskForLoad extends AsyncTask<Void, Void, String[]> {
-		
-		@Override
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			Looper.prepare();
-			try {
-				
-				Thread.sleep(1000);
-//				searchParm.put("page_num", String.valueOf(pageNum++));	
-//				model.search(searchParm);
-				
-				
-			} catch (InterruptedException e) {
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String[] result) {
-
-			// Call onRefreshComplete when the list has been refreshed.
-			mPullRefreshListView.onRefreshComplete();
-
-			super.onPostExecute(result);
-		}
-	}	
-	private class GetDataTaskForSearch extends AsyncTask<Void, Void, String[]> {
-
-		@Override
-		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String[] result) {
-
-			// Call onRefreshComplete when the list has been refreshed.
-			mPullRefreshListView.onRefreshComplete();
-
-			super.onPostExecute(result);
-		}
-	}	
+	
 	private class AddDataTask extends AsyncTask<Void, Integer, Boolean>{
 
 		@Override

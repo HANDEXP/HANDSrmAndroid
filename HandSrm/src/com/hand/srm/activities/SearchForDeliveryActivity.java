@@ -27,6 +27,7 @@ public class SearchForDeliveryActivity extends Activity implements
 	private TextView deliveryDateFromTextView;
 	private TextView deliveryDateToTextView;
 	private DatePickerWrapDialog dateFromDateDialog;
+	private DatePickerWrapDialog dateToDateDialog;
 	private CheckBox excludeConfirmFlagCheckBox;
 	private CheckBox urgentStatusCheckBox;
 	private Button searchButton;
@@ -54,6 +55,8 @@ public class SearchForDeliveryActivity extends Activity implements
 		deliveryDateFromTextView.setOnClickListener(this);
 		dateFromDateDialog = new DatePickerWrapDialog(this, deliveryDateFromTextView);
 		deliveryDateToTextView = (TextView) findViewById(R.id.deliveryDateTo);
+		deliveryDateToTextView.setOnClickListener(this);
+		dateToDateDialog = new DatePickerWrapDialog(this, deliveryDateToTextView);
 		excludeConfirmFlagCheckBox = (CheckBox) findViewById(R.id.excludeConfirmFlag);
 		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
 		searchButton = (Button) findViewById(R.id.search4DeliveryButton);
@@ -89,6 +92,10 @@ public class SearchForDeliveryActivity extends Activity implements
 			break;
 		case R.id.deliveryDateFrom:
 			dateFromDateDialog.showDateDialog();
+			break;
+		case R.id.deliveryDateTo:
+			dateToDateDialog.showDateDialog();
+			break;
 		default:
 			break;
 		}

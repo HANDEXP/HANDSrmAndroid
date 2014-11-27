@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -110,8 +109,6 @@ public class EnableToReceiveDetailActivity extends SherlockActivity implements O
 		// TODO 自动生成的方法存根
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
 		String json = new String(reponseModel.mresponseBody);
-//		Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
-//				Toast.LENGTH_SHORT).show();
 		try {
 			JSONObject jsonObj = new JSONObject(json);
 			String code = ((JSONObject)jsonObj.get("head")).get("code").toString();

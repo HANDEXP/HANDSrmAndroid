@@ -106,9 +106,13 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
 		switch (resultCode) {
 		case 1:
+			group = null;
+			child = null;
+			adapter = null;
 			searchParm = (HashMap<String, String>) data.getSerializableExtra("searchParm");
+			pageNum = 1;
+			searchParm.put("page_num", String.valueOf(pageNum++));	
 			model.search(searchParm);
-//			Toast.makeText(getApplicationContext(), "RETURN", Toast.LENGTH_SHORT).show();
 			break;
 
 		default:
@@ -123,7 +127,9 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 	 */
 	private void bindAllViews() {
 		
-		
+		if(searchParm == null){
+			searchParm = new HashMap<String, String>();
+		}		
 		searchParm = new HashMap<String, String>();
 		mPullRefreshListView = (PullToRefreshExpandableListView) findViewById(R.id.shopPoListView);
 		mPullRefreshListView.setMode(Mode.BOTH);
@@ -135,6 +141,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 				// TODO 自动生成的方法存根
 				group = null;
 				child = null;
+				adapter = null;
 				pageNum = 1;
 				searchParm.put("page_num", String.valueOf(pageNum++));	
 				model.search(searchParm);
@@ -242,9 +249,6 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 		Boolean flag = false;
 		int length = jsonArr.length();
 		for (int i = 0; i < length; i += 1) {
-			// if(i == 50){
-			// break;
-			// }
 			JSONObject data = new JSONObject();
 			data = (JSONObject) jsonArr.get(i);
 			try {
@@ -322,11 +326,16 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 					e.printStackTrace();
 
 				}
-				adapter = new EnableToReceiveAdapter(group, child,
-						getApplicationContext());
-				shopPoListView.setAdapter(adapter);
+				if(adapter == null){
+					adapter = new EnableToReceiveAdapter(group, child,
+							getApplicationContext());
+					shopPoListView.setAdapter(adapter);					
+				}else{
+					new AddDataTask().execute();
+				}
+				//ExpandableListView下标越界
 				int groupCount = shopPoListView.getCount();
-				for (int i = 0; i < groupCount; i++) {
+				for (int i = 0; i < groupCount-1; i++) {
 					shopPoListView.expandGroup(i);
 
 				}
@@ -436,7 +445,24 @@ public class EnableToReceiveActivity extends SherlockActivity implements LMModel
 			super.onPostExecute(result);
 		}
 	}
-	
+	private class AddDataTask extends AsyncTask<Void, Integer, Boolean>{
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			// TODO 自动生成的方法存根
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Boolean result) {
+
+			// Call onRefreshComplete when the list has been refreshed.
+			adapter.notifyDataSetChanged();
+
+			super.onPostExecute(result);
+		}
+		
+	}	
 	
 	
 //////////////////////////////////////actionmode//////////////////	
