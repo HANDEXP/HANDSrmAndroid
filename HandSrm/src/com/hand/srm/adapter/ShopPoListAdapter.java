@@ -1,5 +1,7 @@
 package com.hand.srm.adapter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
@@ -11,18 +13,24 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.hand.srm.R;
+import com.hand.srm.model.EnableToReceiveModel;
 import com.hand.srm.model.ShopPoListModel;
 
 public class ShopPoListAdapter extends BaseExpandableListAdapter {
 	private List<List<String>> group;
 	private List<List<ShopPoListModel>> child;
 	private Context context;
+	
+	
+	//////////////选中列表
+	private List<HashMap<String, Integer>> selectList;
 
 	public ShopPoListAdapter(List<List<String>> group,
 			List<List<ShopPoListModel>> child, Context context) {
 		this.group = group;
 		this.child = child;
 		this.context = context;
+		this.selectList = new ArrayList<HashMap<String, Integer>>();
 	}
 
 	@Override
@@ -89,7 +97,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 	}
 
 	@Override
-	public View getChildView(int groupPosition, int childPosition,
+	public View getChildView(final int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		// TODO 自动生成的方法存根
 		if (convertView == null) {
@@ -117,6 +125,26 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		vendorName.setText(VendorNameString);
 		srmStatus.setText(SrmStatusString);
 		totalAmount.setText(TotalAmountString);
+		
+		
+		
+		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+			{
+				put("groupPosition", Integer.valueOf(groupPosition));
+				put("childPosition", Integer.valueOf(childPosition));
+			}
+			
+		};
+		
+		if(selectList.contains(record))
+		{
+			convertView.setBackgroundResource(R.drawable.grey);
+			
+		}else {
+			
+			convertView.setBackgroundResource(R.drawable.white);
+		}
+		
 		return convertView;
 	}
 
@@ -125,4 +153,63 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		// TODO 自动生成的方法存根
 		return true;
 	}
+	
+	
+	public List<List<ShopPoListModel>> getChildList()
+	{
+		return child;
+	}
+	
+	/*
+	 * 选择记录
+	 *
+	 */
+		public List<HashMap<String, Integer>>  getSelectList()
+		{
+			
+			return selectList;
+		}
+		
+		
+		public  void selectRecord(final int groupPosition,final int childPosition)
+		{
+			
+			HashMap<String, Integer> record = new HashMap<String, Integer>(){
+				{
+					put("groupPosition", new Integer(groupPosition));
+					put("childPosition", new Integer(childPosition));
+				}
+				
+			};
+			
+			if(selectList.contains(record)){
+				
+				selectList.remove(record);
+				
+			}else{
+			
+				selectList.add(record);
+			
+			}
+			 notifyDataSetChanged();
+			
+		}
+	/**
+	 * 获得选中的个数	
+	 */
+		public int getRecordsCount()
+		{
+			
+			return selectList.size();
+		}
+		
+	/**
+	 * 取所所有选择	
+	 */
+		public void removeAllRecords()
+		{
+			selectList.clear();
+			 notifyDataSetChanged();
+			
+		}
 }

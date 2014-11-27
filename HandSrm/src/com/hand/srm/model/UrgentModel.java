@@ -20,13 +20,16 @@ public class UrgentModel extends AsHttpRequestModel{
 	public void AddUrgent(JSONArray addUrgenArray){
 		
 		HashMap  param =  new HashMap<String, JSONArray>();
-		param.put("asn_headers", addUrgenArray.toString());
+		param.put("pur_headers", addUrgenArray.toString());
 		
-		post(ConstantUtl.closeUrl, param);
+		post(ConstantUtl.addUrgentUrl, param);
 	}
 	
 	public void CancelUrgent(JSONArray cancelUrgentArray){
+		HashMap  param =  new HashMap<String, JSONArray>();
+		param.put("pur_headers", cancelUrgentArray.toString());
 		
+		post(ConstantUtl.cancelUrgentUrl, param);
 		
 	}
 

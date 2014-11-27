@@ -96,7 +96,7 @@ public class HomeActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				Intent intent =  new Intent(HomeActivity.this,EnableToReceiveActivity.class);
-				intent.putExtra("to_ship", true);
+				intent.putExtra("to_receive_flag", true);
 				startActivity(intent);
 			}
 		});
@@ -106,6 +106,9 @@ public class HomeActivity extends Activity implements OnClickListener {
 			
 			@Override
 			public void onClick(View v) {
+				Intent intent =  new Intent(HomeActivity.this,ShopPoListActivity.class);
+				intent.putExtra("to_ship_flag", true);
+				startActivity(intent);
 				
 			}
 		});
