@@ -8,9 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical" >
+        android:background="#f0f0f0"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp" >
 
         <ImageView
             android:layout_width="wrap_content"
@@ -26,24 +27,27 @@
         style="@style/LoginActivityEditView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:hint="@string/username" />
+        android:hint="@string/username"
+        android:maxLines="1" />
+
+    <View style="@style/Divider" />
 
     <EditText
         android:id="@+id/password"
         style="@style/LoginActivityEditView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:hint="@string/password"
         android:inputType="textPassword" />
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginLeft="30dp"
-	    android:layout_marginRight="30dp">
-    <CheckBox
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+		android:background="@drawable/login_background_shape"
+         >
+
+        <!--
+         <CheckBox
         android:id="@+id/remember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,20 +57,23 @@
         android:checked="true"
         android:text="@string/remember"
         style="@style/CustomCheckboxTheme" />
+        -->
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:text="@string/login"
-        android:textSize="16sp"
-        android:layout_marginRight="10dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:background="@drawable/login_button_selector"
-        android:layout_alignParentRight="true" 
-        android:textColor="#ffffff"/>
-	
-	</RelativeLayout>
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_button_selector"
+                    android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="15dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="8dp"
+            android:text="@string/login"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
 
 </LinearLayout>

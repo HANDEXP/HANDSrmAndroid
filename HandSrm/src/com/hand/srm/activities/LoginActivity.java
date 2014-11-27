@@ -84,15 +84,12 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,L
 			
 			loginParm.put("user_name", usernameTextView.getText().toString());
 			loginParm.put("user_password", passwordTextView.getText().toString());
-			loginParm.put("device_type", "Android");
-			loginParm.put("push_token", "-1");
 //			loginParm.put("device_id",  ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).getDeviceId());	
 		}	
 	
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
-		Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
 		String json = new String(reponseModel.mresponseBody);
 		try {
@@ -130,7 +127,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,L
 	}
 	
 	private void saveUserData() {
-		SharedPreferences preferences=getSharedPreferences("gustureLock",Context.MODE_APPEND);
+		SharedPreferences preferences=getSharedPreferences("userInfo",Context.MODE_APPEND);
 //		Toast.makeText(getApplicationContext(), "userName:"+loginParm.get("user_name"),
 //				Toast.LENGTH_SHORT).show();
 //		Toast.makeText(getApplicationContext(), "userPassword:"+loginParm.get("user_password"),
