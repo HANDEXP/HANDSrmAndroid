@@ -17,7 +17,6 @@ public class EnableToReceiveSvcModel extends AsHttpRequestModel {
 	public void load(){
 		try {
 			String queryUrl = ConstantUtl.appAsnInfoUrl;
-			AsNetWorkUtl.removeAllCookies();
 			this.post(queryUrl, null);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -27,7 +26,6 @@ public class EnableToReceiveSvcModel extends AsHttpRequestModel {
 	public void search(HashMap parm){
 		try {
 			String queryUrl = ConstantUtl.appAsnInfoUrl;
-			AsNetWorkUtl.removeAllCookies();
 			this.post(queryUrl, parm);
 		} catch (Exception e) {
 			// TODO: handle exception

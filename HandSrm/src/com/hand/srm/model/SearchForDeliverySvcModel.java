@@ -17,7 +17,6 @@ public class SearchForDeliverySvcModel extends AsHttpRequestModel{
 	public void load(HashMap parm){
 		try {
 			String queryUrl = ConstantUtl.shipParmUrl;
-			AsNetWorkUtl.removeAllCookies();
 			this.post(queryUrl, parm);
 		} catch (Exception e) {
 			// TODO: handle exception

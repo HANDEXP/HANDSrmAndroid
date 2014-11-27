@@ -21,7 +21,11 @@ import com.littlemvc.model.request.AsHttpRequestModel;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LineChartActivity  extends Activity implements LMModelDelegate
@@ -49,6 +53,19 @@ public class LineChartActivity  extends Activity implements LMModelDelegate
 	private void buildAllViews()
 	{
 		linechart = (LineChart) findViewById(R.id.lineChart);
+		
+		TextView  title =  (TextView) findViewById(R.id.titleTextView);
+        title.setText("供应商交易额榜单报表");
+        
+        ImageButton  returnBtn  =  (ImageButton) findViewById(R.id.return_btn);
+        returnBtn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+				
+			}
+		});
 		
 	}
 	

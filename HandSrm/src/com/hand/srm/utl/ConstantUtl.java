@@ -31,4 +31,14 @@ public class ConstantUtl {
 	public static String lineChartUrl = "modules/app/report/app_pur_po_vender_rpt.svc";
 
 	
+	////////////////整单关闭////////////////
+	public static String  closeUrl =  "modules/app/main/app_enable_to_receive_asn_close.svc";
+	
+	///////////////整单加急////////////////
+	public  static String  addUrgentUrl = "modules/app/main/app_enable_to_ship_po_urgent.svc";
+	
+	///////////////整单取消加急////////////
+	public static  String  cancelUrgentUrl = "modules/app/main/app_enable_to_ship_po_urgent_abolish.svc";
+	
+	
 }

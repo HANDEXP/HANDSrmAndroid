@@ -26,6 +26,10 @@ public class HomeActivity extends Activity implements OnClickListener {
 	private GridView mGridView;
 
 	private List<FunctionItem> functionList;
+	
+	private LinearLayout  firstLL;
+	
+	private LinearLayout  secondLL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,27 @@ public class HomeActivity extends Activity implements OnClickListener {
 			
 			
 		});
+		
+		firstLL = (LinearLayout) findViewById(R.id.firstLL);
+		firstLL.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent =  new Intent(HomeActivity.this,EnableToReceiveActivity.class);
+				intent.putExtra("to_ship", true);
+				startActivity(intent);
+			}
+		});
+		
+		secondLL = (LinearLayout) findViewById(R.id.secondLL);
+		secondLL.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
+		
 	}
 
 /////////////click///////////////////////

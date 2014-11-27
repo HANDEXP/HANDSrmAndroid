@@ -153,9 +153,26 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		return true;
 	}
 	
+/**
+ * 	
+ * @return
+ */
+	public List<List<EnableToReceiveModel>> getChildList()
+	{
+		return child;
+	}
+	
 /*
  * 选择记录
+ *
  */
+	public List<HashMap<String, Integer>>  getSelectList()
+	{
+		
+		return selectList;
+	}
+	
+	
 	public  void selectRecord(final int groupPosition,final int childPosition)
 	{
 		

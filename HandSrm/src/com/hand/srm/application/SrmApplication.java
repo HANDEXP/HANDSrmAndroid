@@ -22,7 +22,7 @@ public class SrmApplication extends Application{
 		
 		application = this;
 		
-		//×°ÅäÍøÂç¹¤¾ß
+
 		AsNetWorkUtl.application = this;
 		AsHttpRequestModel.utl =AsNetWorkUtl.getAsNetWorkUtl(ConstantUtl.basicUrl);
 		

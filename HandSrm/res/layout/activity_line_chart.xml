@@ -5,6 +5,7 @@
     android:background="#fff"
     android:orientation="vertical" >
     
+           <include layout="@layout/navigation_header"/>
         <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="match_parent"
