@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -47,7 +48,7 @@ import com.littlemvc.model.request.AsHttpRequestModel;
 import com.mas.customview.ProgressDialog;
 
 public class EnableToReceiveActivity extends SherlockActivity implements
-		LMModelDelegate {
+		LMModelDelegate,OnClickListener {
 	private int pageNum = 1;
 	private List<List<String>> group;
 
@@ -61,13 +62,11 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private EnableToReceiveSvcModel model;
 	private CloseModel closemodel;
 
-	private TextView backTextView;
-	private TextView searchTextView;
 	private ProgressDialog dialog;
 
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
-	
+	private Boolean reloadFlag = true;
 	//////////////////是否只查待收货//////////////////
 	private Boolean  toReceiveFlag;
 
@@ -75,7 +74,10 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private ActionMode mActionMode;
 	private ActionMode.Callback actionModeCallback = new ActionModeOfApproveCallback();
 	private Boolean actionModeFlag = false;
-
+	private TextView titleTextView;
+	private ImageButton returnBtn;
+	private ImageButton searchBtn;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -94,21 +96,20 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 
 	@Override
 	protected void onResume() {
-		super.onResume();
-		searchParm.put("page_num", String.valueOf(pageNum++));
-		if(toReceiveFlag){
-			
-			searchParm.put("to_receive", "YES");
+		super.onResume();		
+		if (reloadFlag == true) {
+			searchParm.put("page_num", String.valueOf(pageNum++));
+			if(toReceiveFlag){
+				searchParm.put("to_receive", "YES");
+			}
+			model.search(searchParm);
 		}
-		
-		model.search(searchParm);
-
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-
+		reloadFlag = false;
 	}
 
 	@Override
@@ -136,14 +137,39 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			break;
 		}
 	}
-
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		switch (v.getId()) {
+		case R.id.return_btn:
+			finish();
+			break;
+		case R.id.search_btn:
+			Intent searchIntent = new Intent(getApplicationContext(),
+					SearchForPurchasingActivity.class);
+			startActivityForResult(searchIntent, RETURN_PARAMETER);
+			overridePendingTransition(R.anim.move_right_in_activity,
+					R.anim.move_left_out_activity);
+			break;
+		default:
+			break;
+		}
+	}
 	// ////////////////////////////private////////////////////
 	/**
 	 * 绑定View
 	 * 
 	 */
 	private void bindAllViews() {
-
+		//ActionBar
+		titleTextView = (TextView) findViewById(R.id.titleTextView);
+		titleTextView.setText("发出订单列表");
+		returnBtn = (ImageButton) findViewById(R.id.return_btn);
+		returnBtn.setOnClickListener(this);
+		searchBtn = (ImageButton) findViewById(R.id.search_btn);
+		searchBtn.setVisibility(View.VISIBLE);
+		searchBtn.setOnClickListener(this);
+		
 		if (searchParm == null) {
 			searchParm = new HashMap<String, String>();
 		}
@@ -230,27 +256,6 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 				});
 		}
 		shopPoListView.setGroupIndicator(null);
-		backTextView = (TextView) findViewById(R.id.backTextView);
-		backTextView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				finish();
-			}
-		});
-		searchTextView = (TextView) findViewById(R.id.searchTextView);
-		searchTextView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				// Intent searchIntent = new
-				// Intent(getApplicationContext(),SearchForPurchasingActivity.class);
-				// startActivityForResult(searchIntent, RETURN_PARAMETER);
-				// overridePendingTransition(R.anim.move_right_in_activity,
-				// R.anim.move_left_out_activity);
-			}
-		});
 	}
 
 	/**
@@ -407,9 +412,10 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					}
 					// ExpandableListView下标越界
 					int groupCount = shopPoListView.getCount();
-					for (int i = 0; i < groupCount - 1; i++) {
-						shopPoListView.expandGroup(i);
+					for (int i = 0; i < groupCount; i++) {
 						// 打开每一个Group
+						shopPoListView.expandGroup(i);
+
 					}
 				} else if (code.equals("failure")) {
 					Toast.makeText(getApplicationContext(), "服务器错误",
@@ -601,4 +607,6 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			adapter.removeAllRecords();
 		}
 	}
+
+
 }

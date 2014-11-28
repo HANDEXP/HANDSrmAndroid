@@ -4,38 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#ffffff" >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#1f497d"
-        android:id="@+id/shipPoTitle"
-        >
-        <TextView
-            android:id="@+id/backTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_margin="20dp"
-            android:text="@string/back">
-            
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="20dp"
-            android:text="订单列表">
-        </TextView>
-        <TextView
-            android:id="@+id/searchTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="20dp"
-            android:text="@string/search">
-        </TextView>
-    </RelativeLayout>
+
 <!--     <ExpandableListView
         android:id="@+id/shopPoListView"
         android:layout_width="wrap_content"

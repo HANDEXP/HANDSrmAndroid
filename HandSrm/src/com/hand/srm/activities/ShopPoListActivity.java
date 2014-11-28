@@ -22,6 +22,7 @@ import android.widget.ExpandableListView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,8 +58,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private PullToRefreshExpandableListView mPullRefreshListView;
 	private ShopPoListSvcModel model;
 	// private SearchForDeliverySvcModel model;
-	private TextView backTextView;
-	private TextView searchTextView;
 	private ProgressDialog dialog;
 	private Boolean reloadFlag = true;
 	public static int RETURN_PARAMETER = 1;
@@ -74,7 +73,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private ActionMode mActionMode;
 	private ActionMode.Callback actionModeCallback = new ActionModeOfApproveCallback();
 	private Boolean actionModeFlag = false;
-
+	private TextView titleTextView;
+	private ImageButton returnBtn;
+	private ImageButton searchBtn;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -134,12 +135,37 @@ public class ShopPoListActivity extends SherlockActivity implements
 			break;
 		}
 	}
-
+	@Override
+	public void onClick(View v) {
+		// TODO 自动生成的方法存根
+		switch (v.getId()) {
+		case R.id.return_btn:
+			finish();
+			break;
+		case R.id.search_btn:
+			Intent searchIntent = new Intent(getApplicationContext(),
+					SearchForDeliveryActivity.class);
+			startActivityForResult(searchIntent, RETURN_PARAMETER);
+			overridePendingTransition(R.anim.move_right_in_activity,
+					R.anim.move_left_out_activity);
+			break;
+		default:
+			break;
+		}
+	}
 	/**
 	 * 绑定View
 	 * 
 	 */
 	private void bindAllViews() {
+		//ActionBar
+		titleTextView = (TextView) findViewById(R.id.titleTextView);
+		titleTextView.setText("发出订单列表");
+		returnBtn = (ImageButton) findViewById(R.id.return_btn);
+		returnBtn.setOnClickListener(this);
+		searchBtn = (ImageButton) findViewById(R.id.search_btn);
+		searchBtn.setVisibility(View.VISIBLE);
+		searchBtn.setOnClickListener(this);
 		// 上拉刷新
 
 		if (searchParm == null) {
@@ -227,27 +253,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 			}
 		});
 		shopPoListView.setGroupIndicator(null);
-		backTextView = (TextView) findViewById(R.id.backTextView);
-		backTextView.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				finish();
-			}
-		});
-		searchTextView = (TextView) findViewById(R.id.searchTextView);
-		searchTextView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO 自动生成的方法存根
-				Intent searchIntent = new Intent(getApplicationContext(),
-						SearchForDeliveryActivity.class);
-				startActivityForResult(searchIntent, RETURN_PARAMETER);
-				overridePendingTransition(R.anim.move_right_in_activity,
-						R.anim.move_left_out_activity);
-			}
-		});
 	}
 
 	/**
@@ -477,11 +482,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		// TODO 自动生成的方法存根
-
-	}
 
 	/**
 	 * 比较日期,
