@@ -311,6 +311,25 @@ public class ShopPoListActivity extends SherlockActivity implements
 		}
 	}
 
+	
+	////////////////////////////////////删除被关闭的订单//////////////////
+	private void closeSelectList()
+	{
+		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
+		
+		for(int i = 0;i< selectList.size();i++){
+			
+			int groupPosition   =  selectList.get(i).get("groupPosition");
+			int childPosition  =  selectList.get(i).get("childPosition");
+			child.get(groupPosition).remove(childPosition);	
+			if(child.get(groupPosition).size() == 0){
+				
+				group.remove(groupPosition);
+			}
+		}
+		
+	}
+	
 	private void addInfo(String[] g, List<ShopPoListModel> c) {
 		List<String> groupitem = new ArrayList<String>();
 		List<ShopPoListModel> childitem = new ArrayList<ShopPoListModel>();
@@ -409,9 +428,34 @@ public class ShopPoListActivity extends SherlockActivity implements
 				}
 			}
 		}else if(_model instanceof UrgentModel){
-			String json = new String(reponseModel.mresponseBody);
-			System.out.println(" json is " + json);
-			
+
+			try {
+				String json = new String(reponseModel.mresponseBody);			
+				JSONObject jsonObj = new JSONObject(json);
+				String code = ((JSONObject) jsonObj.get("head")).get("code")
+						.toString();
+				if (code.equals("ok")) {
+					
+					 
+					closeSelectList();
+
+				} else if (code.equals("failure")) {
+					Toast.makeText(getApplicationContext(), "请求失败",
+							Toast.LENGTH_SHORT).show();
+				}
+				
+			} catch (JSONException e) {
+				Toast.makeText(getApplicationContext(), "服务器返回数据格式错误",
+						Toast.LENGTH_SHORT).show();
+				e.printStackTrace();
+			} finally {
+				mActionMode.finish();
+				dialog.dismiss();
+				adapter.removeAllRecords();
+			}
+
+
+
 		}
 	}
 

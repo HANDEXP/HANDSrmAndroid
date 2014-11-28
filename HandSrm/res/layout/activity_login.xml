@@ -28,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username"
+        android:text="11598060"
         android:maxLines="1" />
 
     <View style="@style/Divider" />
@@ -38,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
+        android:text="111111"
         android:inputType="textPassword" />
 
     <RelativeLayout
