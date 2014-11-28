@@ -41,4 +41,7 @@ public class ConstantUtl {
 	public static  String  cancelUrgentUrl = "modules/app/main/app_enable_to_ship_po_urgent_abolish.svc";
 	
 	
+	////////////////查询首页接口///////////
+	public static String amountUrl   = "modules/app/main/app_get_enable_amount.svc";
+	
 }

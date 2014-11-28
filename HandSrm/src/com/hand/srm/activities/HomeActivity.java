@@ -3,9 +3,17 @@ package com.hand.srm.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.hand.srm.R;
 import com.hand.srm.adapter.FunctionGridAdapter;
 import com.hand.srm.item.FunctionItem;
+import com.hand.srm.model.HomeModel;
+import com.littlemvc.model.LMModel;
+import com.littlemvc.model.LMModelDelegate;
+import com.littlemvc.model.request.AsHttpRequestModel;
 
 import android.app.Activity;
 import android.app.Application;
@@ -16,10 +24,12 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import android.widget.AdapterView.OnItemClickListener;
 
-public class HomeActivity extends Activity implements OnClickListener {
+public class HomeActivity extends Activity implements OnClickListener,LMModelDelegate {
 
 	private LinearLayout orderListll;
 
@@ -30,6 +40,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 	private LinearLayout  firstLL;
 	
 	private LinearLayout  secondLL;
+	
+	private TextView   toShipTextView;
+	
+	private TextView   toRecvTextView;
+	
+	private HomeModel model;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +55,8 @@ public class HomeActivity extends Activity implements OnClickListener {
 		prepare();
 		buildAllViews();
 
+		model = new HomeModel(this);
+		model.load();
 	}
 
 	@Override
@@ -46,8 +64,10 @@ public class HomeActivity extends Activity implements OnClickListener {
 		super.onResume();
 	}
 
-////////////////////private//////////////////
+////////////////////private////////////////////////////////////////////////////
 	private void prepare() {
+		
+		
 		FunctionItem item1 = new FunctionItem("预制采购单", R.drawable.ic_category_0, null);
 
 		FunctionItem item2 = new FunctionItem("供应商名录", R.drawable.ic_category_1, null);
@@ -68,6 +88,12 @@ public class HomeActivity extends Activity implements OnClickListener {
 	}
 
 	private void buildAllViews() {
+		
+		toShipTextView = (TextView) findViewById(R.id.toShipTextView);
+		
+		toRecvTextView  = (TextView) findViewById(R.id.toRecvTextView);
+		
+		
 		mGridView = (GridView) findViewById(R.id.mGridView);
 		mGridView.setAdapter(new FunctionGridAdapter(functionList, this));
 		
@@ -114,6 +140,36 @@ public class HomeActivity extends Activity implements OnClickListener {
 		});
 		
 	}
+	
+	private void setHomeAmount(JSONArray amounts)
+	{
+		
+		for(int i = 0;i< amounts.length();i++)
+		{
+			try {
+				
+				String enableAmount = amounts.getJSONObject(i).getString("enable_amount");
+				String enableSegment = amounts.getJSONObject(i).getString("enable_segment");
+				if(enableSegment.equalsIgnoreCase("ENABLE_TO_RECEIVE")){
+					
+					toRecvTextView.setText(enableAmount);
+					
+				}else if(enableSegment.equalsIgnoreCase("ENABLE_TO_SHIP")){
+					
+					toShipTextView.setText(enableAmount);
+				}
+				
+			} catch (JSONException e) {
+				Toast.makeText(getApplicationContext(), "服务器返回数值接口错误",
+						Toast.LENGTH_SHORT).show();
+				e.printStackTrace();
+				return;
+			
+			}
+			
+		}
+		
+	}
 
 /////////////click///////////////////////
 	@Override
@@ -122,5 +178,44 @@ public class HomeActivity extends Activity implements OnClickListener {
 
 		}
 
+	}
+///////////////////////model  delegate/////////////////////////
+	@Override
+	public void modelDidFinshLoad(LMModel model) {
+		
+		AsHttpRequestModel reponseModel = (AsHttpRequestModel) model;
+		
+		try {
+			String json = new String(reponseModel.mresponseBody);
+			JSONObject jsonObj = new JSONObject(json);
+
+			String code = ((JSONObject) jsonObj.get("head")).get("code")
+					.toString();
+			if(code.equalsIgnoreCase("ok")){
+				
+				setHomeAmount(jsonObj.getJSONArray("body"));
+			}else {
+				
+				
+				Toast.makeText(getApplicationContext(), "获取首页数值失败错误信息为" +  jsonObj.getJSONObject("head").getString("message"),
+						Toast.LENGTH_SHORT).show();
+			}
+			
+		} catch (JSONException e) {
+			
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void modelDidStartLoad(LMModel model) {
+		
+	}
+
+	@Override
+	public void modelDidFaildLoadWithError(LMModel model) {
+		Toast.makeText(getApplicationContext(), "网络请求失败",
+				Toast.LENGTH_SHORT).show();
 	}
 }
