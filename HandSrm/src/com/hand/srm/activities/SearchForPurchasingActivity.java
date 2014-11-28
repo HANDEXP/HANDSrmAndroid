@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class SearchForPurchasingActivity extends Activity implements
@@ -23,6 +24,7 @@ public class SearchForPurchasingActivity extends Activity implements
 	private TextView purchaseDateToTextView;
 	private DatePickerWrapDialog dateFromDateDialog;
 	private DatePickerWrapDialog dateToDateDialog;
+	private ImageButton backImgBtn;
 	private Button searchButton;
 	HashMap<String, String> searchParm;
 	public static int RETURN_PARAMETER = 1;
@@ -52,6 +54,8 @@ public class SearchForPurchasingActivity extends Activity implements
 		dateToDateDialog = new DatePickerWrapDialog(this, purchaseDateToTextView);
 		searchButton = (Button) findViewById(R.id.search4PurchasingButton);
 		searchButton.setOnClickListener(this);
+		backImgBtn = (ImageButton) findViewById(R.id.backImgBtn);
+		backImgBtn.setOnClickListener(this);
 
 	}
 
@@ -72,7 +76,6 @@ public class SearchForPurchasingActivity extends Activity implements
 		switch (v.getId()) {
 		case R.id.search4PurchasingButton:
 			generateParm();
-//			model.load(searchParm);
 			Intent data = new Intent();
 			data.putExtra("searchParm", searchParm);
 			setResult(RETURN_PARAMETER, data);
@@ -84,6 +87,10 @@ public class SearchForPurchasingActivity extends Activity implements
 		case R.id.purchaseDateTo:
 			dateToDateDialog.showDateDialog();
 			break;
+		case R.id.backImgBtn:
+			finish();
+			overridePendingTransition(R.anim.move_left_in_activity,
+					R.anim.move_right_out_activity);			
 		default:
 			break;
 		}

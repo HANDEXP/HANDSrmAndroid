@@ -163,7 +163,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private void bindAllViews() {
 		//ActionBar
 		titleTextView = (TextView) findViewById(R.id.titleTextView);
-		titleTextView.setText("发出订单列表");
+		titleTextView.setText("送货单列表");
 		returnBtn = (ImageButton) findViewById(R.id.return_btn);
 		returnBtn.setOnClickListener(this);
 		searchBtn = (ImageButton) findViewById(R.id.search_btn);
@@ -411,7 +411,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 						new AddDataTask().execute();
 					}
 					// ExpandableListView下标越界
-					int groupCount = shopPoListView.getCount();
+					int groupCount = adapter.getGroupCount();
 					for (int i = 0; i < groupCount; i++) {
 						// 打开每一个Group
 						shopPoListView.expandGroup(i);

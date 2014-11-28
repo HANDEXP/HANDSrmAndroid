@@ -4,7 +4,29 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#1f497d"
+        >
 
+        <ImageButton
+            android:id="@+id/backImgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:text="@string/back">
+            
+        </ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="查询"
+            android:textColor="#ffffff">
+        </TextView>
+
+    </RelativeLayout>
     <RelativeLayout
         style="@style/SearchLayout" >
 

@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class SearchForDeliveryActivity extends Activity implements
 	private DatePickerWrapDialog dateToDateDialog;
 	private CheckBox excludeConfirmFlagCheckBox;
 	private CheckBox urgentStatusCheckBox;
+	private ImageButton backImgBtn;
 	private Button searchButton;
 	HashMap<String, String> searchParm;
 	public static int RETURN_PARAMETER = 1;
@@ -61,6 +63,8 @@ public class SearchForDeliveryActivity extends Activity implements
 		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
 		searchButton = (Button) findViewById(R.id.search4DeliveryButton);
 		searchButton.setOnClickListener(this);
+		backImgBtn = (ImageButton) findViewById(R.id.backImgBtn);
+		backImgBtn.setOnClickListener(this);
 
 	}
 
@@ -88,7 +92,6 @@ public class SearchForDeliveryActivity extends Activity implements
 			data.putExtra("searchParm", searchParm);
 			setResult(RETURN_PARAMETER, data);
 			finish();
-
 			break;
 		case R.id.deliveryDateFrom:
 			dateFromDateDialog.showDateDialog();
@@ -96,6 +99,10 @@ public class SearchForDeliveryActivity extends Activity implements
 		case R.id.deliveryDateTo:
 			dateToDateDialog.showDateDialog();
 			break;
+		case R.id.backImgBtn:
+			finish();
+			overridePendingTransition(R.anim.move_left_in_activity,
+					R.anim.move_right_out_activity);
 		default:
 			break;
 		}

@@ -32,10 +32,7 @@ import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.hand.srm.R;
-import com.hand.srm.activities.EnableToReceiveActivity.ActionModeOfApproveCallback;
 import com.hand.srm.adapter.ShopPoListAdapter;
-import com.hand.srm.model.EnableToReceiveModel;
-import com.hand.srm.model.SearchForDeliverySvcModel;
 import com.hand.srm.model.ShopPoListModel;
 import com.hand.srm.model.ShopPoListSvcModel;
 import com.hand.srm.model.UrgentModel;
@@ -76,6 +73,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private TextView titleTextView;
 	private ImageButton returnBtn;
 	private ImageButton searchBtn;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -410,9 +408,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 						new AddDataTask().execute();
 					}
 
-					// ExpandableListView下标越界
-					int groupCount = shopPoListView.getCount();
-					for (int i = 0; i < groupCount - 1; i++) {
+					// 取adapter的groupcount，防止ExpandableListView下标越界
+					int groupCount = adapter.getGroupCount();
+					for (int i = 0; i < groupCount; i++) {
 						shopPoListView.expandGroup(i);
 
 					}
