@@ -59,7 +59,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private Boolean reloadFlag = true;
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
-	private Boolean searchFlag = false;
 
 	// //////是否只查待发货/////////////////
 	private Boolean toShipFlag;
@@ -101,7 +100,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 				searchParm.put("to_ship", "true");
 			}
 			model.search(searchParm);
-			searchFlag = false;
 		}
 
 	}
@@ -128,7 +126,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 			}
 			model.search(searchParm);
 			break;
-
 		default:
 			break;
 		}
@@ -151,6 +148,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 			break;
 		}
 	}
+	//	私有方法///////////
 	/**
 	 * 绑定View
 	 * 
@@ -380,8 +378,6 @@ public class ShopPoListActivity extends SherlockActivity implements
 	@Override
 	public void modelDidFinshLoad(LMModel _model) {
 		// TODO 自动生成的方法存根
-		// Toast.makeText(getApplicationContext(), "modelDidFinshLoad",
-		// Toast.LENGTH_SHORT).show();
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) _model;
 
 		if (_model instanceof ShopPoListSvcModel) {

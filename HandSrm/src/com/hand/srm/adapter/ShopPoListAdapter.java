@@ -20,9 +20,8 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 	private List<List<String>> group;
 	private List<List<ShopPoListModel>> child;
 	private Context context;
-	
-	
-	//////////////选中列表
+
+	// ////////////选中列表
 	private List<HashMap<String, Integer>> selectList;
 
 	public ShopPoListAdapter(List<List<String>> group,
@@ -104,8 +103,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.activity_shio_po_list_child, null);
 		}
-		ShopPoListModel childInfo = child.get(groupPosition).get(
-				childPosition);
+		ShopPoListModel childInfo = child.get(groupPosition).get(childPosition);
 		String PoNumString = childInfo.getNum();
 		String ReleaseTimeString = childInfo.getReleaseTime();
 		String VendorNameString = childInfo.getVendorName();
@@ -125,26 +123,23 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		vendorName.setText(VendorNameString);
 		srmStatus.setText(SrmStatusString);
 		totalAmount.setText(TotalAmountString);
-		
-		
-		
-		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+
+		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{
 				put("groupPosition", Integer.valueOf(groupPosition));
 				put("childPosition", Integer.valueOf(childPosition));
 			}
-			
+
 		};
-		
-		if(selectList.contains(record))
-		{
+
+		if (selectList.contains(record)) {
 			convertView.setBackgroundResource(R.drawable.grey);
-			
-		}else {
-			
+
+		} else {
+
 			convertView.setBackgroundResource(R.drawable.white);
 		}
-		
+
 		return convertView;
 	}
 
@@ -153,63 +148,56 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		// TODO 自动生成的方法存根
 		return true;
 	}
-	
-	
-	public List<List<ShopPoListModel>> getChildList()
-	{
+
+	public List<List<ShopPoListModel>> getChildList() {
 		return child;
 	}
-	
+
 	/*
 	 * 选择记录
-	 *
 	 */
-		public List<HashMap<String, Integer>>  getSelectList()
-		{
-			
-			return selectList;
-		}
-		
-		
-		public  void selectRecord(final int groupPosition,final int childPosition)
-		{
-			
-			HashMap<String, Integer> record = new HashMap<String, Integer>(){
-				{
-					put("groupPosition", new Integer(groupPosition));
-					put("childPosition", new Integer(childPosition));
-				}
-				
-			};
-			
-			if(selectList.contains(record)){
-				
-				selectList.remove(record);
-				
-			}else{
-			
-				selectList.add(record);
-			
+	public List<HashMap<String, Integer>> getSelectList() {
+
+		return selectList;
+	}
+
+	public void selectRecord(final int groupPosition, final int childPosition) {
+
+		HashMap<String, Integer> record = new HashMap<String, Integer>() {
+			{
+				put("groupPosition", new Integer(groupPosition));
+				put("childPosition", new Integer(childPosition));
 			}
-			 notifyDataSetChanged();
-			
+
+		};
+
+		if (selectList.contains(record)) {
+
+			selectList.remove(record);
+
+		} else {
+
+			selectList.add(record);
+
 		}
+		notifyDataSetChanged();
+
+	}
+
 	/**
-	 * 获得选中的个数	
+	 * 获得选中的个数
 	 */
-		public int getRecordsCount()
-		{
-			
-			return selectList.size();
-		}
-		
+	public int getRecordsCount() {
+
+		return selectList.size();
+	}
+
 	/**
-	 * 取所所有选择	
+	 * 取所所有选择
 	 */
-		public void removeAllRecords()
-		{
-			selectList.clear();
-			 notifyDataSetChanged();
-			
-		}
+	public void removeAllRecords() {
+		selectList.clear();
+		notifyDataSetChanged();
+
+	}
 }

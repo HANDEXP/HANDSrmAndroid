@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.hand.srm.R;
+import com.hand.srm.layout.MyLayout;
+import com.hand.srm.layout.MyLayout.OnSoftKeyboardListener;
 import com.hand.srm.model.LoginModel;
 import com.littlemvc.model.LMModel;
 import com.littlemvc.model.LMModelDelegate;
@@ -17,11 +19,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class LoginActivity extends SherlockActivity implements OnClickListener,
@@ -31,6 +39,8 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 	private TextView usernameTextView;
 	private TextView passwordTextView;
 	private ProgressDialog dialog;
+	private MyLayout myLayout;
+	private LinearLayout iconLL;
 	LoginModel model;
 
 	HashMap<String, String> loginParm;
@@ -38,8 +48,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
 		setContentView(R.layout.activity_login);
 		model = new LoginModel(this);
 		loginParm = new HashMap<String, String>();
@@ -56,6 +65,43 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 		// 密码栏
 		passwordTextView = (TextView) findViewById(R.id.password);
 		passwordTextView.setOnClickListener(this);
+		passwordTextView.setOnEditorActionListener(new OnEditorActionListener() {
+			
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				// TODO 自动生成的方法存根
+				if(actionId == EditorInfo.IME_ACTION_DONE){
+					InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+					loginRequest();
+					return true;
+				}
+				return false;
+			}
+		});
+//		iconLL = (LinearLayout) findViewById(R.id.Iconll);
+		myLayout = (MyLayout) findViewById(R.id.mylayout);
+		myLayout.setOnSoftKeyboardListener(new OnSoftKeyboardListener() {
+			
+			@Override
+			public void onShown() {
+				// TODO 自动生成的方法存根
+//				if(loginBtn.getHeight() < 60){
+//					iconLL.setPadding(0, 0, 0, 20);
+//				}
+//				Toast.makeText(getApplicationContext(), "Show"+String.valueOf(loginBtn.getHeight()), Toast.LENGTH_SHORT).show();
+//				iconLL.setBackgroundResource(R.drawable.picl);
+				
+			}
+			
+			@Override
+			public void onHidden() {
+				// TODO 自动生成的方法存根
+				
+//				Toast.makeText(getApplicationContext(), "Hidden"+String.valueOf(loginBtn.getHeight()), Toast.LENGTH_SHORT).show();
+//				iconLL.setBackgroundResource(R.drawable.pic);
+			}
+		});
 		setDefaultInfo();
 	}
 
@@ -64,21 +110,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 		// TODO 自动生成的方法存根
 		switch (v.getId()) {
 		case R.id.loginBtn:
-			if (usernameTextView.getText().toString().equals("")) {
-				Toast.makeText(getApplicationContext(), "请输入用户名",
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
-			;
-			if (passwordTextView.getText().toString().equals("")) {
-				Toast.makeText(getApplicationContext(), "请输入密码",
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
-			generateParm();
-			dialog = new ProgressDialog(this, "登录中，请稍后");
-			dialog.show();
-			model.load(loginParm);
+			loginRequest();
 			break;
 
 		default:
@@ -97,6 +129,23 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 		// getSystemService(TELEPHONY_SERVICE)).getDeviceId());
 	}
 
+	private void loginRequest(){
+		if (usernameTextView.getText().toString().equals("")) {
+			Toast.makeText(getApplicationContext(), "请输入用户名",
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+		;
+		if (passwordTextView.getText().toString().equals("")) {
+			Toast.makeText(getApplicationContext(), "请输入密码",
+					Toast.LENGTH_SHORT).show();
+			return;
+		}
+		generateParm();
+		dialog = new ProgressDialog(this, "登录中，请稍后");
+		dialog.show();
+		model.load(loginParm);		
+	}
 	@Override
 	public void modelDidFinshLoad(LMModel model) {
 		// TODO 自动生成的方法存根
