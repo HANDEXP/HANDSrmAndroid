@@ -69,7 +69,7 @@ public class MenuActivity  extends TabActivity{
 		
 		TabItem item4 = new TabItem(
 				"发现",
-				R.drawable.tab_change_setting,
+				R.drawable.tab_change_finding,
 				new Intent(this, OrderTabActivity.class));
 		
 		TabItem item5 = new TabItem(

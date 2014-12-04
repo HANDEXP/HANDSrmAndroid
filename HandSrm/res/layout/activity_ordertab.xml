@@ -21,7 +21,7 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+            />
     </LinearLayout>
     
     
@@ -40,7 +40,7 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+             />
     </LinearLayout>
 
 </LinearLayout>

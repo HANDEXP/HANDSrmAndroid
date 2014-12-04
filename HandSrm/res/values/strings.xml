@@ -61,9 +61,11 @@
     <string name="amount">数量：</string>
     <string name="poNum">订单号</string>
     <string name="shipQuantity">发运数量</string>
-    <string name="receiveQuantity">已接受</string>
+    <string name="receiveQuantity">已接收</string>
     <string name="onTheWayQuantity">在途</string>
     <string name="locationName">收货地点：</string>
     <string name="back">返回</string>
     <string name="search">搜索</string>
+    
+    
 </resources>

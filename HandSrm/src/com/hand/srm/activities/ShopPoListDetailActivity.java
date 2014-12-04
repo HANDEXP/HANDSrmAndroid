@@ -41,6 +41,7 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 	private List<ShopPoListDetailModel> data;
 	private TextView backTextView;
 	private ProgressDialog dialog;
+	private String currencySymbol;
 	
 	
 	@Override
@@ -68,6 +69,7 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		bindAllViews();
 		Intent intent = getIntent();
 		String purHeaderId = intent.getStringExtra("purHeaderId");
+		currencySymbol = intent.getStringExtra("currencySymbol");
 		parm.put("pur_header_id", purHeaderId);
 //		Toast.makeText(getApplicationContext(), purHeaderId, Toast.LENGTH_SHORT).show();
 		model.load(parm);
@@ -108,7 +110,7 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 			item = (JSONObject) jsonArr.get(i);
 			data.add(new ShopPoListDetailModel(item.getString("item_code"), item.getString("item_description"), item.getString("unit_price"), item.getString("quantity"), item.getString("unit_meas_lookup_code"),item.getString("line_amount")));
 		}
-		adapter = new ShopPoListDeatilAdapter(data, getApplicationContext());
+		adapter = new ShopPoListDeatilAdapter(data, getApplicationContext(),currencySymbol);
 		listDetail.setAdapter(adapter);
 	}
 	

@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1f497d"
+        android:background="@color/bkblue"
         android:id="@+id/receiveDetailTitle"
         >
         <TextView
@@ -15,8 +15,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_margin="20dp"
-            android:text="@string/back">
+            android:background="@drawable/back_textview_selector"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/back"
+            android:textColor="@color/white">
             
         </TextView>
         <TextView
@@ -24,7 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_margin="20dp"
-            android:text="订单列表">
+            android:text="订单列表"
+            android:textColor="@color/white">
         </TextView>
     </RelativeLayout>
     <RelativeLayout

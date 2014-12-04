@@ -3,7 +3,7 @@
     android:id="@+id/main_relativelayout_header"
     android:layout_width="fill_parent"
     android:layout_height="50dip"
-    android:background="#1C86EE" >
+    android:background="@color/bkblue" >
    
 
 

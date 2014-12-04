@@ -109,6 +109,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		String VendorNameString = childInfo.getVendorName();
 		String SrmStatusString = childInfo.getSrmStatusName();
 		String TotalAmountString = childInfo.getTotalAmount();
+		String CurrencySymbol = childInfo.getCurrencySymbol();
 		TextView poNum = (TextView) convertView.findViewById(R.id.po_num);
 		TextView releaseTime = (TextView) convertView
 				.findViewById(R.id.release_time);
@@ -122,7 +123,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		releaseTime.setText(ReleaseTimeString);
 		vendorName.setText(VendorNameString);
 		srmStatus.setText(SrmStatusString);
-		totalAmount.setText(TotalAmountString);
+		totalAmount.setText(CurrencySymbol+TotalAmountString);
 
 		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{

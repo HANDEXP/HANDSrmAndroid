@@ -117,7 +117,8 @@ public class HomeActivity extends Activity implements OnClickListener,LMModelDel
 		});
 		
 		firstLL = (LinearLayout) findViewById(R.id.firstLL);
-		firstLL.setOnClickListener(new OnClickListener() {
+		secondLL = (LinearLayout) findViewById(R.id.secondLL);
+		secondLL.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -127,8 +128,8 @@ public class HomeActivity extends Activity implements OnClickListener,LMModelDel
 			}
 		});
 		
-		secondLL = (LinearLayout) findViewById(R.id.secondLL);
-		secondLL.setOnClickListener(new OnClickListener() {
+		
+		firstLL.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

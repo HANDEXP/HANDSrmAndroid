@@ -7,13 +7,15 @@ public class ShopPoListModel {
 	private String vendor_name;
 	private String srm_status_name;
 	private String total_amount;
+	private String currency_code;
+	private String currency_symbol;
 	private String release_date;
 	private String release_time;
 	private String release_day;
 	
 	public ShopPoListModel(String pur_header_id,String num,String vendor_id,String vendor_name,
 										String srm_status_name,String total_amount,String release_date,
-										String release_time, String release_day) {
+										String release_time, String release_day,String currency_code,String currency_symbol) {
 		this.pur_header_id = pur_header_id;
 		this.num = num;
 		this.vendor_id = vendor_id;
@@ -22,7 +24,9 @@ public class ShopPoListModel {
 		this.total_amount = total_amount;
 		this.release_date = release_date;
 		this.release_day = release_day;
-		this.release_time = release_time;		
+		this.release_time = release_time;	
+		this.currency_code = currency_code;
+		this.currency_symbol = currency_symbol;
 	}
 	
 	public String getPurHeaderId() {
@@ -54,4 +58,11 @@ public class ShopPoListModel {
 	public String getReleaseTime(){
 		return this.release_time;
 	}
+	public String getCurrencyCode(){
+		return this.currency_code;
+	}
+	public String getCurrencySymbol(){
+		return this.currency_symbol;
+	}
+	
 }

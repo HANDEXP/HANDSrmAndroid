@@ -9,7 +9,7 @@
      android:layout_width="match_parent"
      android:layout_height="0dp"
      android:layout_weight="2"
-     android:background="#666666"
+     android:background="#e1f2fa"
      android:orientation="horizontal"
     
      
@@ -21,11 +21,12 @@
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:id="@+id/firstLL"
+        android:padding="10dp"
         > 
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="#2da8e1"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:text="0"
@@ -35,7 +36,7 @@
         <TextView
          	android:layout_width="wrap_content" 
          	android:layout_height="wrap_content"  
-        	 android:textColor="@color/white"
+        	 android:textColor="#737261"
         	 android:gravity="center"
         	 android:layout_gravity="center_horizontal"
         	 android:text="待发货"
@@ -51,6 +52,7 @@
         android:layout_weight="1"
         android:orientation="vertical" 
         android:id="@+id/secondLL"
+        android:padding="10dp"
         >
 
         <TextView
@@ -60,7 +62,7 @@
 			android:id="@+id/toRecvTextView"
             android:gravity="center"
             android:text="0"
-            android:textColor="@color/white"
+            android:textColor="#2da8e1"
             android:textSize="23dp" />
 
         <TextView
@@ -69,7 +71,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:text="待接收"
-            android:textColor="@color/white"
+            android:textColor="#737261"
         />
     </LinearLayout>
      
@@ -82,11 +84,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="5dp"
+        android:padding="10dp"
         > 
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="#2da8e1"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:text="0"
@@ -96,7 +99,7 @@
         <TextView
          	android:layout_width="wrap_content" 
          	android:layout_height="wrap_content"  
-        	 android:textColor="@color/white"
+        	 android:textColor="#737261"
         	 android:gravity="center"
         	 android:layout_gravity="center_horizontal"
         	 
@@ -112,11 +115,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="5dp"
+        android:padding="10dp"
         > 
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="#2da8e1"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:text="0"
@@ -126,7 +130,7 @@
         <TextView
          	android:layout_width="wrap_content" 
          	android:layout_height="wrap_content"  
-        	 android:textColor="@color/white"
+        	 android:textColor="#737261"
         	 android:gravity="center"
         	 android:layout_gravity="center_horizontal"
         	

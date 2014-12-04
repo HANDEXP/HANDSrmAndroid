@@ -2,13 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
      android:layout_height="50dip"
-    android:background="#3C719F" 
+    android:background="@color/bkblue" 
 	>
     <ImageButton 
         android:layout_alignParentLeft="true"
         android:id="@+id/return_btn"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/back_textview_selector"
+        android:src="@drawable/white_left"
       />
 
     <TextView
@@ -24,6 +28,10 @@
         android:id="@+id/search_btn"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/back_textview_selector"
+        
         android:layout_alignParentRight="true"
         android:visibility="invisible"
         />

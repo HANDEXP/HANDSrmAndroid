@@ -165,7 +165,8 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 				startActivity(intent);
 				finish();
 			} else if (code.equals("failure")) {
-				Toast.makeText(getApplicationContext(), "用户名或密码错误",
+				String msg = ((JSONObject) jsonobj.get("body")).get("error_message").toString();
+				Toast.makeText(getApplicationContext(), msg,
 						Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception e) {

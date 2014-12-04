@@ -124,7 +124,7 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		asnTypeName.setText(AsnTypeName);
 		asnVendorName.setText(VendorNameString);
 		statusName.setText(StatusString);
-		expectedDate.setText(ExpectedDateString);
+		expectedDate.setText("预计送达时间："+ExpectedDateString);
 		
 		HashMap<String, Integer> record = new HashMap<String, Integer>(){
 			{

@@ -237,9 +237,11 @@ public class ShopPoListActivity extends SherlockActivity implements
 				} else {
 					String headerId = child.get(groupPosition)
 							.get(childPosition).getPurHeaderId();
+					String currencySymbol = child.get(groupPosition).get(childPosition).getCurrencySymbol();
 					Intent intent = new Intent(getApplicationContext(),
 							ShopPoListDetailActivity.class);
 					intent.putExtra("purHeaderId", headerId);
+					intent.putExtra("currencySymbol", currencySymbol);
 					startActivity(intent);
 					overridePendingTransition(R.anim.move_right_in_activity,
 							R.anim.move_left_out_activity);
@@ -297,7 +299,9 @@ public class ShopPoListActivity extends SherlockActivity implements
 						data.getString("total_amount"),
 						data.getString("release_date"),
 						data.getString("release_time"),
-						data.getString("release_day"));
+						data.getString("release_day"),
+						data.getString("currency_code"),
+						data.getString("currency_symbol"));
 				childInfo.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception

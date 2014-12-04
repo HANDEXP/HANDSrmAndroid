@@ -2,17 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f0f0f0"
+    android:background="#ffffff"
     android:orientation="vertical" 
-    android:paddingTop="10dp">
-
+	>
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.08"
+	    android:background="#bbbbbb"/>
     <LinearLayout style="@style/SettingActivityLL"
          >
 
-        <ImageView
+<!--         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/userInfomation"
-            android:src="@drawable/user_information" />
+            android:src="@drawable/user_information" /> -->
 
         <TextView
             style="@style/SettingActivity"
@@ -21,17 +25,17 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+             />
     </LinearLayout>
 
-    <View style="@style/Divider" />
+    <View style="@style/SettingDivider" />
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-        <ImageView
+<!--         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/changeChara"
-            android:src="@drawable/muti_chara" />
+            android:src="@drawable/muti_chara" /> -->
 
         <TextView
             style="@style/SettingActivity"
@@ -40,17 +44,17 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+             />
     </LinearLayout>
 
-    <View style="@style/Divider" />
+    <View style="@style/SettingDivider" />
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-        <ImageView
+<!--         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/changePassword"
-            android:src="@drawable/change_pswd" />
+            android:src="@drawable/change_pswd" /> -->
 
         <TextView
             style="@style/SettingActivity"
@@ -59,19 +63,22 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+            />
     </LinearLayout>
 
-    <View style="@style/BigDivider" />
-
+	<View
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.08"
+	    android:background="#bbbbbb"/>
     <LinearLayout
         style="@style/SettingActivityLL"
-        android:layout_marginTop="20dp" >
-
+         >
+<!-- 
         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/QandA"
-            android:src="@drawable/help" />
+            android:src="@drawable/help" /> -->
 	
         <TextView
             style="@style/SettingActivity"
@@ -80,17 +87,17 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+            />
     </LinearLayout>
 
-    <View style="@style/Divider" />
+    <View style="@style/SettingDivider" />
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-        <ImageView
+<!--         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/comment"
-            android:src="@drawable/comment" />
+            android:src="@drawable/comment" /> -->
 
         <TextView
             style="@style/SettingActivity"
@@ -99,17 +106,17 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+            />
     </LinearLayout>
 
-    <View style="@style/Divider" />
+    <View style="@style/SettingDivider" />
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-        <ImageView
+<!--         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/checkVersion"
-            android:src="@drawable/update" />
+            android:src="@drawable/update" /> -->
 
         <TextView
             style="@style/SettingActivity"
@@ -118,19 +125,20 @@
         <ImageView
             style="@style/SettingActivityDetail"
             android:contentDescription="@string/detail"
-            android:src="@drawable/nextbutton" />
+             />
     </LinearLayout>
 
-    <View style="@style/BigDivider" />
+    <View style="@style/SettingDivider" />
 
     <Button
         android:id="@+id/quitBtn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:background="@drawable/login_button_selector"
         android:textColor="#ffffff"
         android:textSize="16sp"

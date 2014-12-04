@@ -16,10 +16,12 @@ public class ShopPoListDeatilAdapter extends BaseAdapter{
 
 	private List<ShopPoListDetailModel> data;
 	private Context context;
+	private String currencySymbol;
 	
-	public ShopPoListDeatilAdapter(List<ShopPoListDetailModel> data, Context context){
+	public ShopPoListDeatilAdapter(List<ShopPoListDetailModel> data, Context context,String currencySymbol){
 		this.data = data;
 		this.context = context;
+		this.currencySymbol = currencySymbol;
 	}
 	
 	
@@ -51,6 +53,7 @@ public class ShopPoListDeatilAdapter extends BaseAdapter{
 		String quantityString = dataInfo.getQuantity();
 		String unitString = dataInfo.getUnit();
 		String totalAmountString = dataInfo.getTotalAmount();
+		
 		if(convertView == null){
 			convertView = LayoutInflater.from(context).inflate(R.layout.fragment_ship_list_detail, null);
 		}
@@ -61,9 +64,9 @@ public class ShopPoListDeatilAdapter extends BaseAdapter{
 		TextView totalAmount = (TextView) convertView.findViewById(R.id.totalAmountTextView);
 		itemCode.setText(itemCodeString);
 		itemDesc.setText(itemDescString);
-		price.setText(priceString);
+		price.setText(currencySymbol.concat(priceString));
 		amount.setText(quantityString.concat(unitString));
-		totalAmount.setText("¥".concat(totalAmountString));
+		totalAmount.setText(currencySymbol.concat(totalAmountString));
 		
 		return convertView;
 	}

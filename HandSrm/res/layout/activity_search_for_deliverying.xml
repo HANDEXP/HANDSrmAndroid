@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#1f497d"
+        android:background="@color/bkblue"
         >
 
         <ImageButton
@@ -15,7 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:text="@string/back">
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/back_textview_selector"
+            android:src="@drawable/white_left">
             
         </ImageButton>
         <TextView
