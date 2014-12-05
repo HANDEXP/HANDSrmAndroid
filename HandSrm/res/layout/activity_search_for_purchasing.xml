@@ -33,9 +33,13 @@
     </RelativeLayout>
     <RelativeLayout
         style="@style/SearchLayout" >
-
+		<ImageView
+		    android:id="@+id/purchaseNoImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/delivery_no"/>
         <TextView
             style="@style/Search4NoText"
+            android:layout_toRightOf="@+id/purchaseNoImg"
             android:text="@string/purchaseBillNo" >
         </TextView>
 
@@ -46,11 +50,16 @@
             
         </EditText>
     </RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<RelativeLayout
 	    style="@style/SearchLayout">
+		<ImageView
+		    android:id="@+id/purchaseDateFromImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/date_from"/>
         <TextView
             style="@style/Search4NoText"
+            android:layout_toRightOf="@+id/purchaseDateFromImg"
             android:text="@string/purchaseDateFrom">
         </TextView>
         <TextView
@@ -61,11 +70,16 @@
 		</TextView>
 
 	</RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<RelativeLayout
 	    style="@style/SearchLayout">
+		<ImageView
+		    android:id="@+id/purchaseDateToImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/date_to"/>
         <TextView
             style="@style/Search4NoText"
+            android:layout_toRightOf="@+id/purchaseDateToImg"
             android:text="@string/purchaseDateTo">
         </TextView>
         <TextView
@@ -76,7 +90,7 @@
 		</TextView>
 
 	</RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<Button
 	    android:id="@+id/search4PurchasingButton"
 	    android:layout_width="match_parent"

@@ -33,10 +33,15 @@
     </RelativeLayout>
     <RelativeLayout
 			style="@style/SearchLayout">
-
+		<ImageView
+		    android:id="@+id/deliveryNoImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/delivery_no"/>
         <TextView
             style="@style/Search4NoText"
-            android:text="@string/deliveryBillNo" >
+            android:layout_toRightOf="@+id/deliveryNoImg"
+            android:text="@string/deliveryBillNo"
+            >
         </TextView>
 
         <EditText
@@ -47,11 +52,16 @@
             
         </EditText>
     </RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<RelativeLayout
 	    style="@style/SearchLayout">
+        <ImageView
+		    android:id="@+id/deliveryDateFromImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/date_from"/>
         <TextView
             style="@style/Search4NoText"
+            android:layout_toRightOf="@+id/deliveryDateFromImg"
             android:text="@string/deliveryDateFrom">
         </TextView>
         <TextView
@@ -61,11 +71,16 @@
 		</TextView>
 
 	</RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<RelativeLayout
 	    style="@style/SearchLayout">
+        <ImageView
+		    android:id="@+id/deliveryDateToImg"
+			style="@style/Search4Img"
+		    android:src="@drawable/date_to"/>
         <TextView
             style="@style/Search4NoText"
+            android:layout_toRightOf="@+id/deliveryDateToImg"
             android:text="@string/deliveryDateTo">
         </TextView>
         <TextView
@@ -76,7 +91,7 @@
 		</TextView>
 
 	</RelativeLayout>
-	<View style="@style/Divider"/>
+	<View style="@style/OrderDivider"/>
 	<LinearLayout
 	    style="@style/SearchLayout"
 	    android:orientation="horizontal">
@@ -89,7 +104,7 @@
         android:text="@string/excludeConfirmFlag"
         style="@style/CustomCheckboxTheme" />
    	</LinearLayout>
-   	<View style="@style/Divider"/>
+   	<View style="@style/OrderDivider"/>
    	<LinearLayout
    	    style="@style/SearchLayout"
    	    android:orientation="horizontal">
@@ -102,7 +117,7 @@
         android:text="@string/urgentStatus"
         style="@style/CustomCheckboxTheme" />    
    	</LinearLayout>
-   	<View style="@style/Divider"/>
+   	<View style="@style/OrderDivider"/>
 	<Button
 	    android:id="@+id/search4DeliveryButton"
 	    android:layout_width="match_parent"
