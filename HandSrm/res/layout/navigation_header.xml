@@ -22,6 +22,7 @@
 		android:id="@+id/titleTextView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:textSize="22sp"
         android:text="记一笔" />
     
     <ImageButton
@@ -31,7 +32,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="10dp"
         android:background="@drawable/back_textview_selector"
-        
+        android:src="@drawable/filter"
         android:layout_alignParentRight="true"
         android:visibility="invisible"
         />

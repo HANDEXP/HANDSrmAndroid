@@ -14,6 +14,7 @@
        	android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:textSize="22sp"
         android:text="沈波采购员" />
 
 </RelativeLayout>

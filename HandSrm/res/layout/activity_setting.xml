@@ -9,14 +9,14 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:layout_weight="0.08"
-	    android:background="#bbbbbb"/>
+	    android:background="#f0eff5"/>
     <LinearLayout style="@style/SettingActivityLL"
          >
 
-<!--         <ImageView
+         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/userInfomation"
-            android:src="@drawable/user_information" /> -->
+            android:src="@drawable/user_information" /> 
 
         <TextView
             style="@style/SettingActivity"
@@ -32,10 +32,10 @@
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-<!--         <ImageView
+     <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/changeChara"
-            android:src="@drawable/muti_chara" /> -->
+            android:src="@drawable/muti_chara" />
 
         <TextView
             style="@style/SettingActivity"
@@ -51,10 +51,10 @@
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-<!--         <ImageView
+         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/changePassword"
-            android:src="@drawable/change_pswd" /> -->
+            android:src="@drawable/change_pswd" />
 
         <TextView
             style="@style/SettingActivity"
@@ -70,15 +70,15 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:layout_weight="0.08"
-	    android:background="#bbbbbb"/>
+	    android:background="#f0eff5"/>
     <LinearLayout
         style="@style/SettingActivityLL"
          >
-<!-- 
+ 
         <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/QandA"
-            android:src="@drawable/help" /> -->
+            android:src="@drawable/help" />
 	
         <TextView
             style="@style/SettingActivity"
@@ -94,10 +94,10 @@
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-<!--         <ImageView
+   <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/comment"
-            android:src="@drawable/comment" /> -->
+            android:src="@drawable/comment" /> 
 
         <TextView
             style="@style/SettingActivity"
@@ -113,10 +113,10 @@
 
     <LinearLayout style="@style/SettingActivityLL" >
 
-<!--         <ImageView
+        <ImageView
             style="@style/SettingActivityIcon"
             android:contentDescription="@string/checkVersion"
-            android:src="@drawable/update" /> -->
+            android:src="@drawable/update" /> 
 
         <TextView
             style="@style/SettingActivity"

@@ -10,6 +10,7 @@ import com.hand.srm.item.TabItem;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,6 +106,7 @@ public class MenuActivity  extends TabActivity{
 			TextView _textview = (TextView) view.findViewById(R.id.tab_name);
 			
 			_textview.setText(mItems.get(i).getTitle());
+			
 			_textview.setCompoundDrawablesWithIntrinsicBounds(0, mItems.get(i).getIcon(), 0, 0);
 			
 			tabspec.setIndicator(view);

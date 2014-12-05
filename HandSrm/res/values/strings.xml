@@ -23,7 +23,7 @@
     <string name="checkVersion">版本升级</string>
     <string name="exit">退出系统</string>
     <drawable name="white">#ffffff</drawable>
-    <drawable name="grey">#999999</drawable>
+    <drawable name="grey">#eeeeed</drawable>
     <!-- /////  查询送货单号 -->
     <string name="deliveryBillNo">送货单号:</string>
     <string name="deliveryDateFrom">发货日期从:</string>

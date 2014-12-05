@@ -20,6 +20,7 @@
         ptr:ptrHeaderBackground="@android:color/darker_gray"
         ptr:ptrHeaderTextColor="@android:color/white"
         ptr:ptrMode="pullUpFromBottom" 
-        android:layout_below="@+id/shipPoTitle"/>
+        android:layout_below="@+id/shipPoTitle"
+        android:divider="@null"/>
 
 </RelativeLayout>

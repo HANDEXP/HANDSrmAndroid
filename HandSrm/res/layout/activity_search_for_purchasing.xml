@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="查询"
+            android:textSize="22sp"
             android:textColor="#ffffff">
         </TextView>
 
