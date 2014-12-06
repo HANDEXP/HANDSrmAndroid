@@ -146,6 +146,7 @@
  	    android:layout_weight="8"
  	    android:numColumns="3"
  	    android:layout_margin="10dp"
+ 	    android:listSelector="@drawable/grid_selector"
 		android:gravity="center"
  	    >
  	    

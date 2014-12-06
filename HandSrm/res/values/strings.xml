@@ -67,5 +67,6 @@
     <string name="back">返回</string>
     <string name="search">搜索</string>
     
-    
+    <drawable name="gridfocustrue">#eeeeed</drawable>
+    <drawable name="gridfocusfalse">#ffffff</drawable>
 </resources>
