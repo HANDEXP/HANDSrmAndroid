@@ -27,7 +27,7 @@
     <!-- /////  查询送货单号 -->
     <string name="deliveryBillNo">送货单号:</string>
     <string name="deliveryDateFrom">发货日期从:</string>
-    <string name="deliveryDateTo">发货日期到:</string>
+    <string name="deliveryDateTo">发货日期至:</string>
     <string name="search4delivert">查询</string>
     <string name="excludeConfirmFlag">排除已确认订单</string>
     <string name="urgentStatus">仅显示加急订单</string>

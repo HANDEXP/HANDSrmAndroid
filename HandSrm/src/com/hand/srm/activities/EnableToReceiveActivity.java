@@ -377,6 +377,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 							Toast.LENGTH_SHORT).show();
 				}
 			} catch (JSONException e) {
+//				String msg = 
 				Toast.makeText(getApplicationContext(), "服务器返回数据格式错误",
 						Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
