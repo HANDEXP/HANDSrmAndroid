@@ -156,7 +156,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 	private void bindAllViews() {
 		//ActionBar
 		titleTextView = (TextView) findViewById(R.id.titleTextView);
-		titleTextView.setText("发出订单列表");
+		titleTextView.setText("订单列表");
 		returnBtn = (ImageButton) findViewById(R.id.return_btn);
 		returnBtn.setOnClickListener(this);
 		searchBtn = (ImageButton) findViewById(R.id.search_btn);
