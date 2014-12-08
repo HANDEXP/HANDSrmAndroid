@@ -6,7 +6,7 @@
     android:orientation="vertical" >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:background="@color/bkblue"
         android:id="@+id/shipPoDetailTitle"
         

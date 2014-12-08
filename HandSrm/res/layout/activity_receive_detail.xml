@@ -6,16 +6,17 @@
     android:orientation="vertical" >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:background="@color/bkblue"
         android:id="@+id/receiveDetailTitle"
         >
         <TextView
             android:id="@+id/backTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:background="@drawable/back_textview_selector"
+            android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:paddingRight="10dp"
             android:text="@string/back"
