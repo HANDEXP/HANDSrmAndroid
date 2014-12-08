@@ -10,19 +10,16 @@
         android:background="@color/bkblue"
         android:id="@+id/receiveDetailTitle"
         >
-        <TextView
-            android:id="@+id/backTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:background="@drawable/back_textview_selector"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
-            android:text="@string/back"
-            android:textColor="@color/white">
-            
-        </TextView>
+    <ImageButton 
+        android:layout_alignParentLeft="true"
+        android:id="@+id/backTextView"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/back_textview_selector"
+        android:src="@drawable/white_left"
+      />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

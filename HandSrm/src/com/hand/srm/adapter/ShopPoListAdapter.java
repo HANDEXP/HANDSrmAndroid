@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Camera.Size;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,6 +111,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		String SrmStatusString = childInfo.getSrmStatusName();
 		String TotalAmountString = childInfo.getTotalAmount();
 		String CurrencySymbol = childInfo.getCurrencySymbol();
+		String urageFlag = childInfo.getUrgentStatusName();
 		TextView poNum = (TextView) convertView.findViewById(R.id.po_num);
 		TextView releaseTime = (TextView) convertView
 				.findViewById(R.id.release_time);
@@ -123,6 +125,11 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		releaseTime.setText(ReleaseTimeString);
 		vendorName.setText(VendorNameString);
 		srmStatus.setText(SrmStatusString);
+		if(urageFlag.equals("已加急")){
+			srmStatus.setTextColor(Color.RED);
+		}else{
+			srmStatus.setTextColor(Color.parseColor("#00A0DF"));
+		}
 		totalAmount.setText(CurrencySymbol+TotalAmountString);
 
 		HashMap<String, Integer> record = new HashMap<String, Integer>() {

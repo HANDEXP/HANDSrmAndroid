@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class EnableToReceiveDetailActivity extends SherlockActivity implements O
 	private EnableToReceiveDetailSvcModel model;
 	private HashMap<String, String> parm;
 	private List<EnableToReceiveDetailModel> data;
-	private TextView backTextView;
+	private ImageButton backTextView;
 	private ProgressDialog dialog;
 	
 	@Override
@@ -72,7 +73,7 @@ public class EnableToReceiveDetailActivity extends SherlockActivity implements O
 		locationNameTextView = (TextView) findViewById(R.id.locationNameTextView);
 		consignerOrganizationTextView = (TextView) findViewById(R.id.consignerOrganizationTextView);
 		listDetail = (ListView) findViewById(R.id.listDetail);
-		backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView = (ImageButton) findViewById(R.id.backTextView);
 		backTextView.setOnClickListener(this);
 	}
 	

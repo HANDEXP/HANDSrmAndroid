@@ -301,7 +301,8 @@ public class ShopPoListActivity extends SherlockActivity implements
 						data.getString("release_time"),
 						data.getString("release_day"),
 						data.getString("currency_code"),
-						data.getString("currency_symbol"));
+						data.getString("currency_symbol"),
+						data.getString("urgent_status_name"));
 				childInfo.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -320,18 +321,19 @@ public class ShopPoListActivity extends SherlockActivity implements
 	////////////////////////////////////删除被关闭的订单//////////////////
 	private void closeSelectList()
 	{
-		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
-		
-		for(int i = 0;i< selectList.size();i++){
-			
-			int groupPosition   =  selectList.get(i).get("groupPosition");
-			int childPosition  =  selectList.get(i).get("childPosition");
-			child.get(groupPosition).remove(childPosition);	
-			if(child.get(groupPosition).size() == 0){
-				
-				group.remove(groupPosition);
-			}
-		}
+//		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
+//		
+//		for(int i = 0;i< selectList.size();i++){
+//			
+//			int groupPosition   =  selectList.get(i).get("groupPosition");
+//			int childPosition  =  selectList.get(i).get("childPosition");
+//			child.get(groupPosition).remove(childPosition);	
+//			if(child.get(groupPosition).size() == 0){
+//				
+//				group.remove(groupPosition);
+//			}
+//		}
+//		model.search(searchParm);
 		
 	}
 	
@@ -431,10 +433,11 @@ public class ShopPoListActivity extends SherlockActivity implements
 				}
 			}
 		}else if(_model instanceof UrgentModel){
-
+			String json = null;
+			JSONObject jsonObj = null;
 			try {
-				String json = new String(reponseModel.mresponseBody);			
-				JSONObject jsonObj = new JSONObject(json);
+				json = new String(reponseModel.mresponseBody);			
+				jsonObj = new JSONObject(json);
 				String code = ((JSONObject) jsonObj.get("head")).get("code")
 						.toString();
 				if (code.equals("ok")) {
@@ -448,8 +451,21 @@ public class ShopPoListActivity extends SherlockActivity implements
 				}
 				
 			} catch (JSONException e) {
-				Toast.makeText(getApplicationContext(), "服务器返回数据格式错误",
+//				Toast.makeText(getApplicationContext(), "服务器返回数据格式错误",
+//						Toast.LENGTH_SHORT).show();
+				boolean flag = json.replaceAll("\r\n","").matches(".*error.*");
+				if(flag){
+					try {
+						
+						String message = ((JSONObject) jsonObj.get("error")).get("message")
+								.toString();
+						Toast.makeText(getApplicationContext(), message,
 						Toast.LENGTH_SHORT).show();
+					} catch (JSONException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}					
+				}
 				e.printStackTrace();
 			} finally {
 				mActionMode.finish();

@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +40,7 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 	private ShopPoListDetailSvcModel model;
 	private HashMap<String, String> parm;
 	private List<ShopPoListDetailModel> data;
-	private TextView backTextView;
+	private ImageButton backTextView;
 	private ProgressDialog dialog;
 	private String currencySymbol;
 	
@@ -81,7 +82,7 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		consignerOrganizationTextView = (TextView) findViewById(R.id.consignerOrganizationTextView);
 		orderTypeTextView = (TextView) findViewById(R.id.orderTypeTextView);
 		listDetail = (ListView) findViewById(R.id.listDetail);
-		backTextView = (TextView) findViewById(R.id.backTextView);
+		backTextView = (ImageButton) findViewById(R.id.backTextView);
 		backTextView.setOnClickListener(this);
 	}
 	

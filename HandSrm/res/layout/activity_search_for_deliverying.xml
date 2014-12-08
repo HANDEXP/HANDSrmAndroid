@@ -67,7 +67,7 @@
         <TextView
             android:id="@+id/deliveryDateFrom"
 			style="@style/DateSearch4NoView"
-			android:text="2014-01-01">
+			android:text="">
 		</TextView>
 
 	</RelativeLayout>
@@ -86,7 +86,7 @@
         <TextView
             android:id="@+id/deliveryDateTo"
 			style="@style/DateSearch4NoView"
-			android:text="2014-12-25"
+			android:text=""
 			>
 		</TextView>
 

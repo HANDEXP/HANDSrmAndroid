@@ -32,8 +32,8 @@ public class DatePickerWrapDialog {
 		this.context = context;
 		this.setView = setView;
 		
-		getNumber();
-		setView();
+//		getNumber();
+//		setView();
 	}
 	
 //根据当前年月日更新前台显示	
