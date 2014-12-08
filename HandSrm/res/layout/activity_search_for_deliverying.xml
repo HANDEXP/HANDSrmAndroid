@@ -91,32 +91,7 @@
 		</TextView>
 
 	</RelativeLayout>
-	<View style="@style/OrderDivider"/>
-	<LinearLayout
-	    style="@style/SearchLayout"
-	    android:orientation="horizontal">
-    <CheckBox
-        android:id="@+id/excludeConfirmFlag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"                
-        android:checked="false"
-        android:text="@string/excludeConfirmFlag"
-        style="@style/CustomCheckboxTheme" />
-   	</LinearLayout>
-   	<View style="@style/OrderDivider"/>
-   	<LinearLayout
-   	    style="@style/SearchLayout"
-   	    android:orientation="horizontal">
-    <CheckBox
-        android:id="@+id/urgentStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"       
-        android:checked="false"
-        android:text="@string/urgentStatus"
-        style="@style/CustomCheckboxTheme" />    
-   	</LinearLayout>
+
    	<View style="@style/OrderDivider"/>
 	<Button
 	    android:id="@+id/search4DeliveryButton"

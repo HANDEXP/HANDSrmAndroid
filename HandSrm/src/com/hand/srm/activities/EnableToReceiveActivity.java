@@ -146,7 +146,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			break;
 		case R.id.search_btn:
 			Intent searchIntent = new Intent(getApplicationContext(),
-					SearchForPurchasingActivity.class);
+					SearchForDeliveryActivity.class);
 			startActivityForResult(searchIntent, RETURN_PARAMETER);
 			overridePendingTransition(R.anim.move_right_in_activity,
 					R.anim.move_left_out_activity);

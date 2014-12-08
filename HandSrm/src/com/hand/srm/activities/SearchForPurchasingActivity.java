@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class SearchForPurchasingActivity extends Activity implements
 	private Button searchButton;
 	HashMap<String, String> searchParm;
 	public static int RETURN_PARAMETER = 1;
+	private CheckBox excludeConfirmFlagCheckBox;
+	private CheckBox urgentStatusCheckBox;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class SearchForPurchasingActivity extends Activity implements
 		searchButton.setOnClickListener(this);
 		backImgBtn = (ImageButton) findViewById(R.id.backImgBtn);
 		backImgBtn.setOnClickListener(this);
+		excludeConfirmFlagCheckBox = (CheckBox) findViewById(R.id.excludeConfirmFlag);
+		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
 
 	}
 
@@ -64,9 +69,19 @@ public class SearchForPurchasingActivity extends Activity implements
 	 */
 	private void generateParm() {
 
-		searchParm.put("asn_num", purchaseNoEditView.getText().toString());
-		searchParm.put("ship_date_from", purchaseDateFromTextView.getText().toString());
-		searchParm.put("ship_date_to", purchaseDateToTextView.getText().toString());
+//		searchParm.put("asn_num", purchaseNoEditView.getText().toString());
+//		searchParm.put("ship_date_from", purchaseDateFromTextView.getText().toString());
+//		searchParm.put("ship_date_to", purchaseDateToTextView.getText().toString());
+///////////////////////////////////////////////////////////////////////////////////////////
+		searchParm.put("po_num", purchaseNoEditView.getText().toString());
+		searchParm.put("release_date_from", purchaseDateFromTextView.getText().toString());
+		searchParm.put("release_date_to", purchaseDateToTextView.getText().toString());
+		
+//		searchParm.put("po_num", deliveryNoEditView.getText().toString());
+		searchParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
+		searchParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
+//		searchParm.put("release_date_from", deliveryDateFromTextView.getText().toString());
+//		searchParm.put("release_date_to", deliveryDateToTextView.getText().toString());
 	}
 
 

@@ -29,8 +29,8 @@ public class SearchForDeliveryActivity extends Activity implements
 	private TextView deliveryDateToTextView;
 	private DatePickerWrapDialog dateFromDateDialog;
 	private DatePickerWrapDialog dateToDateDialog;
-	private CheckBox excludeConfirmFlagCheckBox;
-	private CheckBox urgentStatusCheckBox;
+//	private CheckBox excludeConfirmFlagCheckBox;
+//	private CheckBox urgentStatusCheckBox;
 	private ImageButton backImgBtn;
 	private Button searchButton;
 	HashMap<String, String> searchParm;
@@ -59,8 +59,8 @@ public class SearchForDeliveryActivity extends Activity implements
 		deliveryDateToTextView = (TextView) findViewById(R.id.deliveryDateTo);
 		deliveryDateToTextView.setOnClickListener(this);
 		dateToDateDialog = new DatePickerWrapDialog(this, deliveryDateToTextView);
-		excludeConfirmFlagCheckBox = (CheckBox) findViewById(R.id.excludeConfirmFlag);
-		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
+//		excludeConfirmFlagCheckBox = (CheckBox) findViewById(R.id.excludeConfirmFlag);
+//		urgentStatusCheckBox = (CheckBox) findViewById(R.id.urgentStatus);
 		searchButton = (Button) findViewById(R.id.search4DeliveryButton);
 		searchButton.setOnClickListener(this);
 		backImgBtn = (ImageButton) findViewById(R.id.backImgBtn);
@@ -73,11 +73,18 @@ public class SearchForDeliveryActivity extends Activity implements
 	 */
 	private void generateParm() {
 
-		searchParm.put("po_num", deliveryNoEditView.getText().toString());
-		searchParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
-		searchParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
-		searchParm.put("release_date_from", deliveryDateFromTextView.getText().toString());
-		searchParm.put("release_date_to", deliveryDateToTextView.getText().toString());
+//		searchParm.put("po_num", deliveryNoEditView.getText().toString());
+//		searchParm.put("exclude_confirm_flag", excludeConfirmFlagCheckBox.isChecked() ? "Y" : "N");
+//		searchParm.put("urgent_status", urgentStatusCheckBox.isChecked() ? "Y" : "N");
+//		searchParm.put("release_date_from", deliveryDateFromTextView.getText().toString());
+//		searchParm.put("release_date_to", deliveryDateToTextView.getText().toString());
+////////////////////////////////////////////////////////////////////////////////////////////
+		searchParm.put("asn_num", deliveryNoEditView.getText().toString());
+		searchParm.put("ship_date_from", deliveryDateFromTextView.getText().toString());
+		searchParm.put("ship_date_to", deliveryDateToTextView.getText().toString());
+//		searchParm.put("asn_num", purchaseNoEditView.getText().toString());
+//		searchParm.put("ship_date_from", purchaseDateFromTextView.getText().toString());
+//		searchParm.put("ship_date_to", purchaseDateToTextView.getText().toString());
 	}
 
 
