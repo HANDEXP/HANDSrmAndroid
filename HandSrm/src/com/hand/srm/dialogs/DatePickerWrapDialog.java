@@ -32,7 +32,7 @@ public class DatePickerWrapDialog {
 		this.context = context;
 		this.setView = setView;
 		
-//		getNumber();
+		getNumber();
 //		setView();
 	}
 	

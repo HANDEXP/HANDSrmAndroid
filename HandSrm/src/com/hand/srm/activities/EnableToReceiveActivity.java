@@ -48,7 +48,7 @@ import com.littlemvc.model.request.AsHttpRequestModel;
 import com.mas.customview.ProgressDialog;
 
 public class EnableToReceiveActivity extends SherlockActivity implements
-		LMModelDelegate,OnClickListener {
+		LMModelDelegate, OnClickListener {
 	private int pageNum = 1;
 	private List<List<String>> group;
 
@@ -67,8 +67,8 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	public static int RETURN_PARAMETER = 1;
 	private HashMap<String, String> searchParm;
 	private Boolean reloadFlag = true;
-	//////////////////是否只查待收货//////////////////
-	private Boolean  toReceiveFlag;
+	// ////////////////是否只查待收货//////////////////
+	private Boolean toReceiveFlag;
 
 	// /////action bar
 	private ActionMode mActionMode;
@@ -77,7 +77,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 	private TextView titleTextView;
 	private ImageButton returnBtn;
 	private ImageButton searchBtn;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,7 +87,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		getSupportActionBar().setCustomView(R.layout.navigation_header);
 
 		toReceiveFlag = getIntent().getBooleanExtra("to_receive_flag", false);
-		
+
 		bindAllViews();
 
 		model = new EnableToReceiveSvcModel(this);
@@ -96,10 +96,10 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 
 	@Override
 	protected void onResume() {
-		super.onResume();		
+		super.onResume();
 		if (reloadFlag == true) {
 			searchParm.put("page_num", String.valueOf(pageNum++));
-			if(toReceiveFlag){
+			if (toReceiveFlag) {
 				searchParm.put("to_receive", "YES");
 			}
 			model.search(searchParm);
@@ -114,7 +114,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (resultCode) { 
+		switch (resultCode) {
 		case 1:
 
 			group = null;
@@ -124,9 +124,9 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					.getSerializableExtra("searchParm");
 			pageNum = 1;
 			searchParm.put("page_num", String.valueOf(pageNum++));
-			
-			if(toReceiveFlag){
-				
+
+			if (toReceiveFlag) {
+
 				searchParm.put("to_receive", "YES");
 			}
 			model.search(searchParm);
@@ -137,6 +137,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			break;
 		}
 	}
+
 	@Override
 	public void onClick(View v) {
 		// TODO 自动生成的方法存根
@@ -155,13 +156,14 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			break;
 		}
 	}
+
 	// ////////////////////////////private////////////////////
 	/**
 	 * 绑定View
 	 * 
 	 */
 	private void bindAllViews() {
-		//ActionBar
+		// ActionBar
 		titleTextView = (TextView) findViewById(R.id.titleTextView);
 		titleTextView.setText("送货单列表");
 		returnBtn = (ImageButton) findViewById(R.id.return_btn);
@@ -169,7 +171,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		searchBtn = (ImageButton) findViewById(R.id.search_btn);
 		searchBtn.setVisibility(View.VISIBLE);
 		searchBtn.setOnClickListener(this);
-		
+
 		if (searchParm == null) {
 			searchParm = new HashMap<String, String>();
 		}
@@ -238,22 +240,22 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			}
 		});
 
-		//只有当to_receive为 true的时候才能开启关闭功能
-		if(toReceiveFlag){
-		shopPoListView
-				.setOnItemLongClickListener(new OnItemLongClickListener() {
+		// 只有当to_receive为 true的时候才能开启关闭功能
+		if (toReceiveFlag) {
+			shopPoListView
+					.setOnItemLongClickListener(new OnItemLongClickListener() {
 
-					@Override
-					public boolean onItemLongClick(AdapterView<?> parent,
-							View view, int position, long id) {
+						@Override
+						public boolean onItemLongClick(AdapterView<?> parent,
+								View view, int position, long id) {
 
-						mActionMode = getSherlock().startActionMode(
-								actionModeCallback);
-						mActionMode.setTitle("关闭");
+							mActionMode = getSherlock().startActionMode(
+									actionModeCallback);
+							mActionMode.setTitle("关闭");
 
-						return false;
-					}
-				});
+							return false;
+						}
+					});
 		}
 		shopPoListView.setGroupIndicator(null);
 	}
@@ -296,7 +298,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 							data.getString("ship_day") };
 
 				}
-
+				
 				EnableToReceiveModel item = new EnableToReceiveModel(
 						data.getString("asn_header_id"),
 						data.getString("asn_num"),
@@ -306,7 +308,10 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 						data.getString("status_name"),
 						data.getString("expected_date"),
 						data.getString("ship_date"),
-						data.getString("ship_time"), data.getString("ship_day"));
+						data.getString("ship_time"), 
+						data.getString("ship_day"),
+						data.getString("process_status_name"),
+						data.getString("cancel_process_status_name"));
 				childInfo.add(item);
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -334,24 +339,23 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		child.add(childitem);
 	}
 
-	////////////////////////////////////删除被关闭的订单//////////////////
-	private void closeSelectList()
-	{
-		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
-		
-		for(int i = 0;i< selectList.size();i++){
-			
-			int groupPosition   =  selectList.get(i).get("groupPosition");
-			int childPosition  =  selectList.get(i).get("childPosition");
-			child.get(groupPosition).remove(childPosition);	
-			if(child.get(groupPosition).size() == 0){
-				
+	// //////////////////////////////////删除被关闭的订单//////////////////
+	private void closeSelectList() {
+		List<HashMap<String, Integer>> selectList = adapter.getSelectList();
+
+		for (int i = 0; i < selectList.size(); i++) {
+
+			int groupPosition = selectList.get(i).get("groupPosition");
+			int childPosition = selectList.get(i).get("childPosition");
+			child.get(groupPosition).remove(childPosition);
+			if (child.get(groupPosition).size() == 0) {
+
 				group.remove(groupPosition);
 			}
 		}
-		
+
 	}
-	
+
 	// ////////////////////////////model delegate//////////////////////////
 	@Override
 	public void modelDidFinshLoad(LMModel _model) {
@@ -370,8 +374,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 				String code = ((JSONObject) jsonObj.get("head")).get("code")
 						.toString();
 				if (code.equals("ok")) {
-					
-					 
+
 					closeSelectList();
 
 				} else if (code.equals("failure")) {
@@ -379,19 +382,19 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 							Toast.LENGTH_SHORT).show();
 				}
 			} catch (JSONException e) {
-//				String msg = 
-				boolean flag = json.replaceAll("\r\n","").matches(".*error.*");
-				if(flag){
+				// String msg =
+				boolean flag = json.replaceAll("\r\n", "").matches(".*error.*");
+				if (flag) {
 					try {
-						
-						String message = ((JSONObject) jsonObj.get("error")).get("message")
-								.toString();
+
+						String message = ((JSONObject) jsonObj.get("error"))
+								.get("message").toString();
 						Toast.makeText(getApplicationContext(), message,
-						Toast.LENGTH_SHORT).show();
+								Toast.LENGTH_SHORT).show();
 					} catch (JSONException e1) {
 						// TODO 自动生成的 catch 块
 						e1.printStackTrace();
-					}					
+					}
 				}
 				e.printStackTrace();
 
@@ -419,7 +422,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					}
 					if (adapter == null) {
 						adapter = new EnableToReceiveAdapter(group, child,
-								getApplicationContext());
+								getApplicationContext(),toReceiveFlag);
 						shopPoListView.setAdapter(adapter);
 					} else {
 						new AddDataTask().execute();
@@ -621,6 +624,5 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 			adapter.removeAllRecords();
 		}
 	}
-
 
 }

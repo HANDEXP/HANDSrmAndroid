@@ -21,16 +21,19 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 	private List<List<String>> group;
 	private List<List<EnableToReceiveModel>> child;
 	private Context context;
-	
-	//////////////选中列表
+	private boolean toReceiveFlag;
+
+	// ////////////选中列表
 	private List<HashMap<String, Integer>> selectList;
 
 	public EnableToReceiveAdapter(List<List<String>> group,
-			List<List<EnableToReceiveModel>> child, Context context) {
+			List<List<EnableToReceiveModel>> child, Context context,
+			boolean toReceiveFlag) {
 		this.group = group;
 		this.child = child;
 		this.context = context;
 		this.selectList = new ArrayList<HashMap<String, Integer>>();
+		this.toReceiveFlag = toReceiveFlag;
 	}
 
 	@Override
@@ -111,6 +114,9 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		String VendorNameString = childInfo.getVendorName();
 		String StatusString = childInfo.getStatusName();
 		String ExpectedDateString = childInfo.getExpectedDate();
+		String ProcessStatus = childInfo.getProcessStatusName();
+		String CancelProcessStatus = childInfo.getCancelProcessStatusName();
+
 		TextView asnNum = (TextView) convertView.findViewById(R.id.po_num);
 		TextView asnTypeName = (TextView) convertView
 				.findViewById(R.id.release_time);
@@ -123,27 +129,31 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		asnNum.setText(AsnNumString);
 		asnTypeName.setText(AsnTypeName);
 		asnVendorName.setText(VendorNameString);
-		statusName.setText(StatusString);
-		expectedDate.setText("预计送达时间："+ExpectedDateString);
-		
-		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+		if (toReceiveFlag && ProcessStatus.matches(".*发送中.*")) {
+			statusName.setText(ProcessStatus);
+		} else if(toReceiveFlag && CancelProcessStatus.matches(".*反馈.*")) {
+			statusName.setText(CancelProcessStatus);
+		} else {
+			statusName.setText(StatusString);
+		}
+		expectedDate.setText("预计送达时间：" + ExpectedDateString);
+
+		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{
 				put("groupPosition", new Integer(groupPosition));
 				put("childPosition", new Integer(childPosition));
 			}
-			
+
 		};
-		
-		if(selectList.contains(record))
-		{
+
+		if (selectList.contains(record)) {
 			convertView.setBackgroundResource(R.drawable.grey);
-			
-		}else {
-			
+
+		} else {
+
 			convertView.setBackgroundResource(R.drawable.white);
 		}
-		
-		
+
 		return convertView;
 	}
 
@@ -152,67 +162,61 @@ public class EnableToReceiveAdapter extends BaseExpandableListAdapter {
 		// TODO 自动生成的方法存根
 		return true;
 	}
-	
-/**
- * 	
- * @return
- */
-	public List<List<EnableToReceiveModel>> getChildList()
-	{
+
+	/**
+	 * 
+	 * @return
+	 */
+	public List<List<EnableToReceiveModel>> getChildList() {
 		return child;
 	}
-	
-/*
- * 选择记录
- *
- */
-	public List<HashMap<String, Integer>>  getSelectList()
-	{
-		
+
+	/*
+	 * 选择记录
+	 */
+	public List<HashMap<String, Integer>> getSelectList() {
+
 		return selectList;
 	}
-	
-	
-	public  void selectRecord(final int groupPosition,final int childPosition)
-	{
-		
-		HashMap<String, Integer> record = new HashMap<String, Integer>(){
+
+	public void selectRecord(final int groupPosition, final int childPosition) {
+
+		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{
 				put("groupPosition", new Integer(groupPosition));
 				put("childPosition", new Integer(childPosition));
 			}
-			
+
 		};
-		
-		if(selectList.contains(record)){
-			
+
+		if (selectList.contains(record)) {
+
 			selectList.remove(record);
-			
-		}else{
-		
+
+		} else {
+
 			selectList.add(record);
-		
+
 		}
-		 notifyDataSetChanged();
-		
+		notifyDataSetChanged();
+
 	}
-/**
- * 获得选中的个数	
- */
-	public int getRecordsCount()
-	{
-		
+
+	/**
+	 * 获得选中的个数
+	 */
+	public int getRecordsCount() {
+
 		return selectList.size();
 	}
-	
-/**
- * 取所所有选择	
- */
-	public void removeAllRecords()
-	{
+
+	/**
+	 * 取所所有选择
+	 */
+	public void removeAllRecords() {
 		selectList.clear();
-		 notifyDataSetChanged();
-		
+		notifyDataSetChanged();
+
 	}
-	
+
 }

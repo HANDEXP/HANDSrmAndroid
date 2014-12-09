@@ -11,52 +11,76 @@ public class EnableToReceiveModel {
 	private String ship_date;
 	private String ship_time;
 	private String ship_day;
-	
-	public EnableToReceiveModel(String asn_header_id,String asn_num,String asn_type_name,String vendor_id,String vendor_name,
-										String status_name,String expected_date,String ship_date,
-										String ship_time, String ship_day) {
+	private String process_status_name;
+	private String cancel_process_status_name;
+
+	public EnableToReceiveModel(String asn_header_id, String asn_num,
+			String asn_type_name, String vendor_id, String vendor_name,
+			String status_name, String expected_date, String ship_date,
+			String ship_time, String ship_day, String process_status_name,
+			String cancel_process_status_name) {
 		this.asn_header_id = asn_header_id;
 		this.asn_num = asn_num;
-		this.asn_type_name = asn_type_name; 
+		this.asn_type_name = asn_type_name;
 		this.vendor_id = vendor_id;
 		this.vendor_name = vendor_name;
 		this.status_name = status_name;
 		this.expected_date = expected_date;
 		this.ship_date = ship_date;
 		this.ship_day = ship_day;
-		this.ship_time = ship_time;		
+		this.ship_time = ship_time;
+		this.process_status_name = process_status_name;
+		this.cancel_process_status_name = cancel_process_status_name;
 	}
-	
+
 	public String getAsnHeaderId() {
-		
+
 		return this.asn_header_id;
 	}
+
 	public String getAsnNum() {
-		
+
 		return this.asn_num;
 	}
-	public String getAsnTypeName(){
+
+	public String getAsnTypeName() {
 		return this.asn_type_name;
 	}
-	public String getVendorId(){
+
+	public String getVendorId() {
 		return this.vendor_id;
 	}
-	public String getVendorName(){
+
+	public String getVendorName() {
 		return this.vendor_name;
 	}
-	public String getStatusName(){
+
+	public String getStatusName() {
 		return this.status_name;
 	}
-	public String getExpectedDate(){
+
+	public String getExpectedDate() {
 		return this.expected_date;
 	}
-	public String getShipDate(){
+
+	public String getShipDate() {
 		return this.ship_date;
 	}
-	public String getShipDay(){
+
+	public String getShipDay() {
 		return this.ship_day;
 	}
-	public String getShipTime(){
+
+	public String getShipTime() {
 		return this.ship_time;
+	}
+
+	public String getProcessStatusName() {
+		return this.process_status_name;
+
+	}
+
+	public String getCancelProcessStatusName() {
+		return this.cancel_process_status_name;
 	}
 }
