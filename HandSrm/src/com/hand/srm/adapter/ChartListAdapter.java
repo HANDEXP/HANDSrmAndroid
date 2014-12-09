@@ -69,9 +69,9 @@ public class ChartListAdapter extends BaseAdapter {
 //	    int height=display.getHeight();
 //
 //	    
-		 AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-                 LinearLayout.LayoutParams.MATCH_PARENT,100);
-		 convertView.setLayoutParams(lp);
+//		 AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
+//                 LinearLayout.LayoutParams.MATCH_PARENT,100);
+//		 convertView.setLayoutParams(lp);
 		
 		return convertView;
 		

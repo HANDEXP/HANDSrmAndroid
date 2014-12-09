@@ -154,7 +154,7 @@ public class PieChart extends PieRadarChartBase {
 
         drawLegend();
 
-        drawDescription();
+       // drawDescription();
 
         drawCenterText();
 
