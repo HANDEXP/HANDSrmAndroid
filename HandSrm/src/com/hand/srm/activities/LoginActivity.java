@@ -157,7 +157,9 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 			String code = ((JSONObject) jsonobj.get("head")).get("code")
 					.toString();
 			if (code.equals("ok")) {
-				saveUserData();
+				String description = ((JSONObject) jsonobj.get("body")).get("description")
+						.toString();
+				saveUserData(description);
 				
 				Intent intent = new Intent(getApplicationContext(),
 						MenuActivity.class);
@@ -194,7 +196,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 				.show();
 	}
 
-	private void saveUserData() {
+	private void saveUserData(String description) {
 		SharedPreferences preferences = getSharedPreferences("userInfo",
 				Context.MODE_APPEND);
 		// Toast.makeText(getApplicationContext(),
@@ -207,6 +209,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 		String userPassword = loginParm.get("user_password");
 		preferences.edit().putString("userName", userName).commit();
 		preferences.edit().putString("userPassword", userPassword).commit();
+		preferences.edit().putString("description", description).commit();
 	}
 
 	/**

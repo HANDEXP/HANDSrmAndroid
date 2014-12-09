@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hand.srm.R;
 import com.hand.srm.model.EnableToReceiveModel;
@@ -125,12 +126,12 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 		releaseTime.setText(ReleaseTimeString);
 		vendorName.setText(VendorNameString);
 		srmStatus.setText(SrmStatusString);
-		if(urageFlag.equals("已加急")){
+		if (urageFlag.equals("已加急")) {
 			srmStatus.setTextColor(Color.RED);
-		}else{
+		} else {
 			srmStatus.setTextColor(Color.parseColor("#00A0DF"));
 		}
-		totalAmount.setText(CurrencySymbol+TotalAmountString);
+		totalAmount.setText(CurrencySymbol + TotalAmountString);
 
 		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{
@@ -171,6 +172,18 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 
 	public void selectRecord(final int groupPosition, final int childPosition) {
 
+		if (child.get(groupPosition).get(childPosition).getSrmStatusName()
+				.equals("已确认")) {
+			Toast.makeText(context, "未发布订单不可加急", Toast.LENGTH_SHORT).show();
+			return;
+		}
+//		if (child.get(groupPosition).get(childPosition).getSrmStatusName()
+//				.equals("已发布")
+//				&& child.get(groupPosition).get(childPosition)
+//						.getUrgentStatusName().equals("已加急")) {
+//			Toast.makeText(context, "已加急订单不可重复加急", Toast.LENGTH_SHORT).show();
+//			return;
+//		}
 		HashMap<String, Integer> record = new HashMap<String, Integer>() {
 			{
 				put("groupPosition", new Integer(groupPosition));

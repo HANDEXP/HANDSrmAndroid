@@ -361,10 +361,12 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		AsHttpRequestModel reponseModel = (AsHttpRequestModel) _model;
 
 		if (_model instanceof CloseModel) {
+			String json = null;
+			JSONObject jsonObj = null;
 			try {
 
-				String json = new String(reponseModel.mresponseBody);
-				JSONObject jsonObj = new JSONObject(json);
+				json = new String(reponseModel.mresponseBody);
+				jsonObj = new JSONObject(json);
 				String code = ((JSONObject) jsonObj.get("head")).get("code")
 						.toString();
 				if (code.equals("ok")) {
@@ -378,8 +380,19 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 				}
 			} catch (JSONException e) {
 //				String msg = 
-				Toast.makeText(getApplicationContext(), "服务器返回数据格式错误",
+				boolean flag = json.replaceAll("\r\n","").matches(".*error.*");
+				if(flag){
+					try {
+						
+						String message = ((JSONObject) jsonObj.get("error")).get("message")
+								.toString();
+						Toast.makeText(getApplicationContext(), message,
 						Toast.LENGTH_SHORT).show();
+					} catch (JSONException e1) {
+						// TODO 自动生成的 catch 块
+						e1.printStackTrace();
+					}					
+				}
 				e.printStackTrace();
 
 			} finally {

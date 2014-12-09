@@ -69,4 +69,12 @@ public class ShopPoListModel {
 	public String getUrgentStatusName(){
 		return this.urgent_status_name;
 	}
+	
+	public void setUrgentStatusName(boolean flag){
+		if(flag){
+			this.urgent_status_name = "已加急";
+		}else{
+			this.urgent_status_name = "可加急";
+		}
+	}
 }

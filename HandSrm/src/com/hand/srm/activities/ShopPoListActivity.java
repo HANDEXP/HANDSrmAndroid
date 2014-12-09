@@ -318,21 +318,17 @@ public class ShopPoListActivity extends SherlockActivity implements
 	}
 
 	
-	////////////////////////////////////删除被关闭的订单//////////////////
-	private void closeSelectList()
+	////////////////////////////////////更改加急订单的颜色//////////////////
+	private void changeSelectList(boolean flag)
 	{
-//		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
-//		
-//		for(int i = 0;i< selectList.size();i++){
-//			
-//			int groupPosition   =  selectList.get(i).get("groupPosition");
-//			int childPosition  =  selectList.get(i).get("childPosition");
-//			child.get(groupPosition).remove(childPosition);	
-//			if(child.get(groupPosition).size() == 0){
-//				
-//				group.remove(groupPosition);
-//			}
-//		}
+		List<HashMap<String, Integer>>  selectList  =   adapter.getSelectList();
+		
+		for(int i = 0;i< selectList.size();i++){
+			
+			int groupPosition   =  selectList.get(i).get("groupPosition");
+			int childPosition  =  selectList.get(i).get("childPosition");
+			child.get(groupPosition).get(childPosition).setUrgentStatusName(flag);	
+		}
 //		model.search(searchParm);
 		
 	}
@@ -441,9 +437,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 				String code = ((JSONObject) jsonObj.get("head")).get("code")
 						.toString();
 				if (code.equals("ok")) {
+					String msg = ((JSONObject) jsonObj.get("head")).get("message")
+							.toString();
+					if(msg.matches(".*取消加急.*")){
+						changeSelectList(false);
+					}else{
+						changeSelectList(true);
+					}
 					
-					 
-					closeSelectList();
 
 				} else if (code.equals("failure")) {
 					Toast.makeText(getApplicationContext(), "请求失败",
@@ -471,6 +472,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 				mActionMode.finish();
 				dialog.dismiss();
 				adapter.removeAllRecords();
+//				model.search(searchParm);
 			}
 
 
