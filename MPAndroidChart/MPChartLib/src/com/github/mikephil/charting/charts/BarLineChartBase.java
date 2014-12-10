@@ -249,7 +249,7 @@ public abstract class BarLineChartBase extends Chart {
 
         drawMarkers();
 
-        drawDescription();
+        //drawDescription();
 
         canvas.drawBitmap(mDrawBitmap, 0, 0, mDrawPaint);
 

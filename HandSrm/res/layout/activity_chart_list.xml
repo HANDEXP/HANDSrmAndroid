@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
+    
     android:background="@color/white"
     >
     
@@ -13,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:dividerHeight="0.5dp"
-        android:divider="@color/black"
+       android:divider="@drawable/list_diver"
         android:listSelector="@drawable/list_view_selector"
         >
         
