@@ -174,7 +174,7 @@ public class ShopPoListAdapter extends BaseExpandableListAdapter {
 
 		if (child.get(groupPosition).get(childPosition).getSrmStatusName()
 				.equals("已确认")) {
-			Toast.makeText(context, "未发布订单不可加急", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, "采购订单状态错误或未发布", Toast.LENGTH_SHORT).show();
 			return;
 		}
 //		if (child.get(groupPosition).get(childPosition).getSrmStatusName()

@@ -550,14 +550,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 			menu.add(0, add_urgent_id, 1, "加急")
-					.setIcon(R.drawable.ic_approve_agree_dark)
+					.setIcon(R.drawable.ok)
 					.setTitle("加急")
 					.setShowAsAction(
 							MenuItem.SHOW_AS_ACTION_ALWAYS
 									| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
 			menu.add(0, cancel_urgent_id, 2, "取消加急")
-					.setIcon(R.drawable.ic_approve_agree_dark)
+					.setIcon(R.drawable.cancel)
 					.setTitle("取消加急")
 					.setShowAsAction(
 							MenuItem.SHOW_AS_ACTION_ALWAYS
