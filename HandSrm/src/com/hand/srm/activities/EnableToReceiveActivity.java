@@ -565,7 +565,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 			menu.add(0, MENU_ID_DENY, 1, "拒绝")
-					.setIcon(R.drawable.ok)
+					.setIcon(R.drawable.close)
 					.setTitle("拒绝")
 					.setShowAsAction(
 							MenuItem.SHOW_AS_ACTION_ALWAYS

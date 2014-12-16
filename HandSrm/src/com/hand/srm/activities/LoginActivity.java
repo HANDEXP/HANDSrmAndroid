@@ -173,7 +173,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			Toast.makeText(getApplicationContext(), "网络繁忙请稍后再试",
+			Toast.makeText(getApplicationContext(), "服务器返回数据解析失败",
 					Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} finally {
@@ -192,7 +192,7 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 	public void modelDidFaildLoadWithError(LMModel model) {
 		// TODO 自动生成的方法存根
 		dialog.dismiss();
-		Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG)
+		Toast.makeText(getApplicationContext(), "无法连接到指定服务器", Toast.LENGTH_LONG)
 				.show();
 	}
 
