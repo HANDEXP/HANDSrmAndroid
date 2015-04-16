@@ -142,7 +142,7 @@ public class ShopPoListActivity extends SherlockActivity implements
 					SearchForPurchasingActivity.class);
 			startActivityForResult(searchIntent, RETURN_PARAMETER);
 			overridePendingTransition(R.anim.move_right_in_activity,
-					R.anim.move_left_out_activity);
+					R.anim.alpha_out);
 			break;
 		default:
 			break;
@@ -244,13 +244,14 @@ public class ShopPoListActivity extends SherlockActivity implements
 					intent.putExtra("currencySymbol", currencySymbol);
 					startActivity(intent);
 					overridePendingTransition(R.anim.move_right_in_activity,
-							R.anim.move_left_out_activity);
+							R.anim.alpha_out);
 					return false;
 
 				}
 			}
 		});
 		shopPoListView.setGroupIndicator(null);
+		
 	}
 
 	/**

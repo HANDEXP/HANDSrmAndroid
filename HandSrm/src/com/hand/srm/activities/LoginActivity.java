@@ -35,6 +35,7 @@ import android.widget.Toast;
 public class LoginActivity extends SherlockActivity implements OnClickListener,
 		LMModelDelegate {
 
+	private TextView toLoadingTextView;
 	private Button loginBtn;
 	private TextView usernameTextView;
 	private TextView passwordTextView;
@@ -56,6 +57,18 @@ public class LoginActivity extends SherlockActivity implements OnClickListener,
 	}
 
 	private void buildAllViews() {
+		// 跳转Loding页面
+		toLoadingTextView = (TextView) findViewById(R.id.to_loading_activity);
+		toLoadingTextView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO 自动生成的方法存根
+				Intent intent = new Intent(LoginActivity.this,LoadingActivity.class);
+				finish();
+				startActivity(intent);
+			}
+		});
 		// 登录按钮
 		loginBtn = (Button) findViewById(R.id.loginBtn);
 		loginBtn.setOnClickListener(this);

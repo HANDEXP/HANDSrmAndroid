@@ -21,6 +21,7 @@
         ptr:ptrHeaderTextColor="@android:color/white"
         ptr:ptrMode="pullUpFromBottom" 
         android:layout_below="@+id/shipPoTitle"
-        android:divider="@null"/>
+        android:divider="@null"
+        android:scrollbars="none"/>
 
 </RelativeLayout>

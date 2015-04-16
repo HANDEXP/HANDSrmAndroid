@@ -22,8 +22,6 @@
     <string name="comment">欢迎吐糟</string>
     <string name="checkVersion">版本升级</string>
     <string name="exit">退出系统</string>
-    <drawable name="white">#ffffff</drawable>
-    <drawable name="grey">#eeeeed</drawable>
     <!-- /////  查询送货单号 -->
     <string name="deliveryBillNo">送货单号:</string>
     <string name="deliveryDateFrom">发货日期从:</string>
@@ -66,7 +64,4 @@
     <string name="locationName">收货地点：</string>
     <string name="back">返回</string>
     <string name="search">搜索</string>
-    
-    <drawable name="gridfocustrue">#eeeeed</drawable>
-    <drawable name="gridfocusfalse">#ffffff</drawable>
 </resources>

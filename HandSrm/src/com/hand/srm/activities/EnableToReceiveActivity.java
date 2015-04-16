@@ -150,7 +150,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					SearchForDeliveryActivity.class);
 			startActivityForResult(searchIntent, RETURN_PARAMETER);
 			overridePendingTransition(R.anim.move_right_in_activity,
-					R.anim.move_left_out_activity);
+					R.anim.alpha_out);
 			break;
 		default:
 			break;
@@ -234,7 +234,7 @@ public class EnableToReceiveActivity extends SherlockActivity implements
 					intent.putExtra("purHeaderId", headerId);
 					startActivity(intent);
 					overridePendingTransition(R.anim.move_right_in_activity,
-							R.anim.move_left_out_activity);
+							R.anim.alpha_out);
 					return false;
 				}
 			}

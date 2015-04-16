@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+	<LinearLayout 
+	    android:id="@+id/basic_setting_ll"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="#21313d"
+	    android:paddingLeft="2dp"
+	    >
+	    <TextView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Basic Setting"
+	        android:textSize="16sp"
+	        android:textColor="@color/white"
+	        android:layout_margin="5dp"/>
+	</LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/basic_url_setting_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/basic_setting_ll"
+        android:background="@drawable/setting_basic_selector"
+        android:orientation="vertical"
+        android:padding="2dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Server Address"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/basic_url_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
+            android:text=""
+            android:textColor="#8b99a0"
+            android:textSize="16sp" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/reload_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reload"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

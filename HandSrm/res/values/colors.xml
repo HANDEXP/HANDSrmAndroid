@@ -16,5 +16,10 @@
 	<color name="grayslate">#708090</color>
 	<color name="lightblue">#00cccc</color>
 	<color name="bkblue">#2da8e1</color>
-	
+	<drawable name="black">#000000</drawable>
+    <drawable name="white">#ffffff</drawable>
+    <drawable name="grey">#eeeeed</drawable>
+    <drawable name="blue">#500000ff</drawable>
+    <drawable name="gridfocustrue">#eeeeed</drawable>
+    <drawable name="gridfocusfalse">#ffffff</drawable>
 </resources>

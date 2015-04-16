@@ -105,7 +105,7 @@ public class SearchForPurchasingActivity extends Activity implements
 		case R.id.backImgBtn:
 			finish();
 			overridePendingTransition(R.anim.move_left_in_activity,
-					R.anim.move_right_out_activity);			
+					R.anim.alpha_out);			
 		default:
 			break;
 		}

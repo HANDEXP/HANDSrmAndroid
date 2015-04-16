@@ -60,8 +60,8 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
     public void onBackPressed() {  
         // do something what you want  
 //        super.onBackPressed();  
-		finish();
-		overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+		finishWithAnime();
+		
     }  
 	
 	@Override
@@ -158,12 +158,16 @@ public class ShopPoListDetailActivity extends SherlockActivity implements OnClic
 		// TODO 自动生成的方法存根
 		switch (v.getId()) {
 		case R.id.backTextView:
-			finish();
-			overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+			finishWithAnime();
 			break;
 
 		default:
 			break;
 		}
+	}
+	
+	private void finishWithAnime(){
+		finish();
+		overridePendingTransition(R.anim.alpha_in, R.anim.move_right_out_activity);
 	}
 }
